@@ -21,7 +21,21 @@ tools-bake.py          re-bakes contrast safety into a new hero/band plate
 python3 -m http.server 8787   # then open http://localhost:8787
 ```
 
-Deploy by dragging the folder onto Netlify, Cloudflare Pages, or GitHub Pages.
+## Deploying
+
+The repo is the site; there is no build step. `netlify.toml` sets `publish = "."` plus a few
+security headers and a week-long cache on images.
+
+**GitHub** — pushed to
+`github.com/Kdevelopment2026/KTO-Technology-Development-Solutions` on `main`.
+
+**Netlify** — connect that repo once in the Netlify UI (Add new site → Import an existing
+project → GitHub → pick the repo). It will read `netlify.toml`, need no build command, and
+redeploy on every push. Nothing else to configure.
+
+`source-images/` is git-ignored: it holds the ~12 MB of PNG masters, which are build input
+rather than site output. Remove that line from `.gitignore` if you would rather they were
+version-controlled.
 
 ---
 
@@ -74,6 +88,12 @@ Deploy by dragging the folder onto Netlify, Cloudflare Pages, or GitHub Pages.
 | 03 | SecureMind | Security awareness | 2 | complete |
 | 04 | EY | Writing for different formats | 3 | **three rows pending** |
 
+**Section 03, "Video and AI", is the one place the copy is mine.** Everything else on the page
+came from you or from your existing site. That section covers AI video content, UGC-style ads,
+AI animation and post-production, and the tool chips list Veo 3.1 and Google Gemini 3 because
+you named them as tools you use. Read it before launch and change anything that overstates
+what you offer. It is marked `COPY REVIEW` in `index.html`.
+
 **EY needs finishing.** Only the project title is verifiable from the screens, so Module,
 Development tool and Process render as a muted "TO BE SUPPLIED". Fill those three `<dd>`s in
 `index.html` and delete the `spec__row--pending` class from each. Search for
@@ -115,6 +135,9 @@ could read, so I left it out rather than ship a dead link. Add it to `.contactli
   for the white course screens, where the dark-mode accents would fail contrast. If you
   change an accent, change both halves and re-check.
 - **The hero highlight** is green because the word it sits behind is "results".
+- **Sections are numbered 01 to 07** and the left rail mirrors them. Adding or reordering a
+  section means updating three things: the `.modlabel__n` digits, the `.rail__list` entries,
+  and the `SECTIONS` array in `main.js` that drives the current-section highlight.
 - **Punctuation** — no em dashes anywhere in the prose; they were rewritten into full stops
   and commas. Where a dash was separating a label from its qualifier it became the middot the
   spec lists already use, as in "NHS · Digital Clinical System Training". Hyphens inside
