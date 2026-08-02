@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KTO Technology Solutions · E-learning developer and instructional designer, London</title>
+<meta name="description" content="Instructional design and e-learning development from London. Twenty-five years across medical, HR, compliance, insurance, education and finance. Storyline 360, Rise 360, software simulations, video and AI-assisted learning.">
+<meta name="theme-color" content="#0F1620">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="KTO Technology Solutions · E-learning developer and instructional designer">
+<meta property="og:description" content="Twenty-five years turning complex information into learning people can use. London, England.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%230F1620'/%3E%3Crect x='7' y='9' width='18' height='3' fill='%233D8BFF'/%3E%3Crect x='7' y='15' width='13' height='3' fill='%2324D267'/%3E%3Crect x='7' y='21' width='8' height='3' fill='%23DDE5ED' opacity='.55'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Ambient light field: two soft orbs behind everything, drifting blue→green
+     with scroll progress so the ground is never completely flat. -->
+<div class="ambient" aria-hidden="true"><i class="ambient__a"></i><i class="ambient__b"></i></div>
+
+<!-- Contact details are the ones published on the current KTO site:
+     kayodefashola@hotmail.com and 07947305173. Swap if either has changed. -->
+<header class="head" id="head" data-open="false">
+  <div class="head__inner">
+    <a class="mark" href="#top">
+      <span class="mark__kto">KTO</span>
+      <span class="mark__rest">Technology Solutions</span>
+    </a>
+
+    <button class="navtoggle" type="button" aria-expanded="false" aria-controls="sitenav">
+      <span class="navtoggle__bars" aria-hidden="true"><i></i><i></i></span>
+      <span>Menu</span>
+    </button>
+
+    <nav class="nav" id="sitenav" aria-label="Primary">
+      <ul class="nav__list">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#video">Video</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <a class="btn btn--solid btn--sm" href="#contact">Discuss a project</a>
+    </nav>
+  </div>
+  <span class="headprog" aria-hidden="true"><i></i></span>
+</header>
+
+<nav class="rail" aria-label="Page sections">
+  <span class="rail__track" aria-hidden="true"><i class="rail__fill"></i></span>
+  <ul class="rail__list">
+    <li><a href="#work"><span class="rail__n" aria-hidden="true">01</span><span class="rail__tick" aria-hidden="true"></span>Work</a></li>
+    <li><a href="#services"><span class="rail__n" aria-hidden="true">02</span><span class="rail__tick" aria-hidden="true"></span>Services</a></li>
+    <li><a href="#video"><span class="rail__n" aria-hidden="true">03</span><span class="rail__tick" aria-hidden="true"></span>Video</a></li>
+    <li><a href="#process"><span class="rail__n" aria-hidden="true">04</span><span class="rail__tick" aria-hidden="true"></span>Process</a></li>
+    <li><a href="#toolkit"><span class="rail__n" aria-hidden="true">05</span><span class="rail__tick" aria-hidden="true"></span>Toolkit</a></li>
+    <li><a href="#about"><span class="rail__n" aria-hidden="true">06</span><span class="rail__tick" aria-hidden="true"></span>About</a></li>
+    <li><a href="#contact"><span class="rail__n" aria-hidden="true">07</span><span class="rail__tick" aria-hidden="true"></span>Contact</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+
+<!-- ─────────────────────────────  HERO  ───────────────────────────── -->
+<section class="section section--hero" id="top">
+  <div class="heromedia" aria-hidden="true">
+    <img src="assets/img/hero-panels.jpg" width="2000" height="1116" alt="" fetchpriority="high">
+  </div>
+
+  <div class="wrap">
+    <div class="spread spread--hero">
+
+      <div class="spread__spec">
+        <dl class="spec" data-reveal-group>
+          <div class="spec__row" data-reveal>
+            <dt>Sectors</dt>
+            <dd>Medical · HR · Compliance · Insurance · Education · Finance</dd>
+          </div>
+          <div class="spec__row" data-reveal>
+            <dt>Formats</dt>
+            <dd>Courses · Software simulations · Video · Job aids · Assistants</dd>
+          </div>
+          <div class="spec__row" data-reveal>
+            <dt>Standards</dt>
+            <dd>SCORM 1.2 &amp; 2004 · xAPI · WCAG 2.2 AA</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="spread__body">
+        <p class="herobrand" data-reveal>
+          <b>KTO</b> Technology Solutions <span aria-hidden="true">/</span> London, England
+        </p>
+
+        <!-- Each .line is a mask for the reveal, so it must never wrap
+             internally. Sizes in .h-display are set to guarantee that. -->
+        <h1 class="h-display">
+          <span class="line"><span class="line__in">Designing</span></span>
+          <span class="line"><span class="line__in">digital learning</span></span>
+          <span class="line"><span class="line__in">that informs, engages</span></span>
+          <span class="line"><span class="line__in">and <span class="hl"><span class="hl__wash" aria-hidden="true"></span><span class="hl__text hl__text--base">delivers results</span><span class="hl__text hl__text--knock" aria-hidden="true">delivers results</span></span></span></span>
+        </h1>
+
+        <p class="lead" data-reveal>
+          I create practical and engaging e-learning experiences for healthcare, technology,
+          public-sector and corporate organisations.
+        </p>
+
+        <div class="actions" data-reveal>
+          <a class="btn btn--solid" href="#work">View my work</a>
+          <a class="btn btn--line" href="#contact">Discuss a project</a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="scrollcue" aria-hidden="true">
+      <span class="scrollcue__label">Scroll</span>
+      <span class="scrollcue__line"><i></i></span>
+    </p>
+  </div>
+</section>
+
+<!-- ─────────────────────────  01 · WORK  ──────────────────────────── -->
+<section class="section section--work" id="work">
+  <div class="wrap">
+
+    <header class="shead" data-reveal-group>
+      <p class="modlabel" data-reveal>
+        <span class="modlabel__n">01</span> Selected work
+        <span class="modlabel__rule" aria-hidden="true"></span>
+      </p>
+      <h2 class="h-section" data-reveal>Four projects, and the screens they shipped as</h2>
+      <p class="shead__note" data-reveal>
+        Every one of them started as content nobody wanted to read.
+      </p>
+    </header>
+
+    <!-- ── Case 01 · NHS · the flagship ───────────────────────────────
+         The only pinned sequence on the page. The three screens share one
+         grid cell so the scrubbed timeline can cross-fade between them. -->
+    <article class="case case--flagship" data-case="nhs">
+      <p class="case__sector" data-reveal>NHS · Digital Clinical System Training</p>
+
+      <div class="spread spread--case">
+        <div class="spread__spec">
+          <dl class="spec" data-reveal>
+            <div class="spec__row">
+              <dt>Module</dt>
+              <dd>General topics relevant to all staff members across the Trust, including
+                foundational subjects such as logging in and acquiring basic knowledge of the
+                various systems within the DCS.</dd>
+            </div>
+            <div class="spec__row">
+              <dt>Development tool</dt>
+              <dd>Articulate Storyline · Moodle · Totara</dd>
+            </div>
+            <div class="spec__row">
+              <dt>Process</dt>
+              <dd>Actively engaging key stakeholders, including clinicians and medical staff, to
+                identify and define the specific learning objectives required for effective
+                training. Through collaborative discussion and feedback, the content is aligned
+                to the needs of all users.</dd>
+            </div>
+            <div class="spec__row">
+              <dt>Build</dt>
+              <dd>Detailed simulations of the DCS Meditech system built in Articulate Storyline,
+                giving staff hands-on experience in a virtual environment before they meet the
+                live system. The final package is reviewed and refined on further stakeholder
+                input.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="spread__body">
+          <h3 class="h-case" data-reveal>DCS Meditech Expanse: EPR Transformation</h3>
+
+          <div class="gallery" data-gallery data-reveal>
+            <div class="gallery__viewport" tabindex="0" role="group"
+                 aria-roledescription="carousel" aria-label="NHS project screens">
+              <ul class="gallery__track">
+              <li class="gallery__slide" role="group"
+                  aria-roledescription="slide" aria-label="Screen 1 of 3">
+  <figure class="shot">
+                <div class="screen">
+                  <img src="assets/img/nhs-meditech-1-signon.webp" width="1500" height="750" loading="lazy"
+                       alt="MEDITECH Expanse sign-on screen in the training domain, showing user, domain, password, HCIS and job-role fields with an All Access training role selected.">
+                </div>
+                <figcaption>Signing on to the training domain. Staff meet exactly the screen they will
+                  use on shift, with a role that cannot touch live patient data.</figcaption>
+              </figure>
+              </li>
+              <li class="gallery__slide" role="group"
+                  aria-roledescription="slide" aria-label="Screen 2 of 3">
+  <figure class="shot">
+                <div class="screen">
+                  <img src="assets/img/nhs-meditech-2-simulation.webp" width="1500" height="743" loading="lazy"
+                       alt="Simulated MEDITECH patient list with the Menu panel open, and a coaching callout explaining that greyed-out options are unavailable.">
+                </div>
+                <figcaption>The simulation itself, built in Storyline. The menu behaves as it does in
+                  the live system, and coaching callouts explain what is and is not available.</figcaption>
+              </figure>
+              </li>
+              <li class="gallery__slide" role="group"
+                  aria-roledescription="slide" aria-label="Screen 3 of 3">
+  <figure class="shot">
+                <div class="screen">
+                  <img src="assets/img/nhs-meditech-3-module.webp" width="1500" height="739" loading="lazy"
+                       alt="Course title screen reading GP Allergies and Home Medications, with a photograph of two nurses working at a laptop.">
+                </div>
+                <figcaption>One of the role-specific modules sitting on top of the foundation
+                  course.</figcaption>
+              </figure>
+              </li>
+              </ul>
+            </div>
+
+            <div class="gallery__bar">
+              <button class="gallery__nav" type="button" data-dir="-1" aria-label="Previous screen">
+                <span aria-hidden="true">&#8592;</span>
+              </button>
+              <ol class="gallery__dots">
+                <li><button class="gallery__dot" type="button" data-go="0" aria-current="true" aria-label="Go to screen 1"></button></li>
+                <li><button class="gallery__dot" type="button" data-go="1" aria-label="Go to screen 2"></button></li>
+                <li><button class="gallery__dot" type="button" data-go="2" aria-label="Go to screen 3"></button></li>
+              </ol>
+              <button class="gallery__nav" type="button" data-dir="1" aria-label="Next screen">
+                <span aria-hidden="true">&#8594;</span>
+              </button>
+              <p class="gallery__count"><span data-count-now>1</span> / 3</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scope scope--offset" data-reveal>
+        <p class="scope__label">Role-based packages</p>
+        <ul class="chips">
+          <li>Medics &amp; Advanced Nurse Practitioners</li>
+          <li>Emergency Department</li>
+          <li>Outpatient Department</li>
+          <li>Medical Records</li>
+          <li>Maternity</li>
+          <li>Pharmacy</li>
+          <li>Temporary Staff</li>
+          <li>Allied Health Professionals</li>
+          <li>Theatres</li>
+          <li>Inpatients</li>
+          <li>View-only packages</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ── Case 02 · The Open University ──────────────────────────── -->
+    <article class="case" data-case="ariba">
+      <p class="case__sector" data-reveal>The Open University</p>
+
+      <div class="spread spread--case">
+        <div class="spread__spec">
+          <dl class="spec" data-reveal>
+            <div class="spec__row">
+              <dt>Module</dt>
+              <dd>An e-learning course describing the SAP Ariba indirect procurement process and
+                the policy supporting procurement at the Open University.</dd>
+            </div>
+            <div class="spec__row">
+              <dt>Process</dt>
+              <dd>Stakeholder engagement, storyboarding and development</dd>
+            </div>
+            <div class="spec__row">
+              <dt>AI tools</dt>
+              <dd>NotebookLM</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="spread__body">
+          <h3 class="h-case" data-reveal>SAP Ariba indirect procurement process</h3>
+
+          <div class="gallery" data-gallery data-reveal>
+            <div class="gallery__viewport" tabindex="0" role="group"
+                 aria-roledescription="carousel" aria-label="Open University project screens">
+              <ul class="gallery__track">
+              <li class="gallery__slide" role="group"
+                  aria-roledescription="slide" aria-label="Screen 1 of 3">
+  <figure class="shot">
+                <div class="screen">
+                  <img src="assets/img/ou-ariba-1-welcome.webp" width="1500" height="884" loading="lazy"
+                       alt="Course welcome screen for the SAP Ariba indirect procurement module, with a nine-item lesson menu and three cards covering policy alignment, workflow and role visibility.">
+                </div>
+                <figcaption>The course opens on its own contents, so learners can see the whole
+                  nine-step path before starting.</figcaption>
+              </figure>
+              </li>
+              <li class="gallery__slide" role="group"
+                  aria-roledescription="slide" aria-label="Screen 2 of 3">
+  <figure class="shot">
+                <div class="screen">
+                  <img src="assets/img/ou-ariba-2-indirect.webp" width="1500" height="883" loading="lazy"
+                       alt="Lesson screen defining indirect procurement, with key characteristics listed beside a comparison of direct and indirect procurement types.">
+                </div>
+                <figcaption>Policy turned into a comparison a buyer can act on, rather than a clause
+                  to be read.</figcaption>
+              </figure>
+              </li>
+              <li class="gallery__slide" role="group"
+                  aria-roledescription="slide" aria-label="Screen 3 of 3">
+  <figure class="shot">
+                <div class="screen">
+                  <img src="assets/img/ou-ariba-3-flow.webp" width="1500" height="880" loading="lazy"
+                       alt="Interactive purchase-requisition to receipt flow, showing five numbered stages with stage five active and a compliance tip about purchase orders.">
+                </div>
+                <figcaption>The requisition-to-receipt lifecycle as a stepped interaction, with the
+                  compliance point attached to the step it applies to.</figcaption>
+              </figure>
+              </li>
+              </ul>
+            </div>
+
+            <div class="gallery__bar">
+              <button class="gallery__nav" type="button" data-dir="-1" aria-label="Previous screen">
+                <span aria-hidden="true">&#8592;</span>
+              </button>
+              <ol class="gallery__dots">
+                <li><button class="gallery__dot" type="button" data-go="0" aria-current="true" aria-label="Go to screen 1"></button></li>
+                <li><button class="gallery__dot" type="button" data-go="1" aria-label="Go to screen 2"></button></li>
+                <li><button class="gallery__dot" type="button" data-go="2" aria-label="Go to screen 3"></button></li>
+              </ol>
+              <button class="gallery__nav" type="button" data-dir="1" aria-label="Next screen">
+                <span aria-hidden="true">&#8594;</span>
+              </button>
+              <p class="gallery__count"><span data-count-now>1</span> / 3</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── Case 03 · SecureMind ───────────────────────────────────── -->
+    <article class="case" data-case="securemind">
+      <p class="case__sector" data-reveal>SecureMind</p>
+
+      <div class="spread spread--case">
+        <div class="spread__spec">
+          <dl class="spec" data-reveal>
+            <div class="spec__row">
+              <dt>Module</dt>
+              <dd>A short, practical interactive security awareness module that helps learners
+                recognise threats, protect sensitive information, and make safer decisions at work
+                every day.</dd>
+            </div>
+            <div class="spec__row">
+              <dt>AI tools</dt>
+              <dd>Google Gemini 3 · Veo 3.1</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="spread__body">
+          <h3 class="h-case" data-reveal>Security awareness</h3>
+
+          <div class="gallery" data-gallery data-reveal>
+            <div class="gallery__viewport" tabindex="0" role="group"
+                 aria-roledescription="carousel" aria-label="SecureMind project screens">
+              <ul class="gallery__track">
+              <li class="gallery__slide" role="group"
+                  aria-roledescription="slide" aria-label="Screen 1 of 2">
+  <figure class="shot">
+                <div class="screen">
+                  <img src="assets/img/securemind-1-dashboard.webp" width="1500" height="866" loading="lazy"
+                       alt="SecureMind learner dashboard with four module cards, progress indicators, earned badges and a top-defenders leaderboard.">
+                </div>
+                <figcaption>Progress, streaks and a leaderboard. The compliance course is structured as
+                  something people come back to.</figcaption>
+              </figure>
+              </li>
+              <li class="gallery__slide" role="group"
+                  aria-roledescription="slide" aria-label="Screen 2 of 2">
+  <figure class="shot">
+                <div class="screen">
+                  <img src="assets/img/securemind-2-deception.webp" width="1500" height="863" loading="lazy"
+                       alt="Lesson screen titled The Art of Deception explaining spear phishing, with an interactive phishing challenge showing a suspicious email and an Analyze for Threats button.">
+                </div>
+                <figcaption>A phishing challenge the learner has to actually inspect, rather than a
+                  statement they have to agree with.</figcaption>
+              </figure>
+              </li>
+              </ul>
+            </div>
+
+            <div class="gallery__bar">
+              <button class="gallery__nav" type="button" data-dir="-1" aria-label="Previous screen">
+                <span aria-hidden="true">&#8592;</span>
+              </button>
+              <ol class="gallery__dots">
+                <li><button class="gallery__dot" type="button" data-go="0" aria-current="true" aria-label="Go to screen 1"></button></li>
+                <li><button class="gallery__dot" type="button" data-go="1" aria-label="Go to screen 2"></button></li>
+              </ol>
+              <button class="gallery__nav" type="button" data-dir="1" aria-label="Next screen">
+                <span aria-hidden="true">&#8594;</span>
+              </button>
+              <p class="gallery__count"><span data-count-now>1</span> / 2</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── Case 04 · EY ───────────────────────────────────────────────
+         AWAITING COPY. Only the project title is verifiable from the
+         screens. Fill in the three pending rows below and delete the
+         --pending modifier from each. -->
+    <article class="case" data-case="ey">
+      <p class="case__sector" data-reveal>EY</p>
+
+      <div class="spread spread--case">
+        <div class="spread__spec">
+          <dl class="spec" data-reveal>
+            <div class="spec__row spec__row--pending">
+              <dt>Module</dt><dd>To be supplied</dd>
+            </div>
+            <div class="spec__row spec__row--pending">
+              <dt>Development tool</dt><dd>To be supplied</dd>
+            </div>
+            <div class="spec__row spec__row--pending">
+              <dt>Process</dt><dd>To be supplied</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="spread__body">
+          <h3 class="h-case" data-reveal>Writing for different formats</h3>
+
+          <div class="gallery" data-gallery data-reveal>
+            <div class="gallery__viewport" tabindex="0" role="group"
+                 aria-roledescription="carousel" aria-label="EY project screens">
+              <ul class="gallery__track">
+              <li class="gallery__slide" role="group"
+                  aria-roledescription="slide" aria-label="Screen 1 of 3">
+  <figure class="shot">
+                <div class="screen">
+                  <img src="assets/img/ey-1-formats.webp" width="1500" height="907" loading="lazy"
+                       alt="Course title screen reading Writing for different formats, over a photograph of someone typing at a laptop, with EY branding.">
+                </div>
+                <figcaption>Title screen.</figcaption>
+              </figure>
+              </li>
+              <li class="gallery__slide" role="group"
+                  aria-roledescription="slide" aria-label="Screen 2 of 3">
+  <figure class="shot">
+                <div class="screen">
+                  <img src="assets/img/ey-2-news.webp" width="1500" height="910" loading="lazy"
+                       alt="Lesson screen titled Why EY news is big news, with body copy about internal communications beside a six-item section menu covering speeches, podcasts, video scripts, editorial and social media.">
+                </div>
+                <figcaption>Six writing formats, each addressed as its own section.</figcaption>
+              </figure>
+              </li>
+              <li class="gallery__slide" role="group"
+                  aria-roledescription="slide" aria-label="Screen 3 of 3">
+  <figure class="shot">
+                <div class="screen">
+                  <img src="assets/img/ey-3.webp" width="1500" height="914" loading="lazy"
+                       alt="Lesson screen on writing for podcasts, showing a Word document headed A detailed podcast episode plan on a laptop, beside the six-section menu.">
+                </div>
+                <figcaption>Each format is taught against a worked example of the document itself.</figcaption>
+              </figure>
+              </li>
+              </ul>
+            </div>
+
+            <div class="gallery__bar">
+              <button class="gallery__nav" type="button" data-dir="-1" aria-label="Previous screen">
+                <span aria-hidden="true">&#8592;</span>
+              </button>
+              <ol class="gallery__dots">
+                <li><button class="gallery__dot" type="button" data-go="0" aria-current="true" aria-label="Go to screen 1"></button></li>
+                <li><button class="gallery__dot" type="button" data-go="1" aria-label="Go to screen 2"></button></li>
+                <li><button class="gallery__dot" type="button" data-go="2" aria-label="Go to screen 3"></button></li>
+              </ol>
+              <button class="gallery__nav" type="button" data-dir="1" aria-label="Next screen">
+                <span aria-hidden="true">&#8594;</span>
+              </button>
+              <p class="gallery__count"><span data-count-now>1</span> / 3</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ───────────────────────  STATEMENT BAND  ───────────────────────── -->
+<section class="statement" aria-labelledby="statement-q">
+  <div class="statement__media" aria-hidden="true">
+    <img src="assets/img/band-panels.jpg" width="2000" height="1116" loading="lazy" alt="">
+  </div>
+  <div class="wrap">
+    <p class="statement__q" id="statement-q" data-reveal>
+      Twenty-five years of turning what people are told they must know into
+      <em>something they can actually do</em>.
+    </p>
+    <p class="statement__by" data-reveal>Medical · HR · Compliance · Insurance · Education · Finance</p>
+  </div>
+</section>
+
+<!-- ───────────────────────  02 · SERVICES  ────────────────────────── -->
+<section class="section section--services" id="services">
+  <div class="wrap">
+    <div class="spread">
+      <div class="spread__spec">
+        <header class="shead" data-reveal-group>
+          <p class="modlabel" data-reveal>
+            <span class="modlabel__n">02</span> Services
+          </p>
+          <h2 class="h-section" data-reveal>What I can take on</h2>
+          <p class="shead__note" data-reveal>
+            End to end, or a single stage of a project that has stalled.
+          </p>
+        </header>
+
+        <!-- One tick per year. Decorative, so aria-hidden. The figure beside
+             it is real text and reads fine on its own. -->
+        <div class="tenure" data-reveal>
+          <p class="tenure__k">Experience</p>
+          <p class="tenure__v">
+            <span class="tenure__n">25</span><span class="tenure__plus">+</span>
+            <span class="tenure__u">years</span>
+          </p>
+          <span class="tenure__ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <p class="tenure__note">Every service listed here has shipped, more than once.</p>
+        </div>
+      </div>
+
+      <div class="spread__body">
+        <ul class="svc" data-reveal-group>
+          <li class="svc__item" data-reveal>
+            <h3>Instructional design</h3>
+            <p>Learning objectives, structure, storyboards and assessment design, written so a
+              developer or a subject-matter expert can pick them up without a meeting.</p>
+          </li>
+          <li class="svc__item" data-reveal>
+            <h3>Storyline 360 development</h3>
+            <p>Interactive courses, branching scenarios, variables and custom navigation, packaged
+              and tested against your LMS.</p>
+          </li>
+          <li class="svc__item" data-reveal>
+            <h3>Rise 360 course creation</h3>
+            <p>Fast, responsive courses for content that changes often, with a block structure your
+              team can maintain after handover.</p>
+          </li>
+          <li class="svc__item" data-reveal>
+            <h3>Software simulations</h3>
+            <p>Watch, try and test walkthroughs of your real system, built from screen capture and
+              safe to practise in.</p>
+          </li>
+          <li class="svc__item" data-reveal>
+            <h3>Learning video and screencasts</h3>
+            <p>The video that lives inside a course: demonstrations, screencasts and narration,
+              captioned and transcribed. Standalone and marketing video is section 03.</p>
+          </li>
+          <li class="svc__item" data-reveal>
+            <h3>Training strategy and consultancy</h3>
+            <p>Training needs analysis, curriculum mapping, asynchronous learning design and honest
+              advice on when e-learning is the wrong answer.</p>
+          </li>
+          <li class="svc__item" data-reveal>
+            <h3>LMS setup and SCORM support</h3>
+            <p>Packaging, tracking, completion rules and reporting for Moodle, Totara and most
+              commercial platforms, including fixing courses that will not report.</p>
+          </li>
+          <li class="svc__item" data-reveal>
+            <h3>AI-powered learning content</h3>
+            <p>Assisted drafting, localisation, implementation strategy and learner-support
+              assistants, grounded in your approved sources with a human review step built in.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────  03 · VIDEO AND AI  ──────────────────────── -->
+<!-- COPY REVIEW: unlike the case studies, this section's wording is not
+     taken from anything you supplied. Read it before launch. -->
+<section class="section section--video" id="video">
+  <div class="wrap">
+    <div class="spread">
+      <div class="spread__spec">
+        <header class="shead" data-reveal-group>
+          <p class="modlabel" data-reveal>
+            <span class="modlabel__n">03</span> Video and AI
+          </p>
+          <h2 class="h-section" data-reveal>Video that used to need a crew</h2>
+          <p class="shead__note" data-reveal>
+            Scripted, generated and finished in house, so changing the message does not mean
+            booking another shoot.
+          </p>
+        </header>
+
+        <div class="scope" data-reveal>
+          <p class="scope__label">Made with</p>
+          <ul class="chips">
+            <li>Veo 3.1</li>
+            <li>Google Gemini 3</li>
+            <li>Camtasia</li>
+            <li>Vyond</li>
+            <li>Adobe Creative Cloud</li>
+            <li>Audition</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="spread__body">
+        <ul class="svc" data-reveal-group>
+          <li class="svc__item" data-reveal>
+            <h3>AI video content</h3>
+            <p>Scripted, generated and edited video for learning, onboarding and internal
+              communications, produced without a shoot. A change of message costs hours rather
+              than another day on location.</p>
+          </li>
+          <li class="svc__item" data-reveal>
+            <h3>UGC-style ads</h3>
+            <p>Creator-style advertising built to look native to the feed rather than to a
+              brand deck. Several hooks and cuts from one script, so a campaign can be tested
+              cheaply before anything is scaled.</p>
+          </li>
+          <li class="svc__item" data-reveal>
+            <h3>AI animation</h3>
+            <p>Explainers, motion graphics and animated sequences generated and assembled to
+              brief, for the ideas that are easier to show moving than to describe in a
+              paragraph.</p>
+          </li>
+          <li class="svc__item" data-reveal>
+            <h3>Video and post-production</h3>
+            <p>Voice, edit, subtitles, transcripts and audio description, finished to the same
+              accessibility standard as the courses rather than bolted on afterwards.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────  03 · PROCESS  ─────────────────────────── -->
+<section class="section section--process" id="process">
+  <div class="wrap">
+    <header class="shead shead--wide" data-reveal-group>
+      <p class="modlabel" data-reveal>
+        <span class="modlabel__n">04</span> How I work
+        <span class="modlabel__rule" aria-hidden="true"></span>
+      </p>
+      <h2 class="h-section" data-reveal>Six stages, and you see something real at every one</h2>
+    </header>
+
+    <ol class="steps" data-reveal-group>
+      <span class="steps__track" aria-hidden="true"><i class="steps__draw"></i></span>
+      <li class="steps__item" data-reveal>
+        <span class="steps__n">01</span>
+        <h3>Discover</h3>
+        <p>What is going wrong, for whom, and how you will know it is fixed. I speak to the people
+          doing the work, not only the people commissioning the training.</p>
+      </li>
+      <li class="steps__item" data-reveal>
+        <span class="steps__n">02</span>
+        <h3>Define</h3>
+        <p>Objectives, scope, format and success measures agreed in writing, so later decisions have
+          something to be measured against.</p>
+      </li>
+      <li class="steps__item" data-reveal>
+        <span class="steps__n">03</span>
+        <h3>Design</h3>
+        <p>A storyboard covering every screen: on-screen text, narration, interaction and feedback.
+          Subject-matter experts review the words before anything is built.</p>
+      </li>
+      <li class="steps__item" data-reveal>
+        <span class="steps__n">04</span>
+        <h3>Develop</h3>
+        <p>Build, media production and accessibility work run together. A working prototype of the
+          hardest screen comes first, not last.</p>
+      </li>
+      <li class="steps__item" data-reveal>
+        <span class="steps__n">05</span>
+        <h3>Review</h3>
+        <p>Two structured rounds with consolidated comments, plus a pilot with real learners on the
+          real platform. Late surprises usually come from skipping this.</p>
+      </li>
+      <li class="steps__item" data-reveal>
+        <span class="steps__n">06</span>
+        <h3>Deliver</h3>
+        <p>Packaged, tested in your LMS and handed over with source files and a maintenance note, so
+          your team can make the next change without me.</p>
+      </li>
+    </ol>
+
+    <div class="notebox" data-reveal>
+      <p class="notebox__label">Working with your people</p>
+      <p>
+        Subject-matter experts get a storyboard to react to rather than a blank page. It is
+        far quicker to correct a draft than to dictate one. Stakeholders get fixed review points with a
+        single consolidated comment set, so nobody is chasing versions. Learners get involved at
+        pilot, on the device and platform they will actually use, because that is where the
+        problems show up.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────  04 · TOOLKIT  ─────────────────────────── -->
+<section class="section section--toolkit" id="toolkit">
+  <div class="wrap">
+    <div class="spread">
+      <div class="spread__spec">
+        <header class="shead" data-reveal-group>
+          <p class="modlabel" data-reveal>
+            <span class="modlabel__n">05</span> Toolkit
+          </p>
+          <h2 class="h-sub" data-reveal>The tools are the easy part</h2>
+          <p class="shead__note" data-reveal>
+            Useful to know, but the outcomes above matter more. If you work in something not listed
+            here, ask.
+          </p>
+        </header>
+      </div>
+
+      <div class="spread__body">
+        <div class="tools" data-reveal-group>
+          <div class="tools__group" data-reveal>
+            <p class="tools__label">Authoring</p>
+            <ul><li>Storyline 360</li><li>Rise 360</li><li>Captivate</li><li>H5P</li></ul>
+          </div>
+          <div class="tools__group" data-reveal>
+            <p class="tools__label">Media</p>
+            <ul><li>Camtasia</li><li>Vyond</li><li>Adobe Creative Cloud</li><li>Audition</li></ul>
+          </div>
+          <div class="tools__group" data-reveal>
+            <p class="tools__label">Platforms</p>
+            <ul><li>Moodle</li><li>Totara</li><li>SCORM 1.2 &amp; 2004</li><li>xAPI</li></ul>
+          </div>
+          <div class="tools__group" data-reveal>
+            <p class="tools__label">AI-assisted</p>
+            <ul><li>Content drafting</li><li>Localisation</li><li>Synthetic voice</li><li>Support assistants</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────  05 · ABOUT  ──────────────────────────── -->
+<section class="section section--about" id="about">
+  <div class="wrap">
+    <div class="spread spread--case">
+      <div class="spread__spec">
+        <dl class="spec" data-reveal>
+          <div class="spec__row"><dt>Based</dt><dd>London, England, working remotely with teams across the UK and Europe</dd></div>
+          <div class="spec__row"><dt>Experience</dt><dd>25+ years in training design and e-learning development</dd></div>
+          <div class="spec__row"><dt>Engagements</dt><dd>Project, retainer or day rate</dd></div>
+          <div class="spec__row"><dt>Handover</dt><dd>Source files, style guide and a maintenance note, always</dd></div>
+        </dl>
+      </div>
+
+      <div class="spread__body">
+        <p class="modlabel" data-reveal>
+          <span class="modlabel__n">06</span> About
+        </p>
+        <h2 class="h-section" data-reveal>I turn the content nobody reads into something people use</h2>
+
+        <div class="prose" data-reveal-group>
+          <p class="prose__lead" data-reveal>
+            I am a training designer, instructional designer and e-learning developer with over 25
+            years of experience creating innovative learning solutions. I specialise in transforming
+            complex information into clear, engaging and accessible digital learning that supports
+            real workplace performance.
+          </p>
+          <p data-reveal>
+            I have worked with clients across medical, HR, compliance, insurance, education and
+            finance, designing courses, simulations, videos and learning resources for very
+            different audiences. Telecommunications training and soft-skills development sit in
+            there too, and the pattern is always the same: a policy, a system or a procedure that
+            matters, written for the people who wrote it rather than the people who have to follow
+            it. The design job is to find the decisions inside that content and build the practice
+            around them.
+          </p>
+          <p data-reveal>
+            I am interested in what emerging technology can genuinely do for learning, and I blend
+            traditional instructional design with AI-assisted approaches such as drafting,
+            localisation and grounded support assistants, where they earn their place. Regulated environments
+            are normal for me, so accessibility, auditability and evidence of completion are not
+            afterthoughts: I build to WCAG 2.2 AA as standard, test with a screen reader rather than
+            assuming, and hand over source files your team can maintain.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ────────────────────────  06 · CONTACT  ────────────────────────── -->
+<section class="band" id="contact">
+  <span class="band__curtain" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="cta" data-reveal-group>
+      <p class="modlabel" data-reveal>
+        <span class="modlabel__n">07</span> Contact
+      </p>
+      <h2 class="h-display h-display--sm" data-reveal>Have a learning project in mind?</h2>
+      <p class="cta__text" data-reveal>
+        Whether you need a complete e-learning course, support with an existing project or help
+        turning complex content into an engaging learning experience, get in touch to discuss your
+        requirements.
+      </p>
+
+      <p class="contactlines" data-reveal>
+        <a href="mailto:kayodefashola@hotmail.com">kayodefashola@hotmail.com</a>
+        <a href="tel:+447947305173">07947 305173</a>
+      </p>
+
+      <div class="actions" data-reveal>
+        <a class="btn btn--go" href="mailto:kayodefashola@hotmail.com?subject=Learning%20project%20enquiry">Start a conversation</a>
+      </div>
+
+      <p class="cta__note" data-reveal>
+        Tell me the audience, the problem and the deadline, and you will get an honest answer about
+        scope within two working days.
+      </p>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot__inner">
+        <p class="foot__name">KTO Technology Solutions · London, England</p>
+        <ul class="foot__links">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="mailto:kayodefashola@hotmail.com">Email</a></li>
+        </ul>
+        <p>Built to WCAG 2.2 AA</p>
+      </div>
+    </div>
+  </footer>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

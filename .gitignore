@@ -1,0 +1,8 @@
+# Full-resolution PNG masters. Build input, not site output — Netlify would
+# otherwise upload ~12 MB of unused files on every deploy. Delete this line if
+# you would rather have them version-controlled.
+source-images/
+
+.DS_Store
+node_modules/
+.netlify/
