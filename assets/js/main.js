@@ -133,6 +133,20 @@
       sync();
     });
 
+    /* A lazy image that is only off-screen *horizontally* is not reliably
+       loaded by the browser, so advancing to slide 3 can show a blank frame.
+       Once the gallery itself is near the viewport, promote the rest. */
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (!entries.some(function (e) { return e.isIntersecting; })) return;
+        qa('img[loading="lazy"]', gal).forEach(function (img) { img.loading = 'eager'; });
+        io.disconnect();
+      }, { rootMargin: '400px' });
+      io.observe(gal);
+    } else {
+      qa('img[loading="lazy"]', gal).forEach(function (img) { img.loading = 'eager'; });
+    }
+
     sync();
     gal.dataset.galleryReady = 'true';
   });
