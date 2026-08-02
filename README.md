@@ -179,6 +179,37 @@ its own gallery; nothing else needs configuring.
 here went from 11.6 MB of PNG to 569 KB that way, with no visible loss. Keep the masters in
 `source-images/`.
 
+## Adding the showreel
+
+Section 03 ends with a **placeholder**: a 16:9 poster frame with a decorative play mark. It is
+marked `PLACEHOLDER` in `index.html`. The play mark is deliberately not a button, because a
+control that does nothing is worse than no control at all.
+
+When the film exists, drop it in `assets/video/` and replace the whole `<figure>` with:
+
+```html
+<figure class="reel" data-reveal>
+  <div class="screen reel__frame">
+    <video poster="assets/img/showreel-poster.webp"
+           controls preload="none" playsinline
+           width="1600" height="900">
+      <source src="assets/video/showreel.mp4" type="video/mp4">
+      <track kind="captions" src="assets/video/showreel.vtt" srclang="en" label="English" default>
+    </video>
+  </div>
+  <figcaption>A short reel of recent AI video, UGC and animation work.</figcaption>
+</figure>
+```
+
+The badge and overlay go; the video's own controls replace them. `.reel__frame video` is
+already styled to fill the frame at 16:9, so nothing in the CSS needs touching.
+
+Three things worth getting right: keep `preload="none"` so a heavy file does not cost every
+visitor bandwidth they did not ask for; ship **captions**, since the rest of the site is built
+to WCAG 2.2 AA and an uncaptioned video would be the one thing that fails it; and encode as
+H.264 MP4 for the broadest support, adding a WebM `<source>` above the MP4 if you want smaller
+files for browsers that take it.
+
 ## Motion
 
 Everything is progressive. GSAP, ScrollTrigger and Lenis load from a CDN and are used only if

@@ -268,7 +268,7 @@
 
   var HERO = q('.section--hero');
 
-  qa('.gallery[data-reveal]').forEach(function (el) { screenOn(el); });
+  qa('.gallery[data-reveal], .reel[data-reveal]').forEach(function (el) { screenOn(el); });
 
   // Groups with bespoke choreography opt out of the generic settle, or they
   // would be animated twice.
@@ -278,7 +278,7 @@
     if (HERO && HERO.contains(group)) return;
     if (group.matches(BESPOKE)) return;
     var items = qa('[data-reveal]', group).filter(function (el) {
-      return !el.matches('.gallery');
+      return !el.matches('.gallery, .reel');
     });
     settle(items, group, 'top 82%');
   });
@@ -286,7 +286,7 @@
   qa('[data-reveal]').forEach(function (el) {
     if (el.closest('[data-reveal-group]')) return;
     if (HERO && HERO.contains(el)) return;
-    if (el.matches('.gallery')) return;
+    if (el.matches('.gallery, .reel')) return;
     settle([el], el, 'top 88%');
   });
 

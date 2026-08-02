@@ -592,9 +592,51 @@ body{
 }
 .screen img{ width:100%; height:auto; }
 
+/* ---------- showreel ----------------------------------------------------
+   The play mark is decorative and aria-hidden: it is not a button, because a
+   control that does nothing is worse than no control at all. When a real
+   <video> replaces the poster, its own controls take over. */
+.reel{ margin:clamp(1.75rem, 3vw, 2.5rem) 0 0; }
+.reel__frame{ position:relative; }
+.reel__frame img,
+.reel__frame video{
+  display:block; width:100%; height:auto;
+  aspect-ratio:16 / 9; object-fit:cover;
+}
+.reel__badge{
+  position:absolute; top:1rem; left:1rem;
+  font-family:var(--f-mono); font-size:.5625rem; font-weight:500;
+  letter-spacing:.24em; text-transform:uppercase;
+  color:var(--text);
+  padding:.35rem .6rem; border-radius:2px;
+  background:rgba(15,22,32,.6);
+  backdrop-filter:blur(6px);
+}
+.reel__overlay{
+  position:absolute; inset:0;
+  display:grid; place-content:center;
+  pointer-events:none;
+}
+.reel__play{
+  display:grid; place-content:center;
+  width:clamp(3.25rem, 5.5vw, 4.5rem);
+  aspect-ratio:1; border-radius:50%;
+  border:1px solid rgba(255,255,255,.34);
+  background:rgba(15,22,32,.42);
+  backdrop-filter:blur(8px);
+}
+.reel__play::before{
+  content:"";
+  width:0; height:0;
+  margin-left:.22em;
+  border-left:.85rem solid #fff;
+  border-block:.55rem solid transparent;
+}
+
 /* ---------- shot (figure wrapper) ---------- */
 .shot{ margin:0; }
-.shot figcaption{
+.shot figcaption,
+.reel figcaption{
   margin-top:1rem;
   font-size:.8125rem; line-height:1.55;
   color:var(--text-2);
@@ -1016,7 +1058,8 @@ body{
 
 /* screen-on — course screens wipe up from the bottom edge like a display
    powering on, so they read as screens rather than as cards fading in */
-.has-motion .gallery[data-reveal]{
+.has-motion .gallery[data-reveal],
+.has-motion .reel[data-reveal]{
   opacity:1;
   transform:translateY(20px);
   clip-path:inset(0 0 100% 0);
