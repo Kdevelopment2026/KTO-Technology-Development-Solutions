@@ -5,6 +5,7 @@ e-learning development, London. No build step, no dependencies to install.
 
 ```
 index.html
+privacy.html           what the enquiry form collects and who processes it
 thanks.html            form confirmation page
 __forms.html           bare form for Netlify to detect — noindex, linked from nowhere
 404.html
@@ -124,6 +125,7 @@ Each one drops into a slot that is already built, styled and tested. Nothing els
 | 3 | **Full testimonial text.** LinkedIn truncates its previews at "Read more", so four quotes are cut to their last complete clause. | search `TESTIMONIALS` in `index.html` |
 | 4 | **Form notifications.** One click, once: Netlify → Site → Forms → Notifications. Without it, enquiries sit unread in the dashboard. | Netlify UI |
 | 5 | **CV PDF and headshot.** Both have slots waiting. LinkedIn and the three certifications are live. | `index.html` footer, About spec column |
+| 6 | **Read `privacy.html` and confirm it is true.** The retention period and the response time are commitments — they describe what I understood, not what you have decided. | `privacy.html` |
 
 ### The site URL, and why the deploy stops for it
 
@@ -341,6 +343,31 @@ first value tried measured 2.82:1 and failed.
 **The send button is `.btn--send`, not `.btn--go`.** `.btn--go` carries the C5 progress-bar
 reveal, driven by a ScrollTrigger that only ever finds the first `.btn--go` in the band. A
 second one would sit clipped to nothing and the send button would be invisible.
+
+---
+
+## Privacy
+
+`privacy.html` exists because this site sells to NHS trusts, universities and large
+consultancies, and every one of them asks how enquiry data is handled before engaging a
+supplier. It is linked from the footer, from the note under the form, and from `thanks.html`.
+
+**It also fixed a claim that was not true.** The form note used to read "no mailing list, no
+third parties". Netlify stores every submission, which makes it a third-party processor on US
+infrastructure — so the unqualified version was one procurement question away from being a
+problem. It now says what actually happens and links to the detail.
+
+**Two things in it are commitments rather than descriptions**, and they should match what you
+intend to do:
+
+- enquiries that do not become work are deleted "once the conversation has clearly ended, and
+  at the latest after twelve months";
+- data requests are answered "within one month", which is what the UK GDPR allows.
+
+The rest is factual: the six fields, what the honeypot is for, that Netlify processes it, that
+there are no cookies and no analytics, and how to ask for deletion. **If analytics are ever
+added, this page has to change before they go live** — it currently states plainly that there
+are none.
 
 ---
 

@@ -1192,6 +1192,15 @@ body{
   font-size:.6875rem; line-height:1.7; letter-spacing:.02em;
   color:rgba(255,255,255,.72);
 }
+/* White rather than the band's green focus colour: this is running prose, and
+   at 9.5:1 on the navy it is legible without competing with the send button
+   directly above it. */
+.form__note a{
+  color:#fff;
+  text-decoration-color:rgba(255,255,255,.5);
+  text-underline-offset:.18em;
+}
+.form__note a:hover{ text-decoration-color:currentColor; }
 
 /* Empty until the form is submitted, so it must take no space until it has
    something to say — an empty box above the privacy note reads as a rendering
@@ -1482,6 +1491,65 @@ body{
   text-underline-offset:.18em;
 }
 .mini__text a:hover{ color:var(--blue-2); text-decoration-color:currentColor; }
+/* ---------- privacy.html ------------------------------------------------
+   A document rather than a single statement, so it needs a measure, headings
+   and running links — none of which the two other small pages required. It
+   still uses the .mini shell for the header, footer and full-height frame.
+   ----------------------------------------------------------------------- */
+.mini__body--doc{ align-items:flex-start; }
+.doc{ max-width:62ch; }
+.doc .modlabel{ margin-bottom:1.1rem; }
+.doc__lead{
+  margin-top:1.5rem;
+  font-size:clamp(1.0625rem,1.35vw,1.24rem);
+  line-height:1.55;
+  color:var(--text);
+}
+.doc h2{
+  margin-top:2.75rem; margin-bottom:.65rem;
+  font-family:var(--f-display);
+  font-stretch:var(--wd-display);
+  font-size:clamp(1.05rem,1.5vw,1.3rem);
+  font-weight:600;
+  letter-spacing:-.01em;
+  color:var(--text);
+}
+.doc p{
+  margin-top:.9rem;
+  font-size:.9375rem; line-height:1.65;
+  color:var(--text-2);
+  text-wrap:pretty;
+}
+.doc strong{ color:var(--text); font-weight:500; }
+.doc code{
+  font-family:var(--f-mono); font-size:.85em;
+  padding:.1em .35em; border-radius:2px;
+  background:var(--ink-2); color:var(--text);
+}
+/* Same reasoning as .mini__text a — this stylesheet has no global anchor rule,
+   and these are the first links this site sets in running prose.
+
+   Scoped to `p`, NOT to `.doc a`. `.doc a` has specificity (0,1,1) and beats
+   `.btn--solid` at (0,1,0), so it repainted the button label blue on a blue
+   background — 1:1, completely invisible. Any rule broad enough to catch
+   prose links here is broad enough to catch the buttons underneath them. */
+.doc p a{
+  color:var(--blue);            /* 5.48:1 on the ink */
+  text-decoration-color:rgba(61,139,255,.5);
+  text-underline-offset:.18em;
+}
+.doc p a:hover{ color:var(--blue-2); text-decoration-color:currentColor; }
+.doc__meta{
+  margin-top:2.5rem;
+  font-family:var(--f-mono); font-size:.6875rem;
+  letter-spacing:.1em; text-transform:uppercase;
+  /* NOT --line-2. That is a hairline colour for dividers and measures 1.82:1
+     on the ink — a 1.4.3 failure the moment it carries text. 5.06:1 here, the
+     same weight as .mini__legal. */
+  color:rgba(221,229,237,.55);
+}
+.doc .actions{ margin-top:2.25rem; }
+
 .mini__foot{
   padding-block:1.75rem;
   border-top:1px solid var(--line);

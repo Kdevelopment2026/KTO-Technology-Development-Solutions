@@ -1285,9 +1285,16 @@
              falls back to a normal POST and the thanks.html redirect. -->
         <p class="form__status" role="status"></p>
 
+        <!-- This used to read "no third parties", which was not true: Netlify
+             stores every submission. On a site selling to NHS trusts and
+             universities — who ask about data processing as a matter of course
+             — an unqualified claim like that is one procurement question away
+             from being a problem. It now says what actually happens and links
+             to the detail. -->
         <p class="form__note" data-reveal>
-          Your details are used to answer your enquiry and nothing else. No mailing list,
-          no third parties.
+          Used to answer your enquiry and nothing else — no mailing list, no marketing.
+          The form is handled by Netlify, who host this site.
+          <a href="/privacy.html">What happens to your details</a>.
         </p>
       </form>
 
@@ -1314,6 +1321,7 @@
           <li><a href="assets/kayode-fashola-cv.pdf">CV (PDF)</a></li>
         -->
         <li><a href="mailto:kayodefashola@hotmail.com">Email</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
       </ul>
       <p>Built to WCAG 2.2 AA</p>
     </div>
