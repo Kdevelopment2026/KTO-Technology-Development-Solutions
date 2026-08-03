@@ -7,4 +7,4 @@ Allow: /
 # so the noindex is never read, and the URL can still be listed bare. Let the
 # meta tag do the job.
 
-Sitemap: https://kto-technology.netlify.app/sitemap.xml
+Sitemap: https://kto-technology-development-solutions.netlify.app/sitemap.xml

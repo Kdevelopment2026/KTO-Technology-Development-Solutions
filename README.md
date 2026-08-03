@@ -119,9 +119,9 @@ Each one drops into a slot that is already built, styled and tested. Nothing els
 
 | | What | Where |
 |---|---|---|
-| 1 | **The live URL.** 15 absolute URLs still carry the placeholder host. **The deploy fails until this is set** — one command: `python3 tools-host.py --set your-host`. | run the command |
-| 2 | **Full testimonial text.** Four are live, each cut back to the last complete clause because LinkedIn's preview truncates at "Read more". The complete versions are on your recommendations page. | search `TESTIMONIALS` in `index.html` |
-| 3 | **Turn on form detection.** Netlify made it opt-in for sites created since late 2024, and it only runs at deploy time. Site configuration → Forms → enable, then **redeploy**. | Netlify UI |
+| 1 | **Enable form detection** in Netlify, then redeploy. Until then the enquiry form returns 404 on submit — confirmed against the live site. | Netlify UI |
+| 2 | **Send one test enquiry from the live URL** once detection is on, and confirm it arrives by email — not just in the dashboard. | Netlify UI |
+| 3 | **Full testimonial text.** LinkedIn truncates its previews at "Read more", so four quotes are cut to their last complete clause. | search `TESTIMONIALS` in `index.html` |
 | 4 | **Form notifications.** One click, once: Netlify → Site → Forms → Notifications. Without it, enquiries sit unread in the dashboard. | Netlify UI |
 | 5 | **CV PDF and headshot.** Both have slots waiting. LinkedIn and the three certifications are live. | `index.html` footer, About spec column |
 
@@ -131,8 +131,9 @@ The site hard-codes its own address in **15 places**: the canonical link, `og:ur
 `twitter:image`, six JSON-LD `@id` and `url` fields, the `Sitemap:` line in `robots.txt`, and
 `<loc>` in `sitemap.xml`. They must be absolute and they must all agree.
 
-The placeholder it shipped with, `kto-technology.netlify.app`, is **unclaimed** — Netlify
-returns 404 for it. Deploying while it is still in place means:
+**This is now set** to `kto-technology-development-solutions.netlify.app`, the live site. The
+placeholder it shipped with was unclaimed and Netlify returned 404 for it. Deploying with a
+placeholder in place would have meant:
 
 - the canonical tells Google to index a URL that does not exist;
 - every LinkedIn, Slack and WhatsApp share renders with no card, because `og:image` 404s;
@@ -140,8 +141,8 @@ returns 404 for it. Deploying while it is still in place means:
 - and until somebody claims that subdomain, anyone can — and would inherit both.
 
 Search engines and social scrapers cache the first response they get, so this is not a
-fix-it-afterwards problem. **The Netlify build command fails the deploy while the placeholder is
-still there.** One command clears it:
+fix-it-afterwards problem. **The Netlify build command fails the deploy while a placeholder is
+in place.** If the address ever changes — a custom domain, a renamed site — one command:
 
 ```sh
 python3 tools-host.py --set your-site.netlify.app   # or your custom domain
