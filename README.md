@@ -426,6 +426,27 @@ neither does the index history.
 
 ---
 
+## Punctuation
+
+**The body copy uses no em dashes.** They had accumulated to fourteen across the site, and read
+as a tic once you notice them. Each was replaced with the punctuation the sentence actually
+wanted: a colon where a list follows, a full stop where two sentences had been welded together,
+commas where the clause was parenthetical, brackets in alt text.
+
+**One is deliberately still there**, in the video transcript and the `.vtt`:
+
+> HealthConnect will connect healthcare, EPR, and other systems — to create a complete,
+> real-time patient record.
+
+That is a verbatim quotation of the voiceover. Editing punctuation inside a transcript makes it
+a paraphrase of the audio rather than a record of it, and the captions have to match the
+transcript. Leave it.
+
+If you add copy later, the house style is now: colon to introduce, full stop to separate,
+comma to enclose.
+
+---
+
 ## Privacy
 
 `privacy.html` exists because this site sells to NHS trusts, universities and large
