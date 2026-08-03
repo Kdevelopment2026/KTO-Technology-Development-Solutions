@@ -159,6 +159,30 @@ one. LinkedIn, the certificate verifiers and `schema.org` are never touched.
 HTTPS. A domain is worth buying for a business site, but nothing here waits on it — set the
 `.netlify.app` host now and re-run the same command later if you buy one.
 
+### Case 05: Invoice Triage
+
+The only self-directed case, and the only one that is a working application rather than a
+course. It exists because section 05 sells agents and automation and otherwise showed nothing —
+a section that describes capability sits below one that evidences it.
+
+**The screens are the real app, run locally, on invented data.** Every supplier, amount and
+reference is made up. No client's invoice has been near this site and none should be, which is
+why the data is fake rather than redacted — a redaction is a claim that the real thing was there.
+
+The extraction call was stubbed during capture, so nothing reached the Anthropic API and no key
+was used. That matters for what the screenshots actually show: the flags in screen two are the
+app's **own** duplicate-detection and missing-data checks running for real over those invented
+records. The model's part was skipped; the judgement layer, which is the interesting part, was
+not.
+
+The account codes were set before processing rather than after. Left unmapped, every row carries
+a "needs account code mapping" flag and the tool looks like it flags everything — which
+misrepresents it. With a chart of accounts in place, two of five documents are flagged and both
+are real findings.
+
+A second app, UGC Script Studio, was considered and dropped: it names a third party in its
+brief, and one unhedged case is worth more than two hedged ones.
+
 ### The outcome figures
 
 They sit **inside the NHS case**, in the same column as the screens, rather than at the end of
@@ -192,6 +216,7 @@ NHS system. Change them only against something you can evidence.
 | 02 | The Open University | SAP Ariba indirect procurement process | 3 | complete |
 | 03 | SecureMind | Security awareness | 2 | complete |
 | 04 | EY | Writing for different formats | 3 | complete |
+| 05 | Own product | Invoice Triage — documents in, review queue out | 3 | complete |
 
 **Sections 04 and 05, "Video and AI" and "AI agents", are the two places the copy is mine.** Everything else on the page
 came from you or from your existing site. That section covers AI video content, UGC-style ads,

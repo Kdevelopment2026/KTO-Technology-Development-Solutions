@@ -301,9 +301,10 @@
         <span class="modlabel__n">01</span> Selected work
         <span class="modlabel__rule" aria-hidden="true"></span>
       </p>
-      <h2 class="h-section" data-reveal>Four projects, and the screens they shipped as</h2>
+      <h2 class="h-section" data-reveal>Five projects, and the screens they shipped as</h2>
       <p class="shead__note" data-reveal>
-        Every one of them started as content nobody wanted to read.
+        Four started as content nobody wanted to read. The fifth is a tool built to remove
+        the reading altogether.
       </p>
     </header>
 
@@ -723,6 +724,129 @@
       </div>
     </article>
 
+    <!-- ── Case 05 · Invoice Triage ────────────────────────────────────
+         The only self-directed case on the page, and the only one that is a
+         working application rather than a course. It earns its place because
+         section 05 sells agents and automation and otherwise shows nothing.
+
+         THE SCREENS ARE FROM THE REAL APP, RUN LOCALLY, ON INVENTED DATA.
+         Every supplier, amount and reference is made up. No client's invoice
+         has ever been near this page, and none should be — that is the whole
+         reason the data is fake rather than redacted. The extraction call was
+         stubbed for the capture, so the flags visible in screen two are the
+         app's own duplicate and missing-data checks running for real over
+         those invented records, not a mock-up of them.
+         ───────────────────────────────────────────────────────────── -->
+    <article class="case" data-case="triage">
+      <p class="case__sector" data-reveal>Own product · AI agents and automation</p>
+
+      <div class="spread spread--case">
+        <div class="spread__spec">
+          <dl class="spec" data-reveal>
+            <div class="spec__row">
+              <dt>What it does</dt>
+              <dd>Turns a pile of invoices and receipts — PDFs, phone photographs, forwarded
+                email text — into a table that imports straight into QuickBooks or Xero, and
+                flags the ones a person needs to look at before it does.</dd>
+            </div>
+            <div class="spec__row">
+              <dt>Built with</dt>
+              <dd>Next.js · Claude with a JSON schema for structured extraction · Netlify</dd>
+            </div>
+            <div class="spec__row">
+              <dt>The interesting part</dt>
+              <dd>Not the reading. Models have been able to read an invoice for a while. It is
+                deciding what a person still has to check: possible duplicates, unreadable
+                fields, tax codes that do not match, amounts out of pattern for that supplier,
+                and anything that reads like an instruction hidden in a document.</dd>
+            </div>
+            <div class="spec__row">
+              <dt>Why it exists</dt>
+              <dd>Bookkeeping is the same shape as course maintenance — a queue of documents,
+                a set of rules, and a person who should only see the exceptions. Building it
+                was the fastest way to prove the pattern.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="spread__body">
+          <h3 class="h-case" data-reveal>Invoice Triage: documents in, review queue out</h3>
+
+          <div class="gallery" data-gallery data-reveal>
+            <div class="gallery__viewport" tabindex="0" role="group"
+                 aria-roledescription="carousel" aria-label="Invoice Triage screens">
+              <ul class="gallery__track">
+              <li class="gallery__slide" role="group"
+                  aria-roledescription="slide" aria-label="Screen 1 of 3">
+                <figure class="shot">
+                  <div class="screen">
+                    <img src="assets/img/triage-1-landing.webp" width="1500" height="950" loading="lazy"
+                         alt="Invoice Triage start screen: three numbered steps — upload, review flagged items, export — above a short setup asking which accounting platform to import into and which date format the documents use.">
+                  </div>
+                  <figcaption>Three steps and one setup question. The whole tool is upload,
+                    review, export, and it says so before you commit to anything.</figcaption>
+                </figure>
+              </li>
+              <li class="gallery__slide" role="group"
+                  aria-roledescription="slide" aria-label="Screen 2 of 3">
+                <figure class="shot">
+                  <div class="screen">
+                    <img src="assets/img/triage-2-review.webp" width="1500" height="950" loading="lazy"
+                         alt="Results screen showing a Review needed panel with two items — a possible duplicate invoice and a receipt with unreadable fields — above QuickBooks and Xero import tables where the two affected rows are highlighted in amber.">
+                  </div>
+                  <figcaption>Five documents in, two things worth a human. The duplicate was
+                    caught on supplier, total and date proximity; the receipt is flagged because
+                    three fields could not be read confidently. The other three passed straight
+                    through, and the tables below are ready to import.</figcaption>
+                </figure>
+              </li>
+              <li class="gallery__slide" role="group"
+                  aria-roledescription="slide" aria-label="Screen 3 of 3">
+                <figure class="shot">
+                  <div class="screen">
+                    <img src="assets/img/triage-3-mapping.webp" width="1500" height="950" loading="lazy"
+                         alt="Settings panel mapping each expense category to a QuickBooks account name and a Xero chart-of-accounts code, with the results table still visible behind it.">
+                  </div>
+                  <figcaption>Your chart of accounts, not the tool's guess at one. Until a code
+                    is set the export carries a bracketed placeholder and the row is flagged —
+                    it will not quietly invent an account to file something under.</figcaption>
+                </figure>
+              </li>
+              </ul>
+            </div>
+
+            <div class="gallery__bar">
+              <button class="gallery__nav" type="button" data-dir="-1" aria-label="Previous screen">
+                <span aria-hidden="true">&#8592;</span>
+              </button>
+              <ol class="gallery__dots">
+                <li><button class="gallery__dot" type="button" data-go="0" aria-current="true" aria-label="Go to screen 1"></button></li>
+                <li><button class="gallery__dot" type="button" data-go="1" aria-label="Go to screen 2"></button></li>
+                <li><button class="gallery__dot" type="button" data-go="2" aria-label="Go to screen 3"></button></li>
+              </ol>
+              <button class="gallery__nav" type="button" data-dir="1" aria-label="Next screen">
+                <span aria-hidden="true">&#8594;</span>
+              </button>
+              <p class="gallery__count" role="status"><span data-count-now>1</span> / 3</p>
+            </div>
+          </div>
+
+          <div class="scope" data-reveal>
+            <p class="scope__label">What it checks before you see it</p>
+            <ul class="chips">
+              <li>Possible duplicates</li>
+              <li>Unreadable fields</li>
+              <li>Tax code mismatch</li>
+              <li>Unusual amount for that supplier</li>
+              <li>Not actually an invoice</li>
+              <li>Instructions hidden in a document</li>
+              <li>Unmapped account code</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+
   </div>
 </section>
 
@@ -1095,8 +1219,9 @@
               answer at all.
             </p>
             <p>
-              <b>Working demos available on request.</b> They are shown live rather than linked,
-              so you see one built for a problem close to yours instead of a generic one.
+              <b>Invoice Triage, in section 01, is one of these built end to end.</b> More are
+              shown live rather than linked, so you see one built for a problem close to yours
+              instead of a generic one.
             </p>
           </div>
         </div>
