@@ -162,6 +162,7 @@
     <nav class="nav" id="sitenav" aria-label="Primary">
       <ul class="nav__list">
         <li><a href="#work">Work</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#video">Video</a></li>
         <li><a href="#process">Process</a></li>
@@ -177,12 +178,13 @@
   <span class="rail__track" aria-hidden="true"><i class="rail__fill"></i></span>
   <ul class="rail__list">
     <li><a href="#work"><span class="rail__n" aria-hidden="true">01</span><span class="rail__tick" aria-hidden="true"></span>Work</a></li>
-    <li><a href="#services"><span class="rail__n" aria-hidden="true">02</span><span class="rail__tick" aria-hidden="true"></span>Services</a></li>
-    <li><a href="#video"><span class="rail__n" aria-hidden="true">03</span><span class="rail__tick" aria-hidden="true"></span>Video</a></li>
-    <li><a href="#process"><span class="rail__n" aria-hidden="true">04</span><span class="rail__tick" aria-hidden="true"></span>Process</a></li>
-    <li><a href="#toolkit"><span class="rail__n" aria-hidden="true">05</span><span class="rail__tick" aria-hidden="true"></span>Toolkit</a></li>
-    <li><a href="#about"><span class="rail__n" aria-hidden="true">06</span><span class="rail__tick" aria-hidden="true"></span>About</a></li>
-    <li><a href="#contact"><span class="rail__n" aria-hidden="true">07</span><span class="rail__tick" aria-hidden="true"></span>Contact</a></li>
+    <li><a href="#testimonials"><span class="rail__n" aria-hidden="true">02</span><span class="rail__tick" aria-hidden="true"></span>Testimonials</a></li>
+    <li><a href="#services"><span class="rail__n" aria-hidden="true">03</span><span class="rail__tick" aria-hidden="true"></span>Services</a></li>
+    <li><a href="#video"><span class="rail__n" aria-hidden="true">04</span><span class="rail__tick" aria-hidden="true"></span>Video</a></li>
+    <li><a href="#process"><span class="rail__n" aria-hidden="true">05</span><span class="rail__tick" aria-hidden="true"></span>Process</a></li>
+    <li><a href="#toolkit"><span class="rail__n" aria-hidden="true">06</span><span class="rail__tick" aria-hidden="true"></span>Toolkit</a></li>
+    <li><a href="#about"><span class="rail__n" aria-hidden="true">07</span><span class="rail__tick" aria-hidden="true"></span>About</a></li>
+    <li><a href="#contact"><span class="rail__n" aria-hidden="true">08</span><span class="rail__tick" aria-hidden="true"></span>Contact</a></li>
   </ul>
 </nav>
 
@@ -639,35 +641,27 @@
   </div>
 </section>
 
-<!-- ═══════════════════════  TESTIMONIALS  ═══════════════════════════════════
-     STAGED, NOT LIVE. Everything below is built and styled; it is commented
-     out only because there are no real quotes yet, and a portfolio that
-     invents them is worse than one that has none.
+<!-- ─────────────────────  02 · TESTIMONIALS  ───────────────────────
+     LIVE. Four LinkedIn recommendations, each attributed to a named person
+     with a role and an organisation.
 
-     TO PUBLISH IT:
+     THE QUOTES ARE TRUNCATED AT SOURCE. LinkedIn's preview cuts each one off
+     at "Read more", so two of them arrived ending mid-sentence — "…patient
+     manner and his", "…obtained in the field that". Each quote below is
+     therefore cut back to the last COMPLETE clause its author wrote. Nothing
+     has been added, smoothed or paraphrased.
 
-       1. Delete this opening comment marker and the closing one after the
-          </section>, then fill in the two (or three) quote blocks. Duplicate
-          a <figure class="quote"> for a third.
+     When you have the full text from your LinkedIn recommendations page,
+     replace these with the complete versions. A longer quote in the client's
+     own words is worth more than a short one, and it removes any question
+     about what was left out.
 
-       2. RENUMBER. Sections run 01–07 and three places have to agree, or the
-          left rail stops matching the page:
-            · the .modlabel__n digits — Services becomes 03, Video 04,
-              Process 05, Toolkit 06, About 07, Contact 08
-            · the .rail__list entries in <nav class="rail">, which needs a new
-              02 Testimonials item and the rest bumped
-            · the SECTIONS array in assets/js/main.js, which drives the
-              current-section highlight — add 'testimonials' after 'work'
-          Also fix the cross-reference in the Services section: "Standalone and
-          marketing video is section 03" becomes section 04.
-
-       3. Add "Testimonials" to the header nav list if you want it there too.
-
-     ON THE QUOTES THEMSELVES: a name, a role and an organisation are worth
-     several times an anonymous quote. If a client will only agree to
-     "Programme Lead, an NHS trust", that still works. Never publish one you
-     cannot evidence if asked.
-     ═════════════════════════════════════════════════════════════════════════
+     NO Review OR AggregateRating SCHEMA. Google's structured-data policy
+     disallows self-serving reviews — a business marking up reviews of itself
+     — and marking these up would risk a manual action for no gain, since the
+     rich result is not shown for that case anyway. They earn their keep as
+     copy, not as schema.
+     ───────────────────────────────────────────────────────────────── -->
 <section class="section section--quotes" id="testimonials">
   <div class="wrap">
     <header class="shead shead--wide" data-reveal-group>
@@ -681,36 +675,59 @@
     <div class="quotes" data-reveal-group>
       <figure class="quote" data-reveal>
         <blockquote>
-          <p>The quote goes here, in the words they actually used.</p>
+          <p>Kayode is a highly proficient instructional designer who worked on the production
+            of a range of bespoke e-learning courses for the organisation.</p>
         </blockquote>
         <figcaption>
-          <b>Their name</b>
-          Their role · Their organisation
+          <b>Paul Banham</b>
+          Organisational Development Manager · Croydon Council
         </figcaption>
       </figure>
 
       <figure class="quote" data-reveal>
         <blockquote>
-          <p>The second quote.</p>
+          <p>Kayode was with us for 3 months helping us with elearning for compliance training
+            and management development as well as with our LMS.</p>
         </blockquote>
         <figcaption>
-          <b>Their name</b>
-          Their role · Their organisation
+          <b>Katie Giachardi</b>
+          Head of Talent &amp; Capability · dmg media
+        </figcaption>
+      </figure>
+
+      <figure class="quote" data-reveal>
+        <blockquote>
+          <p>Kayode provided valuable support and expertise in his role as Interim Instructional
+            Designer. He works in a methodical, helpful and patient manner.</p>
+        </blockquote>
+        <figcaption>
+          <b>James Millis</b>
+          Learning &amp; Development Consultant · Croydon Council
+        </figcaption>
+      </figure>
+
+      <figure class="quote" data-reveal>
+        <blockquote>
+          <p>A very friendly and approachable individual and a great developer with a brilliant
+            range of technical skills.</p>
+        </blockquote>
+        <figcaption>
+          <b>Steve Motakef</b>
+          IT Training Consultant · Day Group
         </figcaption>
       </figure>
     </div>
   </div>
 </section>
-     ═════════════════════════════════════════════════════════════════════════ -->
 
-<!-- ───────────────────────  02 · SERVICES  ────────────────────────── -->
+<!-- ───────────────────────  03 · SERVICES  ────────────────────────── -->
 <section class="section section--services" id="services">
   <div class="wrap">
     <div class="spread">
       <div class="spread__spec">
         <header class="shead" data-reveal-group>
           <p class="modlabel" data-reveal>
-            <span class="modlabel__n">02</span> Services
+            <span class="modlabel__n">03</span> Services
           </p>
           <h2 class="h-section" data-reveal>What I can take on</h2>
           <p class="shead__note" data-reveal>
@@ -756,7 +773,7 @@
           <li class="svc__item" data-reveal>
             <h3>Learning video and screencasts</h3>
             <p>The video that lives inside a course: demonstrations, screencasts and narration,
-              captioned and transcribed. Standalone and marketing video is covered in section 03.</p>
+              captioned and transcribed. Standalone and marketing video is covered in section 04.</p>
           </li>
           <li class="svc__item" data-reveal>
             <h3>Training strategy and consultancy</h3>
@@ -782,7 +799,7 @@
   </div>
 </section>
 
-<!-- ─────────────────────  03 · VIDEO AND AI  ──────────────────────── -->
+<!-- ─────────────────────  04 · VIDEO AND AI  ──────────────────────── -->
 <!-- COPY REVIEW: unlike the case studies, this section's wording is not
      taken from anything you supplied. Read it before launch. -->
 <section class="section section--video" id="video">
@@ -791,7 +808,7 @@
       <div class="spread__spec">
         <header class="shead" data-reveal-group>
           <p class="modlabel" data-reveal>
-            <span class="modlabel__n">03</span> Video and AI
+            <span class="modlabel__n">04</span> Video and AI
           </p>
           <h2 class="h-section" data-reveal>Video that used to need a crew</h2>
           <p class="shead__note" data-reveal>
@@ -865,12 +882,12 @@
   </div>
 </section>
 
-<!-- ───────────────────────  04 · PROCESS  ─────────────────────────── -->
+<!-- ───────────────────────  05 · PROCESS  ─────────────────────────── -->
 <section class="section section--process" id="process">
   <div class="wrap">
     <header class="shead shead--wide" data-reveal-group>
       <p class="modlabel" data-reveal>
-        <span class="modlabel__n">04</span> How I work
+        <span class="modlabel__n">05</span> How I work
         <span class="modlabel__rule" aria-hidden="true"></span>
       </p>
       <h2 class="h-section" data-reveal>Six stages, and you see something real at every one</h2>
@@ -941,14 +958,14 @@
   </div>
 </section>
 
-<!-- ───────────────────────  05 · TOOLKIT  ─────────────────────────── -->
+<!-- ───────────────────────  06 · TOOLKIT  ─────────────────────────── -->
 <section class="section section--toolkit" id="toolkit">
   <div class="wrap">
     <div class="spread">
       <div class="spread__spec">
         <header class="shead" data-reveal-group>
           <p class="modlabel" data-reveal>
-            <span class="modlabel__n">05</span> Toolkit
+            <span class="modlabel__n">06</span> Toolkit
           </p>
           <h2 class="h-sub" data-reveal>The tools are the easy part</h2>
           <p class="shead__note" data-reveal>
@@ -982,7 +999,7 @@
   </div>
 </section>
 
-<!-- ────────────────────────  06 · ABOUT  ──────────────────────────── -->
+<!-- ────────────────────────  07 · ABOUT  ──────────────────────────── -->
 <section class="section section--about" id="about">
   <div class="wrap">
     <div class="spread spread--case">
@@ -1007,13 +1024,20 @@
                no date. -->
           <div class="spec__row"><dt>Availability</dt><dd>Open to project work, contract and permanent roles. Ask about current lead time.</dd></div>
           <div class="spec__row"><dt>Engagements</dt><dd>Project, retainer or day rate</dd></div>
+          <!-- CERTIFICATIONS: a row, not a gallery. Named certificates read as
+               credentials; scans of the certificates themselves read as filler,
+               and nobody has ever chosen a supplier because they saw the PDF.
+               Fill in and delete the comment markers — recognised bodies only,
+               and drop anything expired rather than leaving it undated:
+            <div class="spec__row"><dt>Certified</dt><dd>Name of certificate · Awarding body, year</dd></div>
+          -->
           <div class="spec__row"><dt>Handover</dt><dd>Source files, style guide and a maintenance note, always</dd></div>
         </dl>
       </div>
 
       <div class="spread__body">
         <p class="modlabel" data-reveal>
-          <span class="modlabel__n">06</span> About
+          <span class="modlabel__n">07</span> About
         </p>
         <p class="byline" data-reveal>
           <b>Kayode Fashola</b> <span aria-hidden="true">·</span> Instructional designer,
@@ -1051,7 +1075,7 @@
   </div>
 </section>
 
-<!-- ────────────────────────  07 · CONTACT  ──────────────────────────
+<!-- ────────────────────────  08 · CONTACT  ──────────────────────────
      Inside <main>, so that screen-reader users jumping by landmark reach the
      enquiry form. The page footer sits after </main> below, which is what
      makes it a contentinfo landmark: a <footer> nested in a <section> is not
@@ -1063,7 +1087,7 @@
 
       <div class="cta" data-reveal-group>
         <p class="modlabel" data-reveal>
-          <span class="modlabel__n">07</span> Contact
+          <span class="modlabel__n">08</span> Contact
         </p>
         <h2 class="h-display h-display--sm" data-reveal>Have a learning project in mind?</h2>
         <p class="cta__text" data-reveal>

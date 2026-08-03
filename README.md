@@ -75,7 +75,7 @@ version-controlled.
   **green reports progress** (course progress bars, correct answers, outcome figures, the
   closing call to action). That semantic split is what stops two accents reading as noise.
 - **Numbered sections.** The current site's `02 PORTFOLIO` device, extended: sections run
-  `01`–`06` and the fixed left rail is a course menu that fills as you scroll. On an
+  `01`–`08` and the fixed left rail is a course menu that fills as you scroll. On an
   e-learning site, numbered modules with a progress indicator earn their place.
 - **The deep navy closing panel** with a green action button.
 
@@ -108,7 +108,7 @@ Each one drops into a slot that is already built, styled and tested. Nothing els
 | | What | Where |
 |---|---|---|
 | 1 | **The live URL.** Five files carry a placeholder host, `kto-technology.netlify.app`. A canonical pointing at the wrong host is worse than none at all. | `index.html` (canonical, `og:url`, `og:image`, JSON-LD), `robots.txt`, `sitemap.xml` |
-| 2 | **Testimonials.** The section is built and commented out. Two or three quotes, each with a name, a role and an organisation. | search `TESTIMONIALS` in `index.html` |
+| 2 | **Full testimonial text.** Four are live, each cut back to the last complete clause because LinkedIn's preview truncates at "Read more". The complete versions are on your recommendations page. | search `TESTIMONIALS` in `index.html` |
 | 3 | **`showreel.mp4` plus captions.** See "Adding the showreel". | `assets/video/` |
 | 4 | **Form notifications.** One click, once: Netlify → Site → Forms → Notifications. Without it, enquiries sit unread in the dashboard. | Netlify UI |
 | 5 | **CV PDF and headshot.** Both have slots waiting. LinkedIn is now live in the footer and in `sameAs`. | `index.html` footer, About spec column |
@@ -122,7 +122,7 @@ Each one drops into a slot that is already built, styled and tested. Nothing els
 | 03 | SecureMind | Security awareness | 2 | complete |
 | 04 | EY | Writing for different formats | 3 | two rows, both verifiable |
 
-**Section 03, "Video and AI", is the one place the copy is mine.** Everything else on the page
+**Section 04, "Video and AI", is the one place the copy is mine.** Everything else on the page
 came from you or from your existing site. That section covers AI video content, UGC-style ads,
 AI animation and post-production, and the tool chips list Veo 3.1 and Google Gemini 3 because
 you named them as tools you use. Read it before launch and change anything that overstates
@@ -134,9 +134,8 @@ case before the statement band, so it was the note the work section ended on. Th
 carries two rows written from what the screenshots actually show: the writing formats visible
 in the section menu, and the worked-example approach visible on screen three. The captions no
 longer put a number on the formats, because the menu shows six items while five are named —
-**tell me the sixth and I will name them all.** Nothing
-in them overstates the work. **Add the development tool and a Process row when you can** —
-copy the markup of any other `.spec__row`.
+**tell me the sixth and I will name them all.** Nothing in them overstates the work. **Add the
+development tool and a Process row when you can** — copy the markup of any other `.spec__row`.
 
 **The invented metrics are gone.** The previous draft carried figures like "94% completed
 before go-live" and "38% fewer service-desk tickets". Those were tolerable against anonymised
@@ -335,36 +334,59 @@ To add a case, copy any `<article class="case">` block. Give it a `data-case` na
 `.case__sector` (the client), an `.h-case` (the project), and `.spec__row`s. Every case gets
 its own gallery; nothing else needs configuring.
 
-## Adding the testimonials
+## The testimonials
 
-The section is **built and commented out** in `index.html` — search `TESTIMONIALS`. It is
-commented out rather than filled with placeholder quotes because a portfolio that invents
-testimonials is worse than one that has none, and placeholder text has a way of shipping.
+**Live as section 02**, immediately after the work — four LinkedIn recommendations, each with a
+name, a role and an organisation. That placement is deliberate: the quotes land while the four
+case studies are still in the reader's head, and they answer the question the work raises.
 
-Publishing it is three steps, and step two is the one that bites:
+| Who | Where |
+|---|---|
+| Paul Banham | Organisational Development Manager, Croydon Council |
+| Katie Giachardi | Head of Talent & Capability, dmg media |
+| James Millis | Learning & Development Consultant, Croydon Council |
+| Steve Motakef | IT Training Consultant, Day Group |
 
-1. Delete the two comment markers and fill in the quote blocks.
-2. **Renumber.** Sections run 01–07 and adding one at 02 pushes every later number along. Three
-   places have to agree or the left rail stops matching the page: the `.modlabel__n` digits, the
-   `.rail__list` entries, and the `SECTIONS` array in `main.js`. Also fix the cross-reference in
-   Services — "Standalone and marketing video is covered in section 03" becomes section 04.
-3. Add "Testimonials" to the header nav if you want it there too. It is worth it: a nav item
-   saying testimonials is itself a signal.
+### They are truncated, and that needs fixing properly
 
-A name, a role and an organisation are worth several times an anonymous quote. If a client will
-only agree to "Programme Lead, an NHS trust", that still works. Never publish one you could not
-evidence if you were asked to.
+LinkedIn's preview cuts every recommendation off at "Read more", so two arrived ending
+mid-sentence: "…patient manner and his", "…obtained in the field that". **Each quote on the page
+is cut back to the last complete clause its author wrote.** Nothing has been added, smoothed or
+paraphrased — the alternative would have been to guess at an ending, and inventing half a
+sentence for a named person is not a small thing.
 
-**Send them in this shape** and the section can go live in one pass — three is the number to
-aim for, two is fine, one is better than none:
+Get the full text from your LinkedIn recommendations page and replace them. A longer quote in
+the client's own words is worth more than a short one, and it settles any question about what
+was cut.
 
-```
-"The words they actually used, verbatim."
-Their name · Their role · Their organisation
-```
+### One was held back
 
-Verbatim matters. Tightening a client's sentence is how a real quote starts to read like a
-written one, and a quote that reads written does the opposite of what a testimonial is for.
+A fifth arrived, from Sarah Slade, Instructional Designer at Thomson Reuters: *"I worked with
+Kayode Fashola from 2010 to 2013. During that time, I found him to be a good designer and Flash
+developer."*
+
+It is not on the page, for two reasons worth stating plainly. It dates the work to 2010–2013 and
+names **Flash**, a technology that has been dead since 2020, on a page whose newest section
+sells AI video — the contrast does the opposite of what a testimonial is for. And "a good
+designer" is faint praise sitting beside "highly proficient" and "a brilliant range of technical
+skills"; the weakest quote in a set drags the others toward it.
+
+Your call, not mine. If you want it, copy any `<figure class="quote">` block — the grid takes
+five without changing, four sit as a 2×2 and five as 2+2+1.
+
+### No `Review` schema, deliberately
+
+Marking these up as `Review` or `AggregateRating` would be a policy breach: Google disallows
+**self-serving reviews**, meaning a business publishing marked-up reviews of itself. The rich
+result is not shown for that case, so it would risk a manual action in exchange for nothing.
+They earn their keep as copy.
+
+### If you add a fifth section later
+
+Adding a section renumbers everything after it, and four places have to agree or the left rail
+stops matching the page: the `.modlabel__n` digits, the `.rail__list` entries, the `SECTIONS`
+array in `main.js`, and the header nav. Cross-references in the copy count too — Services
+currently points at "section 04" for standalone video.
 
 **Preparing images:** resize to 1500px wide and save as WebP at ~q82. The eleven screenshots
 here went from 11.6 MB of PNG to 569 KB that way, with no visible loss. Keep the masters in
@@ -372,7 +394,7 @@ here went from 11.6 MB of PNG to 569 KB that way, with no visible loss. Keep the
 
 ## Adding the showreel
 
-Section 03 ends with a **placeholder**: a 16:9 poster frame badged "Showreel · in production".
+Section 04 ends with a **placeholder**: a 16:9 poster frame badged "Showreel · in production".
 It is marked `PLACEHOLDER` in `index.html`.
 
 The decorative play mark that used to sit on this frame **has been removed**. It was not a

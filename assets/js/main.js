@@ -152,7 +152,8 @@
   });
 
   /* ---- current section ---- */
-  var SECTIONS = ['work', 'services', 'video', 'process', 'toolkit', 'about', 'contact'];
+  var SECTIONS = ['work', 'testimonials', 'services', 'video', 'process', 'toolkit',
+                  'about', 'contact'];
   function markCurrent(id) {
     qa('.rail__list a, .nav__list a').forEach(function (a) {
       var on = a.getAttribute('href') === '#' + id;
