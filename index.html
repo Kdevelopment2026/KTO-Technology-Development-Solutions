@@ -890,33 +890,24 @@
           </li>
         </ul>
 
-        <!-- ═══ CAPTIONS ARE MISSING ═════════════════════════════════════
-             This video has a British voiceover and NO CAPTIONS. WCAG 2.2
-             requires captions for prerecorded synchronised media at level A
-             (SC 1.2.2), so for as long as this stands, the "Built to WCAG 2.2
-             AA" line in the footer has one exception — and it is on the
-             section selling accessible video production.
-
-             TO FIX IT, which takes ten minutes: paste the voiceover script,
-             the file becomes assets/video/healthconnect.en.vtt, and this
-             <video> gains one line:
-
-               <track kind="captions" src="assets/video/healthconnect.en.vtt"
-                      srclang="en-GB" label="English" default>
-
-             Do not add that line before the .vtt exists: a track pointing at
-             a 404 shows an empty captions menu, which is worse than none.
+        <!-- The captions track is not optional decoration: WCAG 2.2 requires
+             captions for prerecorded synchronised media at level A (SC 1.2.2),
+             and this section sells accessible video production. If the .vtt is
+             ever moved or renamed, move the src with it — a track pointing at
+             a 404 gives the viewer an empty captions menu, which reads as a
+             broken feature rather than an absent one.
 
              preload="none" is deliberate. The file is 6.5 MB, and at 15
              seconds that is a heavy encode; preloading it would cost every
              visitor the download whether or not they press play. Nothing is
-             fetched until they do.
-             ══════════════════════════════════════════════════════════════ -->
+             fetched until they do. -->
         <figure class="reel" data-reveal>
           <div class="screen reel__frame">
             <video controls preload="none" playsinline width="1280" height="720"
                    poster="assets/img/healthconnect-poster.webp">
               <source src="assets/video/healthconnect.mp4" type="video/mp4">
+              <track kind="captions" src="assets/video/healthconnect.en.vtt"
+                     srclang="en-GB" label="English" default>
               <p>Your browser cannot play this video.
                 <a href="assets/video/healthconnect.mp4">Download the MP4</a> (6.5 MB).</p>
             </video>
@@ -930,6 +921,19 @@
             corporate explainer come out on brand and on message. A fuller reel of AI video, UGC
             and animation work is being cut — ask and I will send the current edit.
           </figcaption>
+
+          <!-- A transcript as well as captions. Captions serve someone watching
+               with the sound off; a transcript serves someone who would rather
+               read it in ten seconds than watch it in fifteen, and it puts the
+               words on the page where they can be searched and indexed. -->
+          <details class="transcript">
+            <summary>Read the transcript</summary>
+            <p>I'm an optometrist. A new way of working is coming to healthcare.</p>
+            <p>Today, patient pathways rely on paper forms, manual requests, and multiple
+              systems.</p>
+            <p>HealthConnect will connect healthcare, EPR, and other systems — to create a
+              complete, real-time patient record.</p>
+          </details>
         </figure>
       </div>
     </div>
@@ -1253,6 +1257,13 @@
         </div>
 
         <button class="btn btn--send" type="submit" data-reveal>Send enquiry</button>
+
+        <!-- role="status" is an aria-live="polite" region: a screen reader
+             announces whatever lands here without stealing focus. It starts
+             empty, and it is the only thing on the page whose text is written
+             by JavaScript. Without JavaScript it stays empty and the form
+             falls back to a normal POST and the thanks.html redirect. -->
+        <p class="form__status" role="status"></p>
 
         <p class="form__note" data-reveal>
           Your details are used to answer your enquiry and nothing else. No mailing list,

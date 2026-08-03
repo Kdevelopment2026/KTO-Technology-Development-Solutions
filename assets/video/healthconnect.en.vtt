@@ -1,0 +1,30 @@
+WEBVTT
+Kind: captions
+Language: en-GB
+
+NOTE
+Timings were derived from the audio envelope of healthconnect.mp4 — decoded
+at 48 kHz and segmented on 20 ms RMS frames, so the cue boundaries sit on the
+real pauses between phrases rather than on a guess. Spot-check them once
+against the film; anything within about half a second is imperceptible, and
+these should be closer than that.
+
+1
+00:00:02.050 --> 00:00:04.950
+I'm an optometrist.
+A new way of working is coming to healthcare.
+
+2
+00:00:05.050 --> 00:00:09.450
+Today, patient pathways rely on paper forms,
+manual requests, and multiple systems.
+
+3
+00:00:09.550 --> 00:00:12.550
+HealthConnect will connect healthcare, EPR,
+and other systems —
+
+4
+00:00:12.900 --> 00:00:14.980
+to create a complete, real-time
+patient record.

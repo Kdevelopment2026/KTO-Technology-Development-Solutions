@@ -112,7 +112,7 @@ Each one drops into a slot that is already built, styled and tested. Nothing els
 |---|---|---|
 | 1 | **The live URL.** Five files carry a placeholder host, `kto-technology.netlify.app`. A canonical pointing at the wrong host is worse than none at all. | `index.html` (canonical, `og:url`, `og:image`, JSON-LD), `robots.txt`, `sitemap.xml` |
 | 2 | **Full testimonial text.** Four are live, each cut back to the last complete clause because LinkedIn's preview truncates at "Read more". The complete versions are on your recommendations page. | search `TESTIMONIALS` in `index.html` |
-| 3 | **The HealthConnect voiceover script.** The film is live and uncaptioned, which fails WCAG 2.2 SC 1.2.2 at level A. About forty words. See "The video". | paste it to me |
+| 3 | **Connect the repo to Netlify.** Until then the enquiry form cannot work anywhere — Netlify Forms is intercepted at Netlify's edge, and nothing else catches the POST. | Netlify UI |
 | 4 | **Form notifications.** One click, once: Netlify → Site → Forms → Notifications. Without it, enquiries sit unread in the dashboard. | Netlify UI |
 | 5 | **CV PDF and headshot.** Both have slots waiting. LinkedIn and the three certifications are live. | `index.html` footer, About spec column |
 
@@ -226,9 +226,44 @@ The honeypot is a real field hidden from people with `clip-path`, not `display:n
 bots skip anything display-none. It is the whole spam defence: no reCAPTCHA, because that is a
 third party watching your visitors and the volume here does not need it.
 
-On submit, the browser posts to Netlify and lands on `thanks.html`, which is `noindex`.
+### Why it looked broken, and what changed
 
-**Local testing shows the markup only.** The POST needs a real deploy — use a deploy preview.
+**Netlify Forms only exist on Netlify.** The interception happens at Netlify's edge: the browser
+posts, Netlify catches the request, stores the submission and redirects to the `action`. Off
+Netlify there is nothing to catch it, so the POST hits whatever is serving the files. A local
+`python -m http.server` answers `501 Not Implemented`. Another host answers `405`. The browser
+does what it is told and navigates, and the visitor ends up on a page that is not the one they
+were on, having been told nothing, with their enquiry gone.
+
+That is what "the form doesn't work, it just opens a page" is. **The markup was never wrong —
+the site was not on Netlify yet.**
+
+It is still not fixed by markup, so the form now submits through `fetch` instead, and the
+plain-POST path stays as the no-JavaScript fallback. The difference is that the outcome becomes
+knowable:
+
+| | Before | Now |
+|---|---|---|
+| Success | navigates away to `thanks.html` | confirmation appears in place, form clears |
+| Failure | navigates away, says nothing | stays put, says it failed, gives the email address |
+| No JavaScript | plain POST → `thanks.html` | unchanged |
+
+The failure message names `kayodefashola@hotmail.com` rather than redirecting to `thanks.html`.
+Saying thank you for something that did not arrive is the one outcome worse than an error.
+
+Implementation notes, in `enquiryForm()` in `main.js`: it posts urlencoded to `/`, which is
+Netlify's documented AJAX endpoint, and `form-name` must be in that body — which is what the
+hidden input is for on this path as well as the other one. `form.checkValidity()` runs first so
+the browser's own validation still fires and stays wired to the labels. A filled honeypot gets
+the success message: telling a bot it was caught only teaches whoever wrote it to fill the field
+differently. The status region is `role="status"`, so a screen reader announces the outcome
+without focus moving, and it is `:not(:empty)` in the CSS so it takes no space until it has
+something to say.
+
+**`thanks.html` is still needed.** It is where the no-JavaScript path lands, and it is `noindex`.
+
+**You still cannot test this locally.** The POST needs a real deploy — use a deploy preview.
+What you *can* test locally is the failure path, which is what a local server produces.
 
 Contrast was measured, not assumed: labels 10.8:1, hints 7.5:1, input text 10.7:1, the send
 button 9.5:1. The field border is `rgba(255,255,255,.42)` and not a shade quieter because the
@@ -433,25 +468,28 @@ The poster at `assets/img/healthconnect-poster.webp` (25 KB) is a frame lifted f
 itself at 12 seconds — the hub-and-spoke diagram, which is the shot the whole thing builds to.
 A poster taken from anywhere else is a small lie about what the viewer is about to watch.
 
-### Captions are missing, and that is a real problem
+### Captions and transcript
 
-**The film has a British voiceover and no captions.** WCAG 2.2 requires captions for prerecorded
-synchronised media at level **A** (SC 1.2.2) — not AA, A. So while this stands, the "Built to
-WCAG 2.2 AA" line in the footer has an exception, and it sits in the section that sells
-accessible video production. That is the worst possible place for it.
+`assets/video/healthconnect.en.vtt`, four cues, wired up with `<track kind="captions">`. This is
+not optional polish: WCAG 2.2 requires captions for prerecorded synchronised media at level
+**A** (SC 1.2.2) — not AA, A — and an uncaptioned film in the section selling accessible video
+production would have been the one thing on the page that undercut everything else on it.
 
-Fixing it takes ten minutes and needs one thing from you: **the voiceover script.** At fifteen
-seconds that is about forty words. Paste it, and it becomes
-`assets/video/healthconnect.en.vtt`, and the `<video>` gains one line:
+**How the cue timings were found.** Not by guessing at a reading rate. The MP4's audio was
+decoded in the browser through `AudioContext.decodeAudioData`, reduced to an RMS envelope on
+20 ms frames, and segmented on the quiet gaps between phrases. Four speech segments came out —
+2.10 s, 3.15 s, 5.10 s and 9.55 s — and they line up one-to-one with the four sentences of the
+script. The cues sit on those boundaries. Spot-check them once against the film; anything within
+about half a second is imperceptible and these should be closer.
 
-```html
-<track kind="captions" src="assets/video/healthconnect.en.vtt"
-       srclang="en-GB" label="English" default>
-```
+If the `.vtt` is ever moved or renamed, move the `src` with it. **A track pointing at a 404 is
+worse than no track at all**: the viewer gets an empty captions menu, which reads as a broken
+feature rather than an absent one.
 
-**Do not add that line before the `.vtt` file exists.** A track element pointing at a 404 gives
-the viewer an empty captions menu, which tests worse than having no captions at all: it looks
-like a feature that is broken rather than one that is absent.
+**There is also a transcript**, in a `<details>` under the caption. Captions serve someone
+watching with the sound off; a transcript serves someone who would rather read it in ten seconds
+than watch it in fifteen. It needs no JavaScript, and it puts forty words of relevant copy on
+the page where they can be indexed.
 
 ### The encode
 
@@ -625,7 +663,10 @@ Built to WCAG 2.2 AA:
 - Visible focus outlines, switched to the darker blue inside white course screens, and to green
   inside the navy contact band where the blue all but disappears.
 - Every form field has a real `<label>`, native validation, and `aria-describedby` on the two
-  that carry a hint. Field borders clear 3:1 against the navy, per WCAG 1.4.11.
+  that carry a hint. Field borders clear 3:1 against the navy, per WCAG 1.4.11. The submit
+  outcome lands in a `role="status"` region, so it is announced without focus moving.
+- **The video is captioned** (`<track kind="captions">`) and has a transcript beside it. WCAG
+  2.2 SC 1.2.2 puts captions at level A, so this is the floor rather than the finish.
 - The mobile menu is a real disclosure (`aria-expanded`, Escape to close, focus returned).
 - No horizontal scroll from 320px up.
 

@@ -151,6 +151,83 @@
     gal.dataset.galleryReady = 'true';
   });
 
+  /* ==================================================================
+     ENQUIRY FORM
+     Netlify Forms works with no JavaScript at all: the browser posts the
+     form, Netlify intercepts it at the edge, stores the submission and
+     redirects to the `action`. That path still works and is the fallback
+     here — everything below is an enhancement on top of it.
+
+     It is worth having, because the no-JS path has one bad failure mode.
+     If the POST is not intercepted — the site is not on Netlify yet, form
+     detection did not run at deploy, the form was renamed — the browser
+     simply follows the response. The visitor lands somewhere that is not
+     the page they were on, having been told nothing, and their enquiry is
+     gone. "It just opens a page" is exactly what that looks like.
+
+     Submitting through fetch means the outcome is knowable: on success the
+     confirmation appears in place, and on failure the visitor is told
+     plainly and given the email address instead of being sent away.
+     ================================================================== */
+  (function enquiryForm() {
+    var form = q('form.form');
+    if (!form || !window.fetch || !window.FormData) return;
+
+    var status = q('.form__status', form);
+    var button = q('button[type="submit"]', form);
+    if (!status) return;
+
+    var DONE = 'Thank you — that has reached me. You will get an honest answer about scope ' +
+               'within two working days.';
+
+    function say(message, state) {
+      status.textContent = message;
+      status.dataset.state = state;
+    }
+
+    form.addEventListener('submit', function (event) {
+      // Let the browser's own validation run first; it is better than
+      // anything worth hand-rolling and it is already wired to the labels.
+      if (!form.checkValidity()) return;
+      event.preventDefault();
+
+      var data = new FormData(form);
+
+      // Netlify's honeypot: a value here means a bot filled a field no human
+      // can see. Behave exactly as if it succeeded — telling a bot it was
+      // caught only teaches whoever wrote it to fill the field differently.
+      if (data.get('company-website')) { form.reset(); say(DONE, 'ok'); return; }
+
+      if (button) { button.disabled = true; }
+      say('Sending…', 'busy');
+
+      /* Netlify's documented AJAX endpoint is the page's own path with a
+         urlencoded body. `form-name` has to be in that body, which is what
+         the hidden input is for — it is required on this path as well as on
+         the no-JS one, so do not remove it. */
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString()
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          form.reset();
+          say(DONE, 'ok');
+        })
+        .catch(function () {
+          /* Deliberately not a redirect to thanks.html. Saying "thank you"
+             for something that did not arrive is the one outcome worse than
+             an error message. */
+          say('That did not send — the form service is not responding. Please email ' +
+              'kayodefashola@hotmail.com and it will reach me directly.', 'error');
+        })
+        .then(function () {
+          if (button) { button.disabled = false; }
+        });
+    });
+  })();
+
   /* ---- current section ---- */
   var SECTIONS = ['work', 'testimonials', 'services', 'video', 'process', 'toolkit',
                   'about', 'contact'];

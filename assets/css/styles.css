@@ -724,6 +724,24 @@ body{
   color:var(--text); font-weight:500;
 }
 
+/* The transcript sits closed by default. It is a <details>, so it needs no
+   JavaScript and its content is in the DOM for search either way. */
+.transcript{ margin-top:1rem; padding-left:1rem; }
+.transcript summary{
+  cursor:pointer;
+  font-family:var(--f-mono);
+  font-size:.5625rem; font-weight:500;
+  letter-spacing:.24em; text-transform:uppercase;
+  color:var(--blue);
+}
+.transcript summary:hover{ color:var(--green); }
+.transcript p{
+  margin:.85rem 0 0;
+  font-size:.8125rem; line-height:1.6;
+  color:var(--text-2);
+  max-width:62ch;
+}
+
 /* ---------- full-bleed statement band ---------- */
 .statement{
   position:relative;
@@ -1150,6 +1168,24 @@ body{
   font-size:.6875rem; line-height:1.7; letter-spacing:.02em;
   color:rgba(255,255,255,.72);
 }
+
+/* Empty until the form is submitted, so it must take no space until it has
+   something to say — an empty box above the privacy note reads as a rendering
+   fault. `:not(:empty)` is what keeps it out of the layout. */
+.form__status:not(:empty){
+  margin-bottom:1.25rem;
+  padding:.85rem 1rem;
+  border-left:2px solid var(--green);
+  background:rgba(255,255,255,.06);
+  font-size:.875rem; line-height:1.55;
+  color:#fff;
+  text-wrap:pretty;
+}
+/* Green reports progress everywhere else on this page, so a failure cannot
+   also be green. Amber rather than red: the enquiry is not lost, there is an
+   email address in the message. */
+.form__status[data-state="error"]{ border-left-color:#FFB454; }
+.form__status[data-state="busy"]{ border-left-color:var(--blue); }
 
 /* The footer sits outside the contact band in the markup, so that it is a real
    contentinfo landmark. It therefore has to carry the navy itself rather than
