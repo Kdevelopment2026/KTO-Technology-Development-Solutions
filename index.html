@@ -119,6 +119,29 @@
       "description": "London-based instructional designer, e-learning developer and AI learning specialist with more than 25 years of experience across medical, HR, compliance, insurance, education and finance.",
       "worksFor": { "@id": "https://kto-technology.netlify.app/#business" },
       "sameAs": ["https://www.linkedin.com/in/kayodefashola/"],
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Claude Code 101",
+          "credentialCategory": "certificate",
+          "recognizedBy": { "@type": "Organization", "name": "Anthropic" },
+          "url": "https://verify.skilljar.com/c/p5krpyrk6i4g"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Introduction to Claude Cowork",
+          "credentialCategory": "certificate",
+          "recognizedBy": { "@type": "Organization", "name": "Anthropic" },
+          "url": "https://verify.skilljar.com/c/jrzevagbybdi"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Career Essentials in Generative AI",
+          "credentialCategory": "certificate",
+          "recognizedBy": { "@type": "Organization", "name": "Microsoft and LinkedIn" },
+          "url": "https://www.linkedin.com/learning/certificates/a7d3abd2b226d0e4a11603983aa06f3d05de0c88042d629745c40d5c6df89545"
+        }
+      ],
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "London",
@@ -538,11 +561,10 @@
     </article>
 
     <!-- ── Case 04 · EY ───────────────────────────────────────────────
-         The two rows below are written from what the screenshots actually
-         show, so nothing here overstates the work. Three rows previously
-         read "TO BE SUPPLIED", which made a finished case look abandoned.
-         ADD WHEN YOU CAN: development tool, and a Process row matching the
-         other three cases. Copy the markup of any .spec__row above. -->
+         Now carries the same four rows as the other three cases. The
+         Responsibilities row is worth keeping honest: this was a revision
+         brief, not an original build, and saying so is what makes the rest
+         of the page believable. -->
     <article class="case" data-case="ey">
       <p class="case__sector" data-reveal>EY</p>
 
@@ -551,9 +573,20 @@
           <dl class="spec" data-reveal>
             <div class="spec__row">
               <dt>Module</dt>
-              <dd>A writing course covering the formats internal communications actually go out
-                in: speeches, podcasts, video scripts, editorial and social media, each treated
-                as its own discipline rather than as general writing advice.</dd>
+              <dd>How to adapt your writing style for any format — covering the formats internal
+                communications actually go out in: speeches, podcasts, video scripts, editorial
+                and social media, each treated as its own discipline rather than as general
+                writing advice.</dd>
+            </div>
+            <div class="spec__row">
+              <dt>Development tool</dt>
+              <dd>Adobe Captivate 8 · Adobe Creative Suite</dd>
+            </div>
+            <div class="spec__row">
+              <dt>Responsibilities</dt>
+              <dd>A freelance brief: revising the existing content, building in new functionality,
+                and designing the quiz questions, to raise interactivity and learner
+                satisfaction.</dd>
             </div>
             <div class="spec__row">
               <dt>Approach</dt>
@@ -1024,13 +1057,25 @@
                no date. -->
           <div class="spec__row"><dt>Availability</dt><dd>Open to project work, contract and permanent roles. Ask about current lead time.</dd></div>
           <div class="spec__row"><dt>Engagements</dt><dd>Project, retainer or day rate</dd></div>
-          <!-- CERTIFICATIONS: a row, not a gallery. Named certificates read as
-               credentials; scans of the certificates themselves read as filler,
-               and nobody has ever chosen a supplier because they saw the PDF.
-               Fill in and delete the comment markers — recognised bodies only,
-               and drop anything expired rather than leaving it undated:
-            <div class="spec__row"><dt>Certified</dt><dd>Name of certificate · Awarding body, year</dd></div>
-          -->
+          <!-- A row, not a gallery: named certificates read as credentials,
+               scans of the certificates themselves read as filler. Each name
+               links to its verification page, which is the part that makes the
+               claim checkable — and a claim a buyer can check in one click is
+               worth more than three they have to take on trust. Mirrored in
+               "hasCredential" in the JSON-LD; change one, change both, then
+               run tools-csp-hash.py. -->
+          <div class="spec__row">
+            <dt>Certified</dt>
+            <dd>
+              <!-- One per line, each with its awarding body. Run together with
+                   middots and the body attaches to the wrong certificate. -->
+              <ul class="certs">
+                <li><a href="https://verify.skilljar.com/c/p5krpyrk6i4g" target="_blank" rel="noopener">Claude Code 101</a>, Anthropic</li>
+                <li><a href="https://verify.skilljar.com/c/jrzevagbybdi" target="_blank" rel="noopener">Introduction to Claude Cowork</a>, Anthropic</li>
+                <li><a href="https://www.linkedin.com/learning/certificates/a7d3abd2b226d0e4a11603983aa06f3d05de0c88042d629745c40d5c6df89545" target="_blank" rel="noopener">Career Essentials in Generative AI</a>, Microsoft and LinkedIn</li>
+              </ul>
+            </dd>
+          </div>
           <div class="spec__row"><dt>Handover</dt><dd>Source files, style guide and a maintenance note, always</dd></div>
         </dl>
       </div>

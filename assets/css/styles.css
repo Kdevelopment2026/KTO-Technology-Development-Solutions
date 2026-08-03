@@ -516,6 +516,20 @@ body{
   color:var(--text-2);
   text-wrap:pretty;
 }
+/* Links in a spec row — the certification verifiers. There is no global rule
+   for `a` in this stylesheet, so anything unstyled falls back to the browser's
+   #0000EE on a near-black ground, which is illegible and fails contrast. These
+   lift to full --text with a blue underline: colour alone is not a
+   distinguishing mark (WCAG 1.4.1), so the rule carries the affordance. */
+.spec dd a{
+  color:var(--text);
+  text-decoration:none;
+  border-bottom:1px solid var(--blue);
+  transition:color .2s var(--ease), border-color .2s var(--ease);
+}
+.spec dd a:hover{ color:var(--blue); border-bottom-color:currentColor; }
+.certs{ display:grid; gap:.5rem; }
+
 /* A row still waiting on copy. Visibly a draft slot, not a design accident. */
 .spec__row--pending dt{ color:var(--line-2); }
 .spec__row--pending dd{

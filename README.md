@@ -111,7 +111,7 @@ Each one drops into a slot that is already built, styled and tested. Nothing els
 | 2 | **Full testimonial text.** Four are live, each cut back to the last complete clause because LinkedIn's preview truncates at "Read more". The complete versions are on your recommendations page. | search `TESTIMONIALS` in `index.html` |
 | 3 | **`showreel.mp4` plus captions.** See "Adding the showreel". | `assets/video/` |
 | 4 | **Form notifications.** One click, once: Netlify → Site → Forms → Notifications. Without it, enquiries sit unread in the dashboard. | Netlify UI |
-| 5 | **CV PDF and headshot.** Both have slots waiting. LinkedIn is now live in the footer and in `sameAs`. | `index.html` footer, About spec column |
+| 5 | **CV PDF and headshot.** Both have slots waiting. LinkedIn and the three certifications are live. | `index.html` footer, About spec column |
 
 ### The case studies
 
@@ -120,7 +120,7 @@ Each one drops into a slot that is already built, styled and tested. Nothing els
 | 01 | NHS | DCS MEDITECH Expanse — electronic patient record (EPR) transformation | 3 | complete |
 | 02 | The Open University | SAP Ariba indirect procurement process | 3 | complete |
 | 03 | SecureMind | Security awareness | 2 | complete |
-| 04 | EY | Writing for different formats | 3 | two rows, both verifiable |
+| 04 | EY | Writing for different formats | 3 | complete |
 
 **Section 04, "Video and AI", is the one place the copy is mine.** Everything else on the page
 came from you or from your existing site. That section covers AI video content, UGC-style ads,
@@ -128,14 +128,21 @@ AI animation and post-production, and the tool chips list Veo 3.1 and Google Gem
 you named them as tools you use. Read it before launch and change anything that overstates
 what you offer. It is marked `COPY REVIEW` in `index.html`.
 
-**EY no longer says "to be supplied".** Three rows used to render as a muted "TO BE SUPPLIED",
-which made a finished case look abandoned to anyone who scrolled that far — and it was the last
-case before the statement band, so it was the note the work section ended on. The block now
-carries two rows written from what the screenshots actually show: the writing formats visible
-in the section menu, and the worked-example approach visible on screen three. The captions no
-longer put a number on the formats, because the menu shows six items while five are named —
-**tell me the sixth and I will name them all.** Nothing in them overstates the work. **Add the
-development tool and a Process row when you can** — copy the markup of any other `.spec__row`.
+**EY is complete.** Three rows used to render as a muted "TO BE SUPPLIED", which made a finished
+case look abandoned to anyone who scrolled that far — and it was the last case before the
+statement band, so it was the note the work section ended on. It now carries the same four rows
+as the other three cases: module, development tool (Adobe Captivate 8 and Creative Suite),
+responsibilities and approach.
+
+The Responsibilities row says plainly that this was **a freelance revision brief** — revising
+existing content, building in new functionality, designing the quiz questions — rather than an
+original build. That is worth keeping. A portfolio where every case is a ground-up build invites
+the question of which ones really were, and answering it up front is what makes the NHS and Open
+University cases read as true.
+
+One open question: the section menu on screen two shows **six** items while five formats are
+named anywhere. The captions therefore put no number on them. **Tell me the sixth and I will
+name them all.**
 
 **The invented metrics are gone.** The previous draft carried figures like "94% completed
 before go-live" and "38% fewer service-desk tickets". Those were tolerable against anonymised
@@ -149,6 +156,27 @@ your own copy. That is real, checkable, and more impressive than a percentage.
 
 **The MEDITECH patient screen is published as-is**, at your instruction. It is the
 `DAGEMC TEST` training domain, and it is the strongest single proof of the simulation work.
+
+**The certifications are live** in the About spec column, as a row rather than a gallery:
+
+| Certificate | Body |
+|---|---|
+| Claude Code 101 | Anthropic |
+| Introduction to Claude Cowork | Anthropic |
+| Career Essentials in Generative AI | Microsoft and LinkedIn |
+
+Each name links to its verification page, and that link is the point. A credential a buyer can
+check in one click is worth more than three they have to take on trust — and these three are
+what the phrase "AI learning specialist" is standing on, so they should be checkable. They are
+mirrored as `hasCredential` on the `Person` node in the JSON-LD; **change one, change both, then
+re-run `tools-csp-hash.py`.**
+
+One row per certificate, each with its own awarding body. Run together on one line with middots
+and the reader attaches "Anthropic" to the wrong certificate.
+
+**No dates**, because none were supplied and a guessed year on a credential is worse than none.
+These do not expire, so undated is defensible — but send me the years and they get stronger, and
+the "AI learning specialist" claim gets a timeline.
 
 **LinkedIn is live**, at `linkedin.com/in/kayodefashola`. It sits in two places that must stay
 in step: the footer link, which carries `rel="me"`, and `sameAs` on the `Person` node in the
