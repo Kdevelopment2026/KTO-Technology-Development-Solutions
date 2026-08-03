@@ -9,6 +9,8 @@ thanks.html            form confirmation page
 404.html
 robots.txt
 sitemap.xml
+site.webmanifest
+favicon.ico
 assets/css/styles.css
 assets/js/main.js
 assets/img/            14 images, 770 KB (2 plates + 11 screenshots + og card + video poster)
@@ -20,6 +22,8 @@ Vid/                   the delivered video master — not deployed
 tools-bake.py          re-bakes contrast safety into a new hero/band plate
 tools-og-card.py       re-bakes the 1200x630 social sharing card
 tools-csp-hash.py      regenerates the CSP hash for the inline JSON-LD
+tools-host.py          sets the site's hostname in all 15 places at once
+tools-icons.py         re-bakes favicon.ico and the PNG icons from one geometry
 ```
 
 **Nothing loads from a third party.** Fonts and libraries are served from this repo. That is
@@ -42,14 +46,17 @@ python3 -m http.server 8787   # then open http://localhost:8787
 The repo is the site; there is no build step. `netlify.toml` sets `publish = "."`, the security
 headers described below, and a week-long cache on images.
 
-**Before every deploy, one command:**
+**The deploy gates itself.** `netlify.toml` runs this as its build command, and Netlify fails
+the deploy on a non-zero exit:
 
 ```sh
-python3 tools-csp-hash.py --check
+python3 tools-csp-hash.py --check && python3 tools-host.py --check
 ```
 
-It is the only pre-flight this site has, and it exists because the failure it catches is
-invisible. See Security.
+Both guard failures that are completely invisible in a browser. A stale CSP hash silently stops
+the structured data from running; a stale hostname points the canonical and the social card at a
+host that 404s. Neither makes the page look wrong. **Until you run `tools-host.py --set`, every
+deploy will fail on purpose** — see "The site URL" below.
 
 **GitHub** — pushed to
 `github.com/Kdevelopment2026/KTO-Technology-Development-Solutions` on `main`.
@@ -110,11 +117,41 @@ Each one drops into a slot that is already built, styled and tested. Nothing els
 
 | | What | Where |
 |---|---|---|
-| 1 | **The live URL.** Five files carry a placeholder host, `kto-technology.netlify.app`. A canonical pointing at the wrong host is worse than none at all. | `index.html` (canonical, `og:url`, `og:image`, JSON-LD), `robots.txt`, `sitemap.xml` |
+| 1 | **The live URL.** 15 absolute URLs still carry the placeholder host. **The deploy fails until this is set** — one command: `python3 tools-host.py --set your-host`. | run the command |
 | 2 | **Full testimonial text.** Four are live, each cut back to the last complete clause because LinkedIn's preview truncates at "Read more". The complete versions are on your recommendations page. | search `TESTIMONIALS` in `index.html` |
-| 3 | **Connect the repo to Netlify.** Until then the enquiry form cannot work anywhere — Netlify Forms is intercepted at Netlify's edge, and nothing else catches the POST. | Netlify UI |
+| 3 | **Turn on form detection.** Netlify made it opt-in for sites created since late 2024, and it only runs at deploy time. Site configuration → Forms → enable, then **redeploy**. | Netlify UI |
 | 4 | **Form notifications.** One click, once: Netlify → Site → Forms → Notifications. Without it, enquiries sit unread in the dashboard. | Netlify UI |
 | 5 | **CV PDF and headshot.** Both have slots waiting. LinkedIn and the three certifications are live. | `index.html` footer, About spec column |
+
+### The site URL, and why the deploy stops for it
+
+The site hard-codes its own address in **15 places**: the canonical link, `og:url`, `og:image`,
+`twitter:image`, six JSON-LD `@id` and `url` fields, the `Sitemap:` line in `robots.txt`, and
+`<loc>` in `sitemap.xml`. They must be absolute and they must all agree.
+
+The placeholder it shipped with, `kto-technology.netlify.app`, is **unclaimed** — Netlify
+returns 404 for it. Deploying while it is still in place means:
+
+- the canonical tells Google to index a URL that does not exist;
+- every LinkedIn, Slack and WhatsApp share renders with no card, because `og:image` 404s;
+- `robots.txt` advertises a sitemap that 404s;
+- and until somebody claims that subdomain, anyone can — and would inherit both.
+
+Search engines and social scrapers cache the first response they get, so this is not a
+fix-it-afterwards problem. **The Netlify build command fails the deploy while the placeholder is
+still there.** One command clears it:
+
+```sh
+python3 tools-host.py --set your-site.netlify.app   # or your custom domain
+python3 tools-csp-hash.py                            # the JSON-LD changed; paste the new hash
+```
+
+`tools-host.py` reads the site's own host from `<link rel="canonical">` and rewrites only that
+one. LinkedIn, the certificate verifiers and `schema.org` are never touched.
+
+**You do not need a custom domain to go live.** `your-name.netlify.app` is free, permanent and
+HTTPS. A domain is worth buying for a business site, but nothing here waits on it — set the
+`.netlify.app` host now and re-run the same command later if you buy one.
 
 ### The case studies
 
@@ -226,6 +263,20 @@ The honeypot is a real field hidden from people with `clip-path`, not `display:n
 bots skip anything display-none. It is the whole spam defence: no reCAPTCHA, because that is a
 third party watching your visitors and the volume here does not need it.
 
+### If it fails on Netlify: form detection is opt-in now
+
+For sites created since roughly late 2024, **Netlify no longer detects forms automatically**.
+The markup can be perfect and submissions will still 404 or 405. Two things, in this order:
+
+1. Site configuration → Forms → **enable form detection**.
+2. **Trigger a new deploy.** Detection runs at deploy time by parsing the built HTML, so
+   enabling it does not retro-scan the deploy already published. Nothing changes until a new
+   one lands.
+
+Then confirm the form appears under Forms in the dashboard, add an email notification, and send
+one test enquiry from the live URL. If the form is not listed after a fresh deploy, detection is
+still off — nothing in this repo can fix that.
+
 ### Why it looked broken, and what changed
 
 **Netlify Forms only exist on Netlify.** The interception happens at Netlify's edge: the browser
@@ -245,11 +296,18 @@ knowable:
 | | Before | Now |
 |---|---|---|
 | Success | navigates away to `thanks.html` | confirmation appears in place, form clears |
-| Failure | navigates away, says nothing | stays put, says it failed, gives the email address |
+| Failure | navigates away, says nothing | stays put, explains, and offers a pre-filled email |
 | No JavaScript | plain POST → `thanks.html` | unchanged |
 
-The failure message names `kayodefashola@hotmail.com` rather than redirecting to `thanks.html`.
-Saying thank you for something that did not arrive is the one outcome worse than an error.
+**The failure state is a route, not an apology.** The form keeps everything the visitor typed —
+it is deliberately not reset — and a button appears that opens their mail client with the name,
+organisation, email, need, deadline and message already in the body. So even with Netlify Forms
+entirely misconfigured, an enquiry still reaches you in one click. The body is trimmed to about
+1,500 characters because mail clients start dropping it above ~2,000, and the trim is announced
+in the message rather than silent.
+
+It never redirects to `thanks.html` on failure. Saying thank you for something that did not
+arrive is the one outcome worse than an error.
 
 Implementation notes, in `enquiryForm()` in `main.js`: it posts urlencoded to `/`, which is
 Netlify's documented AJAX endpoint, and `form-name` must be in that body — which is what the
@@ -662,6 +720,14 @@ Built to WCAG 2.2 AA:
   `.band`, delete those three declarations or the colour will be applied twice.
 - Visible focus outlines, switched to the darker blue inside white course screens, and to green
   inside the navy contact band where the blue all but disappears.
+- **Target sizes meet WCAG 2.2 SC 2.5.8 (AA).** Every control measures at least 24x24: gallery
+  dots 28x24, arrows 36x36, footer links 24 high with 24px gaps, rail links 24 high, the
+  transcript disclosure 24 high. An audit found the footer at 13px with 20px gaps and the rail
+  at 14px with 15px gaps — both failing — so if you restyle either, measure the box, not the
+  glyphs. The certification links and the contact lines sit below 24 but qualify under the
+  inline and spacing exceptions respectively.
+- **Slide changes are announced.** `.gallery__count` is `role="status"`, so a screen-reader user
+  who presses next hears "2 / 3" rather than nothing.
 - **The copyright year is hard-coded**, in `index.html`, `404.html` and `thanks.html`. A
   script-written year is blank for anyone with JavaScript off, and a copyright line that
   disappears is worse than one that is a year out of date. Update it by hand each January.
@@ -679,5 +745,22 @@ Galleries are keyboard-operable: the viewport is focusable and arrow-scrollable,
 and next buttons disable at each end, and the dots are 28x24 hit areas so they meet the WCAG
 2.2 target size. Each slide is labelled "Screen N of M" and the counter is a live region.
 
-The two things most likely to break if you extend this are contrast on the accents and
-keyboard access to custom controls. Check both.
+### Measured, not assumed
+
+Numbers here came from testing this build, not from intent:
+
+| Check | Result |
+|---|---|
+| Horizontal overflow at 320/375/430/768/1024/1280/1440/1920 | 0 px at every width |
+| Text contrast, 56 distinct styles against composited backgrounds | no failures |
+| WCAG 1.4.12 text spacing, applied at 375px | no clipping, no overflow |
+| Line length, every prose block | 49-72 characters |
+| Cumulative layout shift, clean load | 0 |
+| First contentful paint, localhost | ~100 ms |
+| Heading outline | one `h1`, no skipped levels, 31 headings |
+| ARIA idrefs and duplicate IDs | all resolve; none duplicated |
+
+The two things most likely to break if you extend this are contrast on the accents and keyboard
+access to custom controls. Check both. `--line-2` in particular is a **hairline colour for
+dividers** — it measures 1.82:1 on the ink and fails the moment it is used for text or for a
+control boundary. Two rules had to be corrected for exactly that reason.

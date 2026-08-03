@@ -94,6 +94,10 @@
   --blue-2:   #7FB3FF;
   --navy:     #12305F;   /* closing band, echoing the old site's panel */
   --green:    #24D267;
+  /* Warning, not error: a failed submission is recoverable — the fallback
+     button beside it still sends the enquiry. Amber says "do this instead",
+     red would say "you have lost it". */
+  --warn:     #FFB454;
 
   /* light surfaces: the course screens */
   --paper:    #FFFFFF;
@@ -238,15 +242,6 @@ body{
 
 /* ---------- type roles ---------- */
 
-/* The wide-tracked uppercase run is the house voice, carried over from the
-   old site. It labels; it never has to be read at speed. */
-.tracked{
-  font-family:var(--f-mono);
-  font-weight:500;
-  letter-spacing:.28em;
-  text-transform:uppercase;
-}
-
 .modlabel{
   display:flex; align-items:center; gap:.9rem;
   font-family:var(--f-mono); font-weight:500;
@@ -263,14 +258,6 @@ body{
 .modlabel__rule{
   flex:1; height:1px; max-width:5rem;
   background:var(--line-2);
-}
-
-.eyebrow{
-  font-family:var(--f-mono);
-  font-size:.6875rem; font-weight:500;
-  letter-spacing:.24em; text-transform:uppercase;
-  color:var(--blue);
-  margin-bottom:1.25rem;
 }
 
 .h-display{
@@ -441,9 +428,14 @@ body{
   background:var(--green);
   transform-origin:top;
 }
-.rail__list{ display:grid; gap:.9rem; }
+/* The gap sets the rhythm; min-height sets the target. Type this small can
+   never reach 24px on its own, and WCAG 2.2 SC 2.5.8 counts the target box,
+   not the glyphs — so the links grow to 24px and the gap closes to match,
+   leaving the visible spacing almost unchanged. Measured at 14px before. */
+.rail__list{ display:grid; gap:.35rem; }
 .rail__list a{
   display:flex; align-items:center; gap:.55rem;
+  min-height:24px;
   font-family:var(--f-mono);
   font-size:.5625rem; font-weight:500;
   letter-spacing:.2em; text-transform:uppercase;
@@ -485,15 +477,16 @@ body{
 .btn--solid{ background:var(--blue); color:#04101F; font-weight:600; }
 .btn--solid:hover{ background:var(--blue-2); }
 
-.btn--line{ border-color:var(--line-2); color:var(--text); }
+/* --line-2 is a hairline colour for dividers, and at 1.82:1 on the ink it was
+   never going to identify a control boundary. WCAG 1.4.11 wants 3:1 for the
+   visual information that identifies a component; this measures 3.46:1 and is
+   still quiet enough to sit second to the solid button beside it. */
+.btn--line{ border-color:#5C6E80; color:var(--text); }
 .btn--line:hover{ border-color:var(--text); background:rgba(255,255,255,.06); }
 
 .btn--go{ background:var(--green); color:#04140A; font-weight:600; }
 .btn--go:hover{ background:#5CE894; }
 
-.btn--ghost{ border-color:rgba(255,255,255,.32); color:#fff; }
-.btn--ghost::after{ content:none; }
-.btn--ghost:hover{ border-color:#fff; background:rgba(255,255,255,.1); }
 
 .actions{ display:flex; flex-wrap:wrap; gap:.75rem; margin-top:2.25rem; }
 
@@ -530,13 +523,24 @@ body{
 .spec dd a:hover{ color:var(--blue); border-bottom-color:currentColor; }
 .certs{ display:grid; gap:.5rem; }
 
-/* A row still waiting on copy. Visibly a draft slot, not a design accident. */
-.spec__row--pending dt{ color:var(--line-2); }
-.spec__row--pending dd{
-  color:var(--line-2);
-  font-family:var(--f-mono); font-size:.6875rem;
-  letter-spacing:.1em; text-transform:uppercase;
+/* Visually hidden, still read aloud. The standard clip-path recipe rather than
+   display:none, which would remove the text from the accessibility tree too. */
+.vh{
+  position:absolute;
+  width:1px; height:1px; overflow:hidden;
+  clip-path:inset(50%);
+  white-space:nowrap;
 }
+/* A link that opens a new tab should say so before it is clicked. The glyph
+   carries that for sighted users and .vh carries it for everyone else, so
+   neither group meets the context change as a surprise. */
+.ext{
+  display:inline-block;
+  margin-left:.3em;
+  font-size:.85em;
+  color:var(--blue);
+}
+.ext::after{ content:"\2197"; }
 
 /* ---------- hero ---------- */
 .section--hero{
@@ -715,6 +719,12 @@ body{
   padding-left:1rem;
   border-left:2px solid var(--blue);
 }
+/* A screen caption is one or two lines and can run the width of the plate it
+   describes. The reel caption is a paragraph, and at 1280px it measured 139
+   characters per line — nearly twice a readable measure, on the block selling
+   the newest service. Every other prose block on the page is capped at 62ch;
+   this brings the last one into line. */
+.reel figcaption{ max-width:62ch; }
 /* The reel caption is the only one carrying a title as well as a description,
    because it is the only figure on the page whose subject is not obvious from
    the frame beside it. */
@@ -729,6 +739,10 @@ body{
 .transcript{ margin-top:1rem; padding-left:1rem; }
 .transcript summary{
   cursor:pointer;
+  /* A standalone control, not a link inside a sentence, so the SC 2.5.8
+     inline exception does not cover it and the 9px type never would. */
+  display:flex; align-items:center; min-height:24px;
+  width:max-content; max-width:100%;
   font-family:var(--f-mono);
   font-size:.5625rem; font-weight:500;
   letter-spacing:.24em; text-transform:uppercase;
@@ -912,7 +926,7 @@ body{
 .notebox{
   margin-top:clamp(2rem,4vw,3rem);
   background:var(--ink-2);
-  border-left:3px solid var(--green);
+  border-left:2px solid var(--green);
   padding:clamp(1.4rem,2.6vw,2rem);
 }
 .notebox__label{
@@ -959,7 +973,9 @@ body{
    [data-reveal] so the stagger still works.
    ----------------------------------------------------------------------- */
 .prose{ display:grid; gap:1.15rem; margin-top:1.75rem; }
-.prose p{ color:var(--text-2); text-wrap:pretty; }
+/* Capped for the single-column range below 62rem, where the two-column split
+   has not yet engaged and the paragraphs ran to 91 characters. */
+.prose p{ color:var(--text-2); text-wrap:pretty; max-width:62ch; }
 @media (min-width:62rem){
   .prose{ grid-template-columns:1fr 1fr; column-gap:clamp(2rem,3.5vw,3.25rem); }
   /* The lead is three sentences, so at full width it sets as a standfirst
@@ -971,6 +987,10 @@ body{
   font-size:clamp(1.0625rem,1.3vw,1.2rem);
   line-height:1.55;
   color:var(--text) !important;
+  /* It spans both columns above 62rem, so without a cap it ran to 106
+     characters per line at 1280px — the first paragraph a recruiter reads,
+     set at the least readable measure on the page. */
+  max-width:62ch;
 }
 
 /* The name, in the one place a recruiter looks for it. Same construction as
@@ -1018,6 +1038,10 @@ body{
   font-size:clamp(1rem, 1.25vw, 1.15rem);
   line-height:1.5;
   color:var(--text);
+  /* The quote grid is single-column below 52rem, where a full-width card put
+     these at 83 characters per line. Above it they sit at 40-63 and the cap
+     never applies. */
+  max-width:58ch;
 }
 .quote blockquote p{ margin:0; }
 .quote blockquote p + p{ margin-top:.85rem; }
@@ -1184,8 +1208,12 @@ body{
 /* Green reports progress everywhere else on this page, so a failure cannot
    also be green. Amber rather than red: the enquiry is not lost, there is an
    email address in the message. */
-.form__status[data-state="error"]{ border-left-color:#FFB454; }
+.form__status[data-state="error"]{ border-left-color:var(--warn); }
 .form__status[data-state="busy"]{ border-left-color:var(--blue); }
+/* The failure state is a route, not a notice: it carries a button that opens
+   a pre-filled email. Spacing here is what stops it reading as body copy. */
+.form__statusline{ margin:0 0 1rem; }
+.form__status .btn{ margin:0; }
 
 /* The footer sits outside the contact band in the markup, so that it is a real
    contentinfo landmark. It therefore has to carry the navy itself rather than
@@ -1203,8 +1231,15 @@ body{
   letter-spacing:.18em; text-transform:uppercase;
   color:rgba(255,255,255,.78);
 }
-.foot__links{ display:flex; flex-wrap:wrap; gap:1.25rem; margin-left:auto; }
-.foot__links a{ color:rgba(255,255,255,.88); text-decoration:none; }
+/* 1.5rem, not 1.25rem: WCAG 2.2 SC 2.5.8 wants a 24px target, and where the
+   target itself is smaller it wants 24px of clear offset to the next one. The
+   padding below buys the height, this gap buys the horizontal offset. At
+   1.25rem the gap measured 20px and the criterion failed. */
+.foot__links{ display:flex; flex-wrap:wrap; gap:1.5rem; margin-left:auto; }
+.foot__links a{
+  color:rgba(255,255,255,.88); text-decoration:none;
+  display:inline-flex; align-items:center; min-height:24px;
+}
 .foot__links a:hover{ color:var(--green); }
 .foot__name{ color:rgba(255,255,255,.88); }
 /* A second row rather than a fourth item in the flex line above: the name, the
@@ -1321,14 +1356,6 @@ body{
 
 /* ---------- W4 · the spec row being read ---------- */
 .spec__row{ position:relative; transition:opacity .4s var(--ease); }
-.spec__row::before{
-  content:""; position:absolute; left:-.85rem; top:.95rem;
-  width:3px; height:.7rem; background:var(--green);
-  transform:scaleY(0); transform-origin:top;
-  transition:transform .35s var(--ease);
-}
-.has-motion .spread--case .spec__row.is-reading::before{ transform:scaleY(1); }
-.has-motion .spread--case .spec__row.is-reading dt{ color:var(--text); }
 .spec__row dt{ transition:color .35s var(--ease); }
 
 /* ---------- V3 · pointer-follow light in the services grid ---------- */

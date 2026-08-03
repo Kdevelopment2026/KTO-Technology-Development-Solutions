@@ -1,6 +1,15 @@
-# Static site: no build step, the repo root is the site.
+# Static site: the repo root is the site, and there is nothing to compile.
+#
+# `command` is not a build — it is a gate. tools-csp-hash.py --check exits 1
+# when netlify.toml's script-src hash no longer matches the inline JSON-LD in
+# index.html, which turns the one failure on this site that is completely
+# invisible — structured data silently refusing to run, page looking perfect —
+# into a deploy that stops and tells you. tools-host.py --check does the same
+# for the absolute URLs: it fails the deploy if any of them still point at a
+# host that is not this site.
 [build]
   publish = "."
+  command = "python3 tools-csp-hash.py --check && python3 tools-host.py --check"
 
 # ═══ SECURITY HEADERS ════════════════════════════════════════════════════════
 # Everything the page loads is same-origin — fonts, GSAP, Lenis, CSS, images —

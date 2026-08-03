@@ -1,10 +1,12 @@
 /* ==========================================================================
    KTO Technology Solutions — behaviour and choreography
 
-   Everything is progressive. GSAP, ScrollTrigger and Lenis load from a CDN and
-   are used only if they arrive. If they are blocked, JavaScript is off, or the
-   visitor prefers reduced motion, the page renders complete and static — the
-   markup already holds every finished state, and JS only ever rewinds it.
+   Everything is progressive. GSAP, ScrollTrigger and Lenis are served from
+   assets/vendor/ in this repo — never a CDN, because the organisations this
+   site is addressed to are exactly the networks that block them — and are used
+   only if they arrive. If they are blocked, JavaScript is off, or the visitor
+   prefers reduced motion, the page renders complete and static: the markup
+   already holds every finished state, and JS only ever rewinds it.
    ========================================================================== */
 (function () {
   'use strict';
@@ -177,12 +179,69 @@
     var button = q('button[type="submit"]', form);
     if (!status) return;
 
+    var EMAIL = 'kayodefashola@hotmail.com';
     var DONE = 'Thank you — that has reached me. You will get an honest answer about scope ' +
                'within two working days.';
 
     function say(message, state) {
       status.textContent = message;
       status.dataset.state = state;
+    }
+
+    /* Everything the visitor typed, as a mail body. Built with encodeURIComponent
+       and assembled through textContent and createElement below — never innerHTML —
+       so nothing typed into the form can become markup. */
+    function mailtoFrom(data) {
+      var rows = [
+        ['Name', data.get('name')],
+        ['Organisation', data.get('organisation')],
+        ['Email', data.get('email')],
+        ['Needs', data.get('need')],
+        ['Deadline', data.get('deadline')]
+      ];
+      var lines = rows.filter(function (r) { return r[1]; })
+                      .map(function (r) { return r[0] + ': ' + r[1]; });
+      var message = (data.get('message') || '').trim();
+
+      /* Mail clients start dropping the body somewhere above 2000 characters,
+         and a silently truncated enquiry is the failure this whole path exists
+         to avoid. Trim the message rather than the headed fields, and say so. */
+      var budget = 1500 - lines.join('\n').length;
+      if (message.length > budget) {
+        message = message.slice(0, Math.max(0, budget)) +
+                  '\n\n[Message truncated to fit an email. Ask me to send the rest.]';
+      }
+
+      return 'mailto:' + EMAIL +
+             '?subject=' + encodeURIComponent('Learning project enquiry' +
+               (data.get('name') ? ' — ' + data.get('name') : '')) +
+             '&body=' + encodeURIComponent(lines.concat(['', message]).join('\n'));
+    }
+
+    /* The failure state has to be a route, not an apology. The form keeps
+       everything the visitor typed — it is deliberately not reset here — and
+       this hands them the same content as a pre-filled email, one click away. */
+    function offerMailFallback(data) {
+      status.textContent = '';
+      status.dataset.state = 'error';
+
+      var line = document.createElement('p');
+      line.className = 'form__statusline';
+      line.textContent = 'That did not send — the form service did not accept it. Nothing you ' +
+                         'typed has been lost. The button below opens your email app with all ' +
+                         'of it already filled in, or write to ' + EMAIL + ' directly.';
+
+      /* Solid, not outline: on the navy band an outline button's border
+         measures 1.3:1, well under the 3:1 WCAG 1.4.11 wants for a control
+         boundary. Blue is also the right token — it navigates, and this
+         navigates to a mail client. */
+      var link = document.createElement('a');
+      link.className = 'btn btn--solid btn--sm';
+      link.href = mailtoFrom(data);
+      link.textContent = 'Email this enquiry instead';
+
+      status.appendChild(line);
+      status.appendChild(link);
     }
 
     form.addEventListener('submit', function (event) {
@@ -219,8 +278,7 @@
           /* Deliberately not a redirect to thanks.html. Saying "thank you"
              for something that did not arrive is the one outcome worse than
              an error message. */
-          say('That did not send — the form service is not responding. Please email ' +
-              'kayodefashola@hotmail.com and it will reach me directly.', 'error');
+          offerMailFallback(data);
         })
         .then(function () {
           if (button) { button.disabled = false; }

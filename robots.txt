@@ -1,7 +1,10 @@
 User-agent: *
 Allow: /
 
-# Confirmation pages are also marked noindex in their own <head>.
-Disallow: /thanks.html
+# thanks.html and 404.html carry `noindex` in their own <head>, which is the
+# directive that actually keeps them out of results. A Disallow line here used
+# to sit alongside it and worked against it: a disallowed URL is never fetched,
+# so the noindex is never read, and the URL can still be listed bare. Let the
+# meta tag do the job.
 
 Sitemap: https://kto-technology.netlify.app/sitemap.xml
