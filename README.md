@@ -11,12 +11,15 @@ robots.txt
 sitemap.xml
 assets/css/styles.css
 assets/js/main.js
-assets/img/            14 images, 760 KB (2 generated plates + 11 screenshots + og card)
+assets/img/            14 images, 770 KB (2 plates + 11 screenshots + og card + video poster)
+assets/video/          healthconnect.mp4 — the 15-second explainer, 6.5 MB
 assets/fonts/          6 woff2 cuts, 220 KB — Archivo variable + IBM Plex Mono
 assets/vendor/         GSAP 3.12.5, ScrollTrigger, Lenis 1.1.18 — 128 KB
 source-images/         full-resolution PNG masters — not deployed
+Vid/                   the delivered video master — not deployed
 tools-bake.py          re-bakes contrast safety into a new hero/band plate
 tools-og-card.py       re-bakes the 1200x630 social sharing card
+tools-csp-hash.py      regenerates the CSP hash for the inline JSON-LD
 ```
 
 **Nothing loads from a third party.** Fonts and libraries are served from this repo. That is
@@ -109,7 +112,7 @@ Each one drops into a slot that is already built, styled and tested. Nothing els
 |---|---|---|
 | 1 | **The live URL.** Five files carry a placeholder host, `kto-technology.netlify.app`. A canonical pointing at the wrong host is worse than none at all. | `index.html` (canonical, `og:url`, `og:image`, JSON-LD), `robots.txt`, `sitemap.xml` |
 | 2 | **Full testimonial text.** Four are live, each cut back to the last complete clause because LinkedIn's preview truncates at "Read more". The complete versions are on your recommendations page. | search `TESTIMONIALS` in `index.html` |
-| 3 | **`showreel.mp4` plus captions.** See "Adding the showreel". | `assets/video/` |
+| 3 | **The HealthConnect voiceover script.** The film is live and uncaptioned, which fails WCAG 2.2 SC 1.2.2 at level A. About forty words. See "The video". | paste it to me |
 | 4 | **Form notifications.** One click, once: Netlify → Site → Forms → Notifications. Without it, enquiries sit unread in the dashboard. | Netlify UI |
 | 5 | **CV PDF and headshot.** Both have slots waiting. LinkedIn and the three certifications are live. | `index.html` footer, About spec column |
 
@@ -420,42 +423,53 @@ currently points at "section 04" for standalone video.
 here went from 11.6 MB of PNG to 569 KB that way, with no visible loss. Keep the masters in
 `source-images/`.
 
-## Adding the showreel
+## The video
 
-Section 04 ends with a **placeholder**: a 16:9 poster frame badged "Showreel · in production".
-It is marked `PLACEHOLDER` in `index.html`.
+Section 04 ends with a real film: **HealthConnect**, a 15-second AI-generated healthcare
+explainer. 1280×720, H.264 + AAC, 6.5 MB, `assets/video/healthconnect.mp4`. The placeholder
+frame and its "in production" badge are gone, along with the `.reel__badge` rule that styled it.
 
-The decorative play mark that used to sit on this frame **has been removed**. It was not a
-button, on the reasoning that a control that does nothing is worse than no control — but a
-visitor does not know that. They see a play triangle on a video frame, click it, and nothing
-happens, in the section selling your newest service. The frame now says what it is, and the
-caption offers to send the current edit, which is a reason to make contact rather than a dead
-end.
+The poster at `assets/img/healthconnect-poster.webp` (25 KB) is a frame lifted from the film
+itself at 12 seconds — the hub-and-spoke diagram, which is the shot the whole thing builds to.
+A poster taken from anywhere else is a small lie about what the viewer is about to watch.
 
-When the film exists, drop it in `assets/video/` and replace the whole `<figure>` with:
+### Captions are missing, and that is a real problem
+
+**The film has a British voiceover and no captions.** WCAG 2.2 requires captions for prerecorded
+synchronised media at level **A** (SC 1.2.2) — not AA, A. So while this stands, the "Built to
+WCAG 2.2 AA" line in the footer has an exception, and it sits in the section that sells
+accessible video production. That is the worst possible place for it.
+
+Fixing it takes ten minutes and needs one thing from you: **the voiceover script.** At fifteen
+seconds that is about forty words. Paste it, and it becomes
+`assets/video/healthconnect.en.vtt`, and the `<video>` gains one line:
 
 ```html
-<figure class="reel" data-reveal>
-  <div class="screen reel__frame">
-    <video poster="assets/img/showreel-poster.webp"
-           controls preload="none" playsinline
-           width="1600" height="900">
-      <source src="assets/video/showreel.mp4" type="video/mp4">
-      <track kind="captions" src="assets/video/showreel.vtt" srclang="en" label="English" default>
-    </video>
-  </div>
-  <figcaption>A short reel of recent AI video, UGC and animation work.</figcaption>
-</figure>
+<track kind="captions" src="assets/video/healthconnect.en.vtt"
+       srclang="en-GB" label="English" default>
 ```
 
-The badge and overlay go; the video's own controls replace them. `.reel__frame video` is
-already styled to fill the frame at 16:9, so nothing in the CSS needs touching.
+**Do not add that line before the `.vtt` file exists.** A track element pointing at a 404 gives
+the viewer an empty captions menu, which tests worse than having no captions at all: it looks
+like a feature that is broken rather than one that is absent.
 
-Three things worth getting right: keep `preload="none"` so a heavy file does not cost every
-visitor bandwidth they did not ask for; ship **captions**, since the rest of the site is built
-to WCAG 2.2 AA and an uncaptioned video would be the one thing that fails it; and encode as
-H.264 MP4 for the broadest support, adding a WebM `<source>` above the MP4 if you want smaller
-files for browsers that take it.
+### The encode
+
+6.5 MB for 15 seconds is roughly 3.6 Mbps, which is heavy for 720p flat-vector animation — the
+kind of content that compresses extremely well. `preload="none"` means it costs nothing until
+somebody presses play, so it is not urgent. If you want it smaller, re-encode at CRF 26–28 and
+expect 1–2 MB with no visible difference on this material, then add a WebM source above the MP4
+for the browsers that take it.
+
+There is no `ffmpeg` on this machine, which is why the poster frame was pulled through a
+headless browser canvas rather than in one command. `brew install ffmpeg` if you want to do the
+re-encode locally.
+
+### When the fuller reel arrives
+
+The caption already says a longer reel is being cut. Add it as a second `<figure class="reel">`
+below this one — `.reel__frame video` is styled to fill the frame at 16:9, so no CSS changes are
+needed. Keep `preload="none"` on both, and ship the captions with the file rather than after it.
 
 ## Security
 

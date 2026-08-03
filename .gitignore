@@ -6,3 +6,6 @@ source-images/
 .DS_Store
 node_modules/
 .netlify/
+
+# The delivered video master. assets/video/ carries the copy the site serves.
+Vid/

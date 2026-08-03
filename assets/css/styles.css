@@ -682,11 +682,16 @@ body{
 }
 .screen img{ width:100%; height:auto; }
 
-/* ---------- showreel ----------------------------------------------------
-   The frame carries a poster and a badge that says the film is in production.
-   There is no play mark: a decorative triangle on a video frame is read as a
-   control by everyone who sees it, and clicking it did nothing. When a real
-   <video> replaces the poster, its own controls take over and the badge goes.
+/* ---------- reel ---------------------------------------------------------
+   A real <video> with native controls. No decorative play mark is drawn over
+   it: a triangle on a video frame is read as a control by everyone who sees
+   it, so either it is the control or it is a trap. The browser's own controls
+   are keyboard-operable and localised, which no custom pair of buttons here
+   would be for free.
+
+   The `.reel__badge` rule that used to caption the placeholder frame has been
+   deleted along with the placeholder. If a second film arrives before it is
+   finished, take the badge from the git history rather than from memory.
    ----------------------------------------------------------------------- */
 .reel{ margin:clamp(1.75rem, 3vw, 2.5rem) 0 0; }
 .reel__frame{ position:relative; }
@@ -694,15 +699,6 @@ body{
 .reel__frame video{
   display:block; width:100%; height:auto;
   aspect-ratio:16 / 9; object-fit:cover;
-}
-.reel__badge{
-  position:absolute; top:1rem; left:1rem;
-  font-family:var(--f-mono); font-size:.5625rem; font-weight:500;
-  letter-spacing:.24em; text-transform:uppercase;
-  color:var(--text);
-  padding:.35rem .6rem; border-radius:2px;
-  background:rgba(15,22,32,.6);
-  backdrop-filter:blur(6px);
 }
 
 /* ---------- shot (figure wrapper) ---------- */
@@ -718,6 +714,14 @@ body{
   text-wrap:pretty;
   padding-left:1rem;
   border-left:2px solid var(--blue);
+}
+/* The reel caption is the only one carrying a title as well as a description,
+   because it is the only figure on the page whose subject is not obvious from
+   the frame beside it. */
+.reel figcaption b{
+  display:block;
+  margin-bottom:.4rem;
+  color:var(--text); font-weight:500;
 }
 
 /* ---------- full-bleed statement band ---------- */

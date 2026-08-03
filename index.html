@@ -890,25 +890,46 @@
           </li>
         </ul>
 
-        <!-- ═══ PLACEHOLDER ══════════════════════════════════════════════
-             THE FILM IS NOT HERE YET. The play mark that used to sit on this
-             frame has been removed: a visitor clicked it, nothing happened,
-             and the section selling your newest service looked broken. The
-             frame now says what it is.
+        <!-- ═══ CAPTIONS ARE MISSING ═════════════════════════════════════
+             This video has a British voiceover and NO CAPTIONS. WCAG 2.2
+             requires captions for prerecorded synchronised media at level A
+             (SC 1.2.2), so for as long as this stands, the "Built to WCAG 2.2
+             AA" line in the footer has one exception — and it is on the
+             section selling accessible video production.
 
-             WHEN showreel.mp4 EXISTS, replace this whole <figure> with the
-             markup in the README section "Adding the showreel" — a <video>
-             with controls, this same poster, and a captions track. Captions
-             are not optional: the page claims WCAG 2.2 AA and an uncaptioned
-             video is the one thing on it that would fail.
+             TO FIX IT, which takes ten minutes: paste the voiceover script,
+             the file becomes assets/video/healthconnect.en.vtt, and this
+             <video> gains one line:
+
+               <track kind="captions" src="assets/video/healthconnect.en.vtt"
+                      srclang="en-GB" label="English" default>
+
+             Do not add that line before the .vtt exists: a track pointing at
+             a 404 shows an empty captions menu, which is worse than none.
+
+             preload="none" is deliberate. The file is 6.5 MB, and at 15
+             seconds that is a heavy encode; preloading it would cost every
+             visitor the download whether or not they press play. Nothing is
+             fetched until they do.
              ══════════════════════════════════════════════════════════════ -->
         <figure class="reel" data-reveal>
           <div class="screen reel__frame">
-            <img src="assets/img/showreel-poster.webp" width="1600" height="893" loading="lazy" alt="">
-            <p class="reel__badge">Showreel · in production</p>
+            <video controls preload="none" playsinline width="1280" height="720"
+                   poster="assets/img/healthconnect-poster.webp">
+              <source src="assets/video/healthconnect.mp4" type="video/mp4">
+              <p>Your browser cannot play this video.
+                <a href="assets/video/healthconnect.mp4">Download the MP4</a> (6.5 MB).</p>
+            </video>
           </div>
-          <figcaption>A reel of recent AI video, UGC and animation work is being cut. Ask and I
-            will send the current edit.</figcaption>
+          <figcaption>
+            <b>HealthConnect — healthcare explainer animation, generated with AI.</b>
+            Fifteen seconds on how one platform pulls fragmented patient systems into a single
+            real-time record: flat-vector character animation, motion graphics, on-screen
+            typography and a British voiceover, all generated and assembled to a written brief.
+            The interesting part is not the render, it is the prompt engineering that makes a
+            corporate explainer come out on brand and on message. A fuller reel of AI video, UGC
+            and animation work is being cut — ask and I will send the current edit.
+          </figcaption>
         </figure>
       </div>
     </div>
