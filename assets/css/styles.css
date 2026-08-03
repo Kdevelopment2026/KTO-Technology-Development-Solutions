@@ -6,6 +6,78 @@
    is the brightest thing on the page.
    ========================================================================== */
 
+/* ---------- fonts ------------------------------------------------------
+   Self-hosted rather than loaded from Google. Two reasons, both about who
+   visits this site: public-sector and enterprise networks (NHS, universities,
+   the big four) routinely block third-party CDNs, and a Google Fonts request
+   sends the visitor's IP to a third country, which is a live question for the
+   very organisations this page is selling to. Latin and Latin Extended only —
+   the site is English. Files came from the same Google CSS the page used to
+   link; re-fetch them if the family is ever updated.
+   ----------------------------------------------------------------------- */
+@font-face{
+  font-family:'Archivo';
+  font-style:normal;
+  font-weight:100 900;
+  font-stretch:62% 125%;
+  font-display:swap;
+  src:url(../fonts/archivo-var-latin.woff2) format('woff2');
+  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family:'Archivo';
+  font-style:normal;
+  font-weight:100 900;
+  font-stretch:62% 125%;
+  font-display:swap;
+  src:url(../fonts/archivo-var-latin-ext.woff2) format('woff2');
+  unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face{
+  font-family:'IBM Plex Mono';
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url(../fonts/plexmono-400-latin.woff2) format('woff2');
+  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family:'IBM Plex Mono';
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url(../fonts/plexmono-400-latin-ext.woff2) format('woff2');
+  unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face{
+  font-family:'IBM Plex Mono';
+  font-style:normal;
+  font-weight:500;
+  font-display:swap;
+  src:url(../fonts/plexmono-500-latin.woff2) format('woff2');
+  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family:'IBM Plex Mono';
+  font-style:normal;
+  font-weight:500;
+  font-display:swap;
+  src:url(../fonts/plexmono-500-latin-ext.woff2) format('woff2');
+  unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 /* ---------- tokens ---------- */
 :root{
   /* dark ground */
@@ -442,6 +514,7 @@ body{
   margin:0;
   font-size:.9375rem; line-height:1.55;
   color:var(--text-2);
+  text-wrap:pretty;
 }
 /* A row still waiting on copy. Visibly a draft slot, not a design accident. */
 .spec__row--pending dt{ color:var(--line-2); }
@@ -528,12 +601,15 @@ body{
 
 /* ---------- section headers ---------- */
 .shead{ margin-bottom:clamp(1.85rem, 3.6vw, 2.85rem); }
-.shead--wide{ max-width:36ch; }
+.shead--wide{ max-width:46ch; }
+/* No cap. Where these notes sit in the narrow spec column the column already
+   constrains them; where they sit under a full-width header they are a single
+   sentence, and a cap only produced an early wrap with empty space beside it. */
 .shead__note{
   margin-top:1rem;
   color:var(--text-2);
   font-size:.9375rem;
-  max-width:44ch;
+  text-wrap:pretty;
 }
 .spread__spec .shead{ margin-bottom:0; }
 
@@ -593,9 +669,11 @@ body{
 .screen img{ width:100%; height:auto; }
 
 /* ---------- showreel ----------------------------------------------------
-   The play mark is decorative and aria-hidden: it is not a button, because a
-   control that does nothing is worse than no control at all. When a real
-   <video> replaces the poster, its own controls take over. */
+   The frame carries a poster and a badge that says the film is in production.
+   There is no play mark: a decorative triangle on a video frame is read as a
+   control by everyone who sees it, and clicking it did nothing. When a real
+   <video> replaces the poster, its own controls take over and the badge goes.
+   ----------------------------------------------------------------------- */
 .reel{ margin:clamp(1.75rem, 3vw, 2.5rem) 0 0; }
 .reel__frame{ position:relative; }
 .reel__frame img,
@@ -612,35 +690,18 @@ body{
   background:rgba(15,22,32,.6);
   backdrop-filter:blur(6px);
 }
-.reel__overlay{
-  position:absolute; inset:0;
-  display:grid; place-content:center;
-  pointer-events:none;
-}
-.reel__play{
-  display:grid; place-content:center;
-  width:clamp(3.25rem, 5.5vw, 4.5rem);
-  aspect-ratio:1; border-radius:50%;
-  border:1px solid rgba(255,255,255,.34);
-  background:rgba(15,22,32,.42);
-  backdrop-filter:blur(8px);
-}
-.reel__play::before{
-  content:"";
-  width:0; height:0;
-  margin-left:.22em;
-  border-left:.85rem solid #fff;
-  border-block:.55rem solid transparent;
-}
 
 /* ---------- shot (figure wrapper) ---------- */
 .shot{ margin:0; }
+/* Captions run the full width of the screen they describe. They are one or
+   two sentences, so the longer measure costs nothing, and a cap left them
+   wrapping early under a plate three times their width. */
 .shot figcaption,
 .reel figcaption{
   margin-top:1rem;
   font-size:.8125rem; line-height:1.55;
   color:var(--text-2);
-  max-width:62ch;
+  text-wrap:pretty;
   padding-left:1rem;
   border-left:2px solid var(--blue);
 }
@@ -707,13 +768,15 @@ body{
   content:""; position:absolute; left:0; top:.55em;
   width:.5rem; height:2px; background:var(--blue);
   transform:scaleX(var(--dash,1)); transform-origin:left;
-  transition:width .25s var(--ease);
 }
 .svc__item p{
   font-size:.9375rem; line-height:1.55;
   color:var(--text-2);
   padding-left:1.1rem;
-  max-width:44ch;
+  /* The card is already half the body column, so it constrains the measure on
+     its own. The 44ch cap on top of that wrapped early and was what stranded
+     a single word — "in." — on a line of its own. */
+  text-wrap:pretty;
 }
 .svc__item:hover{ background:var(--ink-2); }
 .svc__item:hover h3::before{ width:.85rem; background:var(--green); }
@@ -805,14 +868,16 @@ body{
   font-family:var(--f-display); font-stretch:var(--wd-display); font-weight:700;
   font-size:1.0625rem; letter-spacing:.1em; text-transform:uppercase;
 }
-.steps__item p{ font-size:.9375rem; line-height:1.55; color:var(--text-2); }
+.steps__item p{ font-size:.9375rem; line-height:1.55; color:var(--text-2); text-wrap:pretty; }
 
+/* Full width, so the box aligns with the six-stage grid directly above it
+   instead of stopping two thirds of the way across. Its paragraph then takes
+   the same two-column treatment as the About prose, for the same reason. */
 .notebox{
   margin-top:clamp(2rem,4vw,3rem);
   background:var(--ink-2);
   border-left:3px solid var(--green);
   padding:clamp(1.4rem,2.6vw,2rem);
-  max-width:70ch;
 }
 .notebox__label{
   font-family:var(--f-mono); font-size:.5625rem; font-weight:500;
@@ -820,7 +885,16 @@ body{
   color:var(--green);
   margin-bottom:.7rem;
 }
-.notebox p{ color:var(--text-2); }
+.notebox p{ color:var(--text-2); text-wrap:pretty; }
+/* A grid, not columns:3 — the three parts are separate paragraphs, so nothing
+   is split across a gutter and each one stays with its own audience. */
+.notebox__cols{ display:grid; gap:1.15rem; }
+@media (min-width:62rem){
+  .notebox__cols{
+    grid-template-columns:repeat(3, minmax(0,1fr));
+    gap:clamp(2rem,3.5vw,3.25rem);
+  }
+}
 
 /* ---------- toolkit ---------- */
 .section--toolkit{ padding-block:clamp(2.5rem,4.5vw,3.75rem); }
@@ -837,13 +911,93 @@ body{
 .tools__group ul{ display:grid; gap:.4rem; }
 .tools__group li{ font-size:.9375rem; color:var(--text-2); }
 
-/* ---------- about ---------- */
-.prose{ display:grid; gap:1.15rem; max-width:62ch; margin-top:1.75rem; }
-.prose p{ color:var(--text-2); }
+/* ---------- about ------------------------------------------------------
+   Two columns above 62rem, with the lead spanning both. The body column here
+   is around 900px at 1440, so a single measure either stopped two thirds of
+   the way across (the old 62ch cap, which left a dead strip on the right) or
+   ran to about 105 characters a line, which looks full and reads badly.
+   Two columns use the whole width at about 48 characters a line.
+
+   A grid rather than column-count on purpose: paragraphs stay whole instead
+   of breaking mid-sentence across the gutter, and each one keeps its own
+   [data-reveal] so the stagger still works.
+   ----------------------------------------------------------------------- */
+.prose{ display:grid; gap:1.15rem; margin-top:1.75rem; }
+.prose p{ color:var(--text-2); text-wrap:pretty; }
+@media (min-width:62rem){
+  .prose{ grid-template-columns:1fr 1fr; column-gap:clamp(2rem,3.5vw,3.25rem); }
+  /* The lead is three sentences, so at full width it sets as a standfirst
+     rather than as a wall. Its word-by-word scroll lighting is unaffected:
+     about() in main.js walks text nodes, not layout. */
+  .prose__lead{ grid-column:1 / -1; }
+}
 .prose__lead{
   font-size:clamp(1.0625rem,1.3vw,1.2rem);
   line-height:1.55;
   color:var(--text) !important;
+}
+
+/* The name, in the one place a recruiter looks for it. Same construction as
+   .herobrand, one step quieter, because the H2 under it has to stay the
+   loudest thing in the section. */
+.byline{
+  display:flex; flex-wrap:wrap; align-items:center; gap:.4rem .75rem;
+  margin-bottom:1.1rem;
+  font-family:var(--f-mono); font-weight:500;
+  font-size:.6875rem; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--text-2);
+}
+.byline b{ color:var(--text); font-weight:500; letter-spacing:.2em; }
+
+.portrait{ margin:0 0 1.75rem; max-width:13rem; }
+.portrait img{
+  width:100%; height:auto;
+  border-radius:3px;
+  border:1px solid var(--line);
+  filter:grayscale(1) contrast(1.05);
+}
+
+/* ---------- testimonials ------------------------------------------------
+   Used by the section staged in index.html. Quotes carry more weight than
+   anything else on a portfolio, so they are set as real display type rather
+   than as small print in a card.
+   ----------------------------------------------------------------------- */
+.quotes{
+  display:grid;
+  gap:clamp(1.75rem, 3.5vw, 2.75rem);
+  margin-top:clamp(1.5rem, 3vw, 2.25rem);
+}
+@media (min-width:52rem){ .quotes{ grid-template-columns:1fr 1fr; } }
+
+.quote{
+  margin:0;
+  padding:clamp(1.5rem, 2.5vw, 2rem);
+  background:var(--ink-2);
+  border:1px solid var(--line);
+  border-left:2px solid var(--green);
+  border-radius:3px;
+}
+.quote blockquote{
+  margin:0;
+  font-size:clamp(1rem, 1.25vw, 1.15rem);
+  line-height:1.5;
+  color:var(--text);
+}
+.quote blockquote p{ margin:0; }
+.quote blockquote p + p{ margin-top:.85rem; }
+.quote figcaption{
+  margin-top:1.35rem;
+  padding-top:1.1rem;
+  border-top:1px solid var(--line);
+  font-family:var(--f-mono);
+  font-size:.6875rem; line-height:1.7;
+  letter-spacing:.1em;
+  color:var(--text-2);
+}
+.quote figcaption b{
+  display:block;
+  color:var(--text); font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase;
 }
 
 /* ---------- closing band: CTA + footer ---------- */
@@ -855,12 +1009,11 @@ body{
   transform:scaleY(0); transform-origin:top;
   pointer-events:none;
 }
-.band > .wrap,
-.band > .foot{ position:relative; z-index:1; }
-.cta{
-  padding-block:clamp(3.5rem,6.5vw,5.75rem);
-  max-width:62ch;
-}
+.band > .wrap{ position:relative; z-index:1; }
+/* The vertical padding belongs to the grid, not to the pitch column: put it on
+   .cta alone and the form starts flush against the top edge of the band while
+   the copy beside it sits properly inset. */
+.cta{ max-width:62ch; }
 .cta__text{
   margin-top:1.5rem;
   font-size:clamp(1.0625rem,1.35vw,1.24rem);
@@ -884,7 +1037,110 @@ body{
   max-width:54ch;
 }
 
-.foot{ border-top:1px solid rgba(255,255,255,.18); }
+/* ---------- enquiry form -------------------------------------------------
+   The pitch and the form sit side by side on wide screens: the argument on
+   the left, the thing you do about it on the right. Below 62rem the form
+   follows the pitch, because the reason to write comes before the writing.
+
+   Colours are the band's own: white on navy rather than the page's dark
+   tokens, so the fields belong to the panel they sit in.
+   ----------------------------------------------------------------------- */
+.ctagrid{
+  display:grid;
+  gap:clamp(2.5rem, 5vw, 4rem);
+  padding-block:clamp(3.5rem, 6.5vw, 5.75rem);
+}
+@media (min-width:62rem){
+  .ctagrid{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:start; }
+}
+
+.form{ display:grid; gap:1.15rem; }
+.form__head{
+  font-family:var(--f-mono); font-weight:500;
+  font-size:.6875rem; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--green);
+}
+.field{ display:grid; gap:.45rem; }
+.field label{
+  font-family:var(--f-mono); font-weight:500;
+  font-size:.6875rem; letter-spacing:.14em; text-transform:uppercase;
+  color:rgba(255,255,255,.9);
+}
+.field__hint{
+  font-family:var(--f-mono);
+  font-size:.6875rem; line-height:1.6; letter-spacing:.02em;
+  color:rgba(255,255,255,.72);
+}
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  padding:.7rem .8rem;
+  font-family:var(--f-body);
+  font-size:1rem; line-height:1.45;
+  color:#fff;
+  background:rgba(255,255,255,.07);
+  /* .42 rather than something quieter: the border IS the control's boundary,
+     so WCAG 1.4.11 wants 3:1 against the navy behind it. .34 measured 2.82:1
+     and failed; this is 3.57:1. */
+  border:1px solid rgba(255,255,255,.42);
+  border-radius:3px;
+  transition:border-color .18s var(--ease), background-color .18s var(--ease);
+}
+.field textarea{ resize:vertical; min-height:8rem; }
+/* Browsers' default placeholder grey is far too quiet on this navy. Every
+   field has a real label above it, so the placeholder is only ever an
+   example — but it still has to be legible. 5.2:1 here. */
+.field ::placeholder{ color:rgba(255,255,255,.62); opacity:1; }
+.field input:hover,
+.field select:hover,
+.field textarea:hover{ border-color:rgba(255,255,255,.55); }
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  background:rgba(255,255,255,.12);
+  border-color:var(--green);
+}
+/* The global focus ring is a blue that all but disappears on navy. */
+.band :focus-visible{ outline-color:var(--green); }
+
+/* Native selects render their options in the system palette, so the closed
+   control is the only part worth styling. Dark text is set explicitly for the
+   options because some browsers inherit white and lose them on white. */
+.field select option{ color:var(--s-ink); background:#fff; }
+
+/* The honeypot: a real field, hidden from people, irresistible to bots.
+   Not display:none — some bots skip those. */
+.form__trap{
+  position:absolute;
+  width:1px; height:1px; overflow:hidden;
+  clip-path:inset(50%);
+  white-space:nowrap;
+}
+/* Deliberately NOT .btn--go. That class carries the C5 progress-bar reveal
+   (`clip-path:inset(0 100% 0 0)`), which is driven by a ScrollTrigger that
+   only ever finds the first .btn--go in the band — a second one would sit
+   clipped to nothing and the send button would be invisible. */
+.btn--send{
+  background:var(--green); color:#04140A; font-weight:600;
+  border-color:transparent;
+  justify-self:start; margin-top:.35rem;
+}
+.btn--send:hover{ background:#5CE894; }
+.form__note{
+  font-family:var(--f-mono);
+  font-size:.6875rem; line-height:1.7; letter-spacing:.02em;
+  color:rgba(255,255,255,.72);
+}
+
+/* The footer sits outside the contact band in the markup, so that it is a real
+   contentinfo landmark. It therefore has to carry the navy itself rather than
+   inherit it, and it needs its own focus colour for the same reason. */
+.foot{
+  background:var(--navy); color:#fff;
+  border-top:1px solid rgba(255,255,255,.18);
+}
+.foot :focus-visible{ outline-color:var(--green); }
 .foot__inner{
   padding-block:1.75rem;
   display:flex; flex-wrap:wrap; gap:1rem 2rem; align-items:center;
@@ -1065,6 +1321,12 @@ body{
   clip-path:inset(0 0 100% 0);
 }
 
+/* wipe — section headings (G8). These carry data-reveal like everything else,
+   so the opacity above still applies; the clip is what makes them arrive as a
+   heading rather than as another paragraph. */
+.has-motion .h-section[data-reveal],
+.has-motion .h-sub[data-reveal]{ clip-path:inset(0 0 100% 0); }
+
 /* draw — rules, bars and dashes */
 .has-motion .hl__wash{ transform:scaleX(0); }
 .has-motion .rail__fill{ transform:scaleY(0); }
@@ -1086,9 +1348,56 @@ body{
   }
   .has-motion [data-reveal],
   .has-motion .h-display .line__in{ opacity:1; transform:none; }
+  .has-motion .h-section[data-reveal],
+  .has-motion .h-sub[data-reveal]{ clip-path:none; }
   .has-motion .hl__wash,
   .has-motion .steps__draw{ transform:scaleX(1); }
   .has-motion .rail__fill{ transform:scaleY(1); }
+  /* Without this the ink curtain stays down over the whole contact band —
+     email, phone and CTA included — for anyone who turns reduce-motion on
+     after the page has loaded. */
+  .has-motion .band__curtain{ transform:scaleY(0); }
+}
+
+/* ==========================================================================
+   SMALL PAGES — thanks.html and 404.html
+   Neither loads main.js, so nothing here may depend on .has-motion; both
+   render complete and static by construction.
+   ========================================================================== */
+.mini{
+  min-height:100svh;
+  display:flex; flex-direction:column;
+}
+.mini__head{ padding-block:1.75rem; }
+.mini__body{
+  flex:1;
+  display:flex; align-items:center;
+  padding-block:clamp(3rem,8vw,6rem);
+}
+.mini__inner{ max-width:56ch; }
+.mini__text{
+  margin-top:1.5rem;
+  font-size:clamp(1.0625rem,1.35vw,1.24rem);
+  line-height:1.55;
+  color:var(--text-2);
+}
+/* index.html has no bare links — every one of them sits inside a styled
+   component — so the stylesheet never needed a global anchor rule. These pages
+   do have one, in running prose, and without this it falls back to the browser
+   default #0000EE: 1.93:1 on this ground, and effectively invisible. */
+.mini__text a{
+  color:var(--blue);            /* 5.48:1 */
+  text-decoration-color:rgba(61,139,255,.5);
+  text-underline-offset:.18em;
+}
+.mini__text a:hover{ color:var(--blue-2); text-decoration-color:currentColor; }
+.mini__foot{
+  padding-block:1.75rem;
+  border-top:1px solid var(--line);
+  font-family:var(--f-mono);
+  font-size:.625rem; font-weight:500;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--text-2);
 }
 
 /* ---------- print ---------- */

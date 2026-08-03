@@ -2,16 +2,65 @@
 [build]
   publish = "."
 
+# ═══ SECURITY HEADERS ════════════════════════════════════════════════════════
+# Everything the page loads is same-origin — fonts, GSAP, Lenis, CSS, images —
+# which is what makes a strict policy possible here at all. Two things to know
+# before changing anything:
+#
+#   1. THE SCRIPT HASH. script-src allows exactly one inline script, the
+#      JSON-LD block in index.html <head>, by hash rather than by
+#      'unsafe-inline'. Edit that block by so much as a space and the hash no
+#      longer matches, the browser refuses to run it, and the structured data
+#      vanishes from search with no visible symptom on the page. After any edit
+#      to it run:  python3 tools-csp-hash.py --check
+#
+#   2. NETLIFY FEATURES THAT INJECT SCRIPT. Real User Metrics (Netlify
+#      Analytics) injects a script into every page; this policy blocks it. If
+#      you turn RUM on, or add Plausible, Umami or GA4, their origin has to be
+#      added to script-src and connect-src or they will silently not load.
+#
+# Verify a deploy at https://securityheaders.com and check the browser console
+# for "Refused to..." messages, which is where a too-tight policy shows up.
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Content-Type-Options = "nosniff"
+    Content-Security-Policy = "default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'sha256-OqQCAzmLE0HnKllXmej4JSVyqXor/QjhZ/ft+MFzEto='; style-src 'self'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; upgrade-insecure-requests"
+    # Belt and braces beside frame-ancestors, for older browsers that only
+    # understand this one.
     X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Cross-Origin-Opener-Policy = "same-origin"
+    # Nothing on this page needs a camera, a microphone or a location, so none
+    # of it is permitted. fullscreen stays open for the showreel.
+    Permissions-Policy = "accelerometer=(), autoplay=(), browsing-topics=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), usb=()"
+    # A year, without `preload`. Adding preload is a commitment that every
+    # subdomain of the final domain will be HTTPS forever, and it is painful to
+    # undo — decide that once the custom domain is settled, not before.
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
 
 # Images have stable filenames, so a week is a safe compromise between
 # caching and being able to swap a screenshot without a rename.
 [[headers]]
   for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Fonts and the vendored libraries only ever change by being replaced with a
+# different file, so they can be cached hard. immutable stops browsers
+# revalidating them at all. If you ever overwrite one in place, rename it.
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/vendor/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# The showreel, once it lands. Same reasoning as the images.
+[[headers]]
+  for = "/assets/video/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"

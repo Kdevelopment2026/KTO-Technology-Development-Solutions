@@ -271,14 +271,17 @@
   qa('.gallery[data-reveal], .reel[data-reveal]').forEach(function (el) { screenOn(el); });
 
   // Groups with bespoke choreography opt out of the generic settle, or they
-  // would be animated twice.
+  // would be animated twice. Section headings are in that list because G8
+  // below wipes them: leave them in `settle` as well and their opacity is
+  // driven by two tweens at once, which reads as a stutter on a slow scroll.
   var BESPOKE = '.svc, .steps, .tools';
+  var HEADING = '.h-section, .h-sub';
 
   qa('[data-reveal-group]').forEach(function (group) {
     if (HERO && HERO.contains(group)) return;
     if (group.matches(BESPOKE)) return;
     var items = qa('[data-reveal]', group).filter(function (el) {
-      return !el.matches('.gallery, .reel');
+      return !el.matches('.gallery, .reel, ' + HEADING);
     });
     settle(items, group, 'top 82%');
   });
@@ -286,8 +289,46 @@
   qa('[data-reveal]').forEach(function (el) {
     if (el.closest('[data-reveal-group]')) return;
     if (HERO && HERO.contains(el)) return;
-    if (el.matches('.gallery, .reel')) return;
+    if (el.matches('.gallery, .reel, ' + HEADING)) return;
     settle([el], el, 'top 88%');
+  });
+
+  /* ---------------- G8 · the section entrance ----------------
+     Two moves, both deliberately under-stated, so that every section arrives
+     the same way without competing with the work itself.
+
+     The heading wipes up from its own baseline — the same gesture as the hero
+     lines and the contact headline, so the page has one way of introducing a
+     heading rather than three.
+
+     The section then drifts: its content sits 14px low on the way in and 14px
+     high on the way out, scrubbed against its own traversal. 28px across a
+     whole screen of scrolling is felt rather than seen, which is the point. It
+     is applied to `.wrap`, not to the section, because the section carries the
+     background and a moving background would show its edges.
+
+     `invalidateOnRefresh` matters: the drift transform sits on an ancestor of
+     every gallery trigger in the section, so start positions must be measured
+     again after a resize rather than kept from the first pass. */
+  qa(HEADING).forEach(function (h) {
+    if (!h.hasAttribute('data-reveal')) return;
+    if (HERO && HERO.contains(h)) return;
+    gsap.to(h, {
+      opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)',
+      duration: 0.95, ease: 'power3.out',
+      scrollTrigger: { trigger: h, start: 'top 86%', once: true }
+    });
+  });
+
+  qa('.section:not(.section--hero) > .wrap, .statement > .wrap').forEach(function (w) {
+    gsap.fromTo(w, { y: 14 }, {
+      y: -14, ease: 'none',
+      scrollTrigger: {
+        trigger: w.parentNode,
+        start: 'top bottom', end: 'bottom top',
+        scrub: 0.6, invalidateOnRefresh: true
+      }
+    });
   });
 
   /* ---------------- G6 · scroll-velocity skew ----------------
@@ -575,10 +616,22 @@
     var cta = q('.btn--go', band);
 
     if (curtain) {
-      gsap.to(curtain, {
-        scaleY: 0, ease: 'none',
-        scrollTrigger: { trigger: band, start: 'top bottom', end: 'top 55%', scrub: 0.5 }
-      });
+      /* The end of a scrub has to be *reachable*, and `top 55%` is not: the band
+         is the last thing in the document, so on a viewport taller than about
+         1550px its top never rises that far, the scrub never completes, and the
+         curtain stays down over the email address, the phone number and the CTA.
+         The only distance guaranteed to be scrollable once the band appears is
+         the band's own height, which is what `top bottom` → `bottom bottom`
+         measures. The lift is then placed in the first 65% of that range so the
+         CTA is clear well before the page bottom, rather than exactly at it. */
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: band, start: 'top bottom', end: 'bottom bottom',
+          scrub: 0.5, invalidateOnRefresh: true
+        }
+      })
+        .to(curtain, { scaleY: 0, ease: 'none', duration: 0.65 })
+        .to({}, { duration: 0.35 });
     }
     if (headline) {
       gsap.fromTo(headline, { clipPath: 'inset(0 0 100% 0)', y: 20 },

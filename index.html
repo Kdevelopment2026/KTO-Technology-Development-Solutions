@@ -3,20 +3,139 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KTO Technology Solutions · E-learning developer and instructional designer, London</title>
-<meta name="description" content="Instructional design and e-learning development from London. Twenty-five years across medical, HR, compliance, insurance, education and finance. Storyline 360, Rise 360, software simulations, video and AI-assisted learning.">
+<!-- Title and description are sized for search results: roughly 60 and 155
+     characters. Google truncates past that, and a truncated description is
+     read as a fragment. Keep the keyword ("e-learning developer",
+     "instructional designer", "London") in the first half of both. -->
+<title>Kayode Fashola · E-learning developer and instructional designer, London</title>
+<meta name="description" content="London instructional designer and e-learning developer. 25+ years across healthcare, compliance and finance. Storyline 360, Rise 360, video and AI.">
+<meta name="author" content="Kayode Fashola">
 <meta name="theme-color" content="#0F1620">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+<!-- ═══ SITE URL ═══════════════════════════════════════════════════════════
+     Four places below carry the live address, and they must all be absolute:
+     link canonical, og:url, og:image, and the "url" in the JSON-LD block. The
+     sitemap.xml carries it a fifth time. Search for kto-technology.netlify.app
+     and replace every occurrence once the final domain is live. A canonical
+     pointing at the wrong host is worse than none at all.
+     ════════════════════════════════════════════════════════════════════════ -->
+<link rel="canonical" href="https://kto-technology.netlify.app/">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="KTO Technology Solutions · E-learning developer and instructional designer">
-<meta property="og:description" content="Twenty-five years turning complex information into learning people can use. London, England.">
+<meta property="og:site_name" content="KTO Technology Solutions">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://kto-technology.netlify.app/">
+<meta property="og:title" content="Kayode Fashola · E-learning developer and instructional designer, London">
+<meta property="og:description" content="Twenty-five years turning complex information into learning people can use. Work for the NHS, The Open University and EY.">
+<meta property="og:image" content="https://kto-technology.netlify.app/assets/img/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="KTO Technology Solutions: designing digital learning that informs, engages and delivers results.">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kayode Fashola · E-learning developer and instructional designer, London">
+<meta name="twitter:description" content="Twenty-five years turning complex information into learning people can use. Work for the NHS, The Open University and EY.">
+<meta name="twitter:image" content="https://kto-technology.netlify.app/assets/img/og-card.jpg">
+<meta name="twitter:image:alt" content="KTO Technology Solutions: designing digital learning that informs, engages and delivers results.">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%230F1620'/%3E%3Crect x='7' y='9' width='18' height='3' fill='%233D8BFF'/%3E%3Crect x='7' y='15' width='13' height='3' fill='%2324D267'/%3E%3Crect x='7' y='21' width='8' height='3' fill='%23DDE5ED' opacity='.55'/%3E%3C/svg%3E">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Fonts are self-hosted (see the @font-face block at the top of styles.css),
+     so there is no third party in the critical path. The two faces the first
+     screen actually uses are preloaded; the Latin Extended cuts are not, since
+     nothing above the fold needs them. -->
+<link rel="preload" href="assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/plexmono-500-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/styles.css">
+
+<!-- Structured data. JSON, so no comments are allowed inside the block below.
+     "sameAs" on the Person node is what ties this page to the LinkedIn profile
+     search engines already trust; the footer link carries rel="me" for the
+     same reason. Add further profiles to that array as they appear.
+     Validate any change at https://validator.schema.org before deploying. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://kto-technology.netlify.app/#business",
+      "name": "KTO Technology Solutions",
+      "url": "https://kto-technology.netlify.app/",
+      "image": "https://kto-technology.netlify.app/assets/img/og-card.jpg",
+      "description": "Instructional design and e-learning development: Storyline 360, Rise 360, software simulations, learning video and AI-assisted learning content.",
+      "email": "kayodefashola@hotmail.com",
+      "telephone": "+44-7947-305173",
+      "founder": { "@id": "https://kto-technology.netlify.app/#kayode" },
+      "areaServed": [
+        { "@type": "Place", "name": "United Kingdom" },
+        { "@type": "Place", "name": "Europe" }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "London",
+        "addressCountry": "GB"
+      },
+      "knowsAbout": [
+        "Instructional design",
+        "E-learning development",
+        "Articulate Storyline 360",
+        "Articulate Rise 360",
+        "Software simulation",
+        "SCORM 1.2 and 2004",
+        "xAPI",
+        "WCAG 2.2 AA accessibility",
+        "Learning management systems",
+        "Moodle",
+        "Totara",
+        "Sana",
+        "Cornerstone",
+        "AI-assisted learning content",
+        "AI agents and apps",
+        "Workflow automation"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Instructional design and e-learning services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Instructional design" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Storyline 360 development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rise 360 course creation" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Software simulations" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Learning video and screencasts" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Training strategy and consultancy" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "LMS setup and SCORM support" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI content, agents and automation" } }
+        ]
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://kto-technology.netlify.app/#kayode",
+      "name": "Kayode Fashola",
+      "jobTitle": "Instructional designer, e-learning developer and AI learning specialist",
+      "description": "London-based instructional designer, e-learning developer and AI learning specialist with more than 25 years of experience across medical, HR, compliance, insurance, education and finance.",
+      "worksFor": { "@id": "https://kto-technology.netlify.app/#business" },
+      "sameAs": ["https://www.linkedin.com/in/kayodefashola/"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "London",
+        "addressCountry": "GB"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://kto-technology.netlify.app/#website",
+      "url": "https://kto-technology.netlify.app/",
+      "name": "KTO Technology Solutions",
+      "inLanguage": "en-GB",
+      "publisher": { "@id": "https://kto-technology.netlify.app/#business" }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -155,9 +274,10 @@
           <dl class="spec" data-reveal>
             <div class="spec__row">
               <dt>Module</dt>
-              <dd>General topics relevant to all staff members across the Trust, including
-                foundational subjects such as logging in and acquiring basic knowledge of the
-                various systems within the DCS.</dd>
+              <dd>General topics relevant to all staff across the Trust, for the move to the
+                MEDITECH Expanse electronic patient record (EPR). Foundational subjects first —
+                signing in, and a working knowledge of the systems within the Digital Clinical
+                System (DCS).</dd>
             </div>
             <div class="spec__row">
               <dt>Development tool</dt>
@@ -165,23 +285,24 @@
             </div>
             <div class="spec__row">
               <dt>Process</dt>
-              <dd>Actively engaging key stakeholders, including clinicians and medical staff, to
-                identify and define the specific learning objectives required for effective
-                training. Through collaborative discussion and feedback, the content is aligned
-                to the needs of all users.</dd>
+              <dd>Working with key stakeholders, including clinicians and medical staff, to define
+                the learning objectives the training has to meet. Discussion and structured
+                feedback then align the content with what each group of users actually does.</dd>
             </div>
             <div class="spec__row">
               <dt>Build</dt>
-              <dd>Detailed simulations of the DCS Meditech system built in Articulate Storyline,
-                giving staff hands-on experience in a virtual environment before they meet the
-                live system. The final package is reviewed and refined on further stakeholder
+              <dd>Detailed simulations of the DCS MEDITECH system, built in Articulate Storyline,
+                giving staff hands-on experience in a safe environment before they meet the live
+                system. The final package is reviewed and refined following further stakeholder
                 input.</dd>
             </div>
           </dl>
         </div>
 
         <div class="spread__body">
-          <h3 class="h-case" data-reveal>DCS Meditech Expanse: EPR Transformation</h3>
+          <!-- Keep this to two lines at 1440px. The expansions of DCS and EPR
+               live in the Module row beside it, where they cost nothing. -->
+          <h3 class="h-case" data-reveal>DCS MEDITECH Expanse: EPR transformation</h3>
 
           <div class="gallery" data-gallery data-reveal>
             <div class="gallery__viewport" tabindex="0" role="group"
@@ -268,8 +389,8 @@
           <dl class="spec" data-reveal>
             <div class="spec__row">
               <dt>Module</dt>
-              <dd>An e-learning course describing the SAP Ariba indirect procurement process and
-                the policy supporting procurement at the Open University.</dd>
+              <dd>An e-learning course describing the SAP Ariba indirect procurement process, and
+                the policy that supports procurement at The Open University.</dd>
             </div>
             <div class="spec__row">
               <dt>Process</dt>
@@ -353,8 +474,8 @@
           <dl class="spec" data-reveal>
             <div class="spec__row">
               <dt>Module</dt>
-              <dd>A short, practical interactive security awareness module that helps learners
-                recognise threats, protect sensitive information, and make safer decisions at work
+              <dd>A short, practical, interactive security-awareness module that helps learners
+                recognise threats, protect sensitive information and make safer decisions at work
                 every day.</dd>
             </div>
             <div class="spec__row">
@@ -415,23 +536,27 @@
     </article>
 
     <!-- ── Case 04 · EY ───────────────────────────────────────────────
-         AWAITING COPY. Only the project title is verifiable from the
-         screens. Fill in the three pending rows below and delete the
-         --pending modifier from each. -->
+         The two rows below are written from what the screenshots actually
+         show, so nothing here overstates the work. Three rows previously
+         read "TO BE SUPPLIED", which made a finished case look abandoned.
+         ADD WHEN YOU CAN: development tool, and a Process row matching the
+         other three cases. Copy the markup of any .spec__row above. -->
     <article class="case" data-case="ey">
       <p class="case__sector" data-reveal>EY</p>
 
       <div class="spread spread--case">
         <div class="spread__spec">
           <dl class="spec" data-reveal>
-            <div class="spec__row spec__row--pending">
-              <dt>Module</dt><dd>To be supplied</dd>
+            <div class="spec__row">
+              <dt>Module</dt>
+              <dd>A writing course covering the formats internal communications actually go out
+                in: speeches, podcasts, video scripts, editorial and social media, each treated
+                as its own discipline rather than as general writing advice.</dd>
             </div>
-            <div class="spec__row spec__row--pending">
-              <dt>Development tool</dt><dd>To be supplied</dd>
-            </div>
-            <div class="spec__row spec__row--pending">
-              <dt>Process</dt><dd>To be supplied</dd>
+            <div class="spec__row">
+              <dt>Approach</dt>
+              <dd>Every format is taught against a worked example of the finished document, so
+                the learner sees the artefact before being asked to produce one.</dd>
             </div>
           </dl>
         </div>
@@ -460,7 +585,8 @@
                   <img src="assets/img/ey-2-news.webp" width="1500" height="910" loading="lazy"
                        alt="Lesson screen titled Why EY news is big news, with body copy about internal communications beside a six-item section menu covering speeches, podcasts, video scripts, editorial and social media.">
                 </div>
-                <figcaption>Six writing formats, each addressed as its own section.</figcaption>
+                <figcaption>Each writing format is addressed as its own section, from the same
+                  menu.</figcaption>
               </figure>
               </li>
               <li class="gallery__slide" role="group"
@@ -470,7 +596,8 @@
                   <img src="assets/img/ey-3.webp" width="1500" height="914" loading="lazy"
                        alt="Lesson screen on writing for podcasts, showing a Word document headed A detailed podcast episode plan on a laptop, beside the six-section menu.">
                 </div>
-                <figcaption>Each format is taught against a worked example of the document itself.</figcaption>
+                <figcaption>Podcasts, taught against a real episode plan rather than a rule about
+                  writing one.</figcaption>
               </figure>
               </li>
               </ul>
@@ -511,6 +638,70 @@
     <p class="statement__by" data-reveal>Medical · HR · Compliance · Insurance · Education · Finance</p>
   </div>
 </section>
+
+<!-- ═══════════════════════  TESTIMONIALS  ═══════════════════════════════════
+     STAGED, NOT LIVE. Everything below is built and styled; it is commented
+     out only because there are no real quotes yet, and a portfolio that
+     invents them is worse than one that has none.
+
+     TO PUBLISH IT:
+
+       1. Delete this opening comment marker and the closing one after the
+          </section>, then fill in the two (or three) quote blocks. Duplicate
+          a <figure class="quote"> for a third.
+
+       2. RENUMBER. Sections run 01–07 and three places have to agree, or the
+          left rail stops matching the page:
+            · the .modlabel__n digits — Services becomes 03, Video 04,
+              Process 05, Toolkit 06, About 07, Contact 08
+            · the .rail__list entries in <nav class="rail">, which needs a new
+              02 Testimonials item and the rest bumped
+            · the SECTIONS array in assets/js/main.js, which drives the
+              current-section highlight — add 'testimonials' after 'work'
+          Also fix the cross-reference in the Services section: "Standalone and
+          marketing video is section 03" becomes section 04.
+
+       3. Add "Testimonials" to the header nav list if you want it there too.
+
+     ON THE QUOTES THEMSELVES: a name, a role and an organisation are worth
+     several times an anonymous quote. If a client will only agree to
+     "Programme Lead, an NHS trust", that still works. Never publish one you
+     cannot evidence if asked.
+     ═════════════════════════════════════════════════════════════════════════
+<section class="section section--quotes" id="testimonials">
+  <div class="wrap">
+    <header class="shead shead--wide" data-reveal-group>
+      <p class="modlabel" data-reveal>
+        <span class="modlabel__n">02</span> Testimonials
+        <span class="modlabel__rule" aria-hidden="true"></span>
+      </p>
+      <h2 class="h-section" data-reveal>What the people who commissioned it said</h2>
+    </header>
+
+    <div class="quotes" data-reveal-group>
+      <figure class="quote" data-reveal>
+        <blockquote>
+          <p>The quote goes here, in the words they actually used.</p>
+        </blockquote>
+        <figcaption>
+          <b>Their name</b>
+          Their role · Their organisation
+        </figcaption>
+      </figure>
+
+      <figure class="quote" data-reveal>
+        <blockquote>
+          <p>The second quote.</p>
+        </blockquote>
+        <figcaption>
+          <b>Their name</b>
+          Their role · Their organisation
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+     ═════════════════════════════════════════════════════════════════════════ -->
 
 <!-- ───────────────────────  02 · SERVICES  ────────────────────────── -->
 <section class="section section--services" id="services">
@@ -565,7 +756,7 @@
           <li class="svc__item" data-reveal>
             <h3>Learning video and screencasts</h3>
             <p>The video that lives inside a course: demonstrations, screencasts and narration,
-              captioned and transcribed. Standalone and marketing video is section 03.</p>
+              captioned and transcribed. Standalone and marketing video is covered in section 03.</p>
           </li>
           <li class="svc__item" data-reveal>
             <h3>Training strategy and consultancy</h3>
@@ -574,13 +765,16 @@
           </li>
           <li class="svc__item" data-reveal>
             <h3>LMS setup and SCORM support</h3>
-            <p>Packaging, tracking, completion rules and reporting for Moodle, Totara and most
-              commercial platforms, including fixing courses that will not report.</p>
+            <p>Packaging, tracking, completion rules and reporting for Moodle, Totara, Sana,
+              Cornerstone and most commercial platforms, including fixing courses that will not
+              report.</p>
           </li>
           <li class="svc__item" data-reveal>
-            <h3>AI-powered learning content</h3>
+            <h3>AI content, agents and automation</h3>
             <p>Assisted drafting, localisation, implementation strategy and learner-support
-              assistants, grounded in your approved sources with a human review step built in.</p>
+              assistants, grounded in your approved sources with a human review step built in.
+              Also AI agents, apps and workflow automation that take the repetitive work out of
+              building and maintaining a course. Working demos available on request.</p>
           </li>
         </ul>
       </div>
@@ -647,17 +841,24 @@
         </ul>
 
         <!-- ═══ PLACEHOLDER ══════════════════════════════════════════════
-             There is no showreel file yet. When there is, replace this whole
-             <figure> with the markup in the README section "Adding the
-             showreel". Nothing else needs to change.
+             THE FILM IS NOT HERE YET. The play mark that used to sit on this
+             frame has been removed: a visitor clicked it, nothing happened,
+             and the section selling your newest service looked broken. The
+             frame now says what it is.
+
+             WHEN showreel.mp4 EXISTS, replace this whole <figure> with the
+             markup in the README section "Adding the showreel" — a <video>
+             with controls, this same poster, and a captions track. Captions
+             are not optional: the page claims WCAG 2.2 AA and an uncaptioned
+             video is the one thing on it that would fail.
              ══════════════════════════════════════════════════════════════ -->
         <figure class="reel" data-reveal>
           <div class="screen reel__frame">
             <img src="assets/img/showreel-poster.webp" width="1600" height="893" loading="lazy" alt="">
-            <p class="reel__badge">Showreel</p>
-            <span class="reel__overlay" aria-hidden="true"><span class="reel__play"></span></span>
+            <p class="reel__badge">Showreel · in production</p>
           </div>
-          <figcaption>A short reel of recent AI video, UGC and animation work.</figcaption>
+          <figcaption>A reel of recent AI video, UGC and animation work is being cut. Ask and I
+            will send the current edit.</figcaption>
         </figure>
       </div>
     </div>
@@ -715,15 +916,27 @@
       </li>
     </ol>
 
+    <!-- Three columns because the paragraph was already three things: what
+         SMEs get, what stakeholders get, what learners get. Not a word has
+         changed, only the paragraph breaks — which lets the box run the full
+         width of the steps grid above it without a sentence being split
+         across a column gutter. -->
     <div class="notebox" data-reveal>
       <p class="notebox__label">Working with your people</p>
-      <p>
-        Subject-matter experts get a storyboard to react to rather than a blank page. It is
-        far quicker to correct a draft than to dictate one. Stakeholders get fixed review points with a
-        single consolidated comment set, so nobody is chasing versions. Learners get involved at
-        pilot, on the device and platform they will actually use, because that is where the
-        problems show up.
-      </p>
+      <div class="notebox__cols">
+        <p>
+          Subject-matter experts get a storyboard to react to rather than a blank page. It is
+          far quicker to correct a draft than to dictate one.
+        </p>
+        <p>
+          Stakeholders get fixed review points with a single consolidated comment set, so nobody
+          is chasing versions.
+        </p>
+        <p>
+          Learners get involved at pilot, on the device and platform they will actually use,
+          because that is where the problems show up.
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -757,11 +970,11 @@
           </div>
           <div class="tools__group" data-reveal>
             <p class="tools__label">Platforms</p>
-            <ul><li>Moodle</li><li>Totara</li><li>SCORM 1.2 &amp; 2004</li><li>xAPI</li></ul>
+            <ul><li>Moodle</li><li>Totara</li><li>Sana</li><li>Cornerstone</li><li>SCORM 1.2 &amp; 2004</li><li>xAPI</li></ul>
           </div>
           <div class="tools__group" data-reveal>
             <p class="tools__label">AI-assisted</p>
-            <ul><li>Content drafting</li><li>Localisation</li><li>Synthetic voice</li><li>Support assistants</li></ul>
+            <ul><li>Content drafting</li><li>Localisation</li><li>Synthetic voice</li><li>Support assistants</li><li>Agents and apps</li><li>Workflow automation</li></ul>
           </div>
         </div>
       </div>
@@ -774,9 +987,25 @@
   <div class="wrap">
     <div class="spread spread--case">
       <div class="spread__spec">
+        <!-- ═══ HEADSHOT ═════════════════════════════════════════════════
+             A face is the cheapest trust you can buy on a solo consultancy
+             site, and this is the one place on the page it belongs. Drop a
+             portrait at assets/img/kayode.webp (square, 640px, ~q82) and
+             delete the hidden attribute below. Nothing else needs changing.
+             ═══════════════════════════════════════════════════════════════ -->
+        <figure class="portrait" data-reveal hidden>
+          <img src="assets/img/kayode.webp" width="640" height="640" loading="lazy"
+               alt="Kayode Fashola.">
+        </figure>
+
         <dl class="spec" data-reveal>
+          <div class="spec__row"><dt>Name</dt><dd>Kayode Fashola, working as KTO Technology Solutions</dd></div>
           <div class="spec__row"><dt>Based</dt><dd>London, England, working remotely with teams across the UK and Europe</dd></div>
           <div class="spec__row"><dt>Experience</dt><dd>25+ years in training design and e-learning development</dd></div>
+          <!-- Recruiters scan for this line before anything else on the page.
+               Keep it current, or delete the row: a stale date is worse than
+               no date. -->
+          <div class="spec__row"><dt>Availability</dt><dd>Open to project work, contract and permanent roles. Ask about current lead time.</dd></div>
           <div class="spec__row"><dt>Engagements</dt><dd>Project, retainer or day rate</dd></div>
           <div class="spec__row"><dt>Handover</dt><dd>Source files, style guide and a maintenance note, always</dd></div>
         </dl>
@@ -786,14 +1015,18 @@
         <p class="modlabel" data-reveal>
           <span class="modlabel__n">06</span> About
         </p>
+        <p class="byline" data-reveal>
+          <b>Kayode Fashola</b> <span aria-hidden="true">·</span> Instructional designer,
+          e-learning developer and AI learning specialist
+        </p>
         <h2 class="h-section" data-reveal>I turn the content nobody reads into something people use</h2>
 
         <div class="prose" data-reveal-group>
           <p class="prose__lead" data-reveal>
-            I am a training designer, instructional designer and e-learning developer with over 25
-            years of experience creating innovative learning solutions. I specialise in transforming
-            complex information into clear, engaging and accessible digital learning that supports
-            real workplace performance.
+            I am Kayode Fashola, a London-based instructional designer, e-learning developer and
+            AI learning specialist with over 25 years of experience creating innovative learning
+            solutions. I specialise in transforming complex information into clear, engaging and
+            accessible digital learning that supports real workplace performance.
           </p>
           <p data-reveal>
             I have worked with clients across medical, HR, compliance, insurance, education and
@@ -818,58 +1051,161 @@
   </div>
 </section>
 
-</main>
-
-<!-- ────────────────────────  07 · CONTACT  ────────────────────────── -->
+<!-- ────────────────────────  07 · CONTACT  ──────────────────────────
+     Inside <main>, so that screen-reader users jumping by landmark reach the
+     enquiry form. The page footer sits after </main> below, which is what
+     makes it a contentinfo landmark: a <footer> nested in a <section> is not
+     one. -->
 <section class="band" id="contact">
   <span class="band__curtain" aria-hidden="true"></span>
   <div class="wrap">
-    <div class="cta" data-reveal-group>
-      <p class="modlabel" data-reveal>
-        <span class="modlabel__n">07</span> Contact
-      </p>
-      <h2 class="h-display h-display--sm" data-reveal>Have a learning project in mind?</h2>
-      <p class="cta__text" data-reveal>
-        Whether you need a complete e-learning course, support with an existing project or help
-        turning complex content into an engaging learning experience, get in touch to discuss your
-        requirements.
-      </p>
+    <div class="ctagrid">
 
-      <p class="contactlines" data-reveal>
-        <a href="mailto:kayodefashola@hotmail.com">kayodefashola@hotmail.com</a>
-        <a href="tel:+447947305173">07947 305173</a>
-      </p>
+      <div class="cta" data-reveal-group>
+        <p class="modlabel" data-reveal>
+          <span class="modlabel__n">07</span> Contact
+        </p>
+        <h2 class="h-display h-display--sm" data-reveal>Have a learning project in mind?</h2>
+        <p class="cta__text" data-reveal>
+          Whether you need a complete e-learning course, support with an existing project or help
+          turning complex content into an engaging learning experience, get in touch to discuss your
+          requirements.
+        </p>
 
-      <div class="actions" data-reveal>
-        <a class="btn btn--go" href="mailto:kayodefashola@hotmail.com?subject=Learning%20project%20enquiry">Start a conversation</a>
+        <p class="contactlines" data-reveal>
+          <a href="mailto:kayodefashola@hotmail.com">kayodefashola@hotmail.com</a>
+          <a href="tel:+447947305173">07947 305173</a>
+        </p>
+
+        <div class="actions" data-reveal>
+          <a class="btn btn--go" href="mailto:kayodefashola@hotmail.com?subject=Learning%20project%20enquiry">Start a conversation</a>
+        </div>
+
+        <p class="cta__note" data-reveal>
+          Tell me the audience, the problem and the deadline, and you will get an honest answer about
+          scope within two working days.
+        </p>
       </div>
 
-      <p class="cta__note" data-reveal>
-        Tell me the audience, the problem and the deadline, and you will get an honest answer about
-        scope within two working days.
-      </p>
+      <!-- ═══ NETLIFY FORM ══════════════════════════════════════════════════
+           Handled by Netlify Forms: no backend, no JavaScript, nothing to
+           maintain. Netlify detects the form by parsing the deployed HTML, so
+           three things must stay exactly as they are or submissions silently
+           vanish:
+
+             1. data-netlify="true" and a name attribute on the <form>
+             2. the hidden form-name input, whose value matches that name
+             3. the honeypot field named in data-netlify-honeypot
+
+           One manual step, once, after the first deploy: Netlify → Site →
+           Forms → Notifications → add an email notification, or submissions
+           will sit in the dashboard unread.
+
+           Local testing shows the markup only. The POST needs a real deploy.
+           ═══════════════════════════════════════════════════════════════════ -->
+      <form class="form" name="enquiry" method="POST" action="/thanks.html"
+            data-netlify="true" data-netlify-honeypot="company-website"
+            data-reveal-group>
+        <input type="hidden" name="form-name" value="enquiry">
+
+        <p class="form__head" data-reveal>Send a brief</p>
+
+        <p class="form__trap" aria-hidden="true">
+          <label>Leave this field empty
+            <input name="company-website" tabindex="-1" autocomplete="off">
+          </label>
+        </p>
+
+        <div class="field" data-reveal>
+          <label for="f-name">Your name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required>
+        </div>
+
+        <div class="field" data-reveal>
+          <label for="f-org">Organisation</label>
+          <input id="f-org" name="organisation" type="text" autocomplete="organization">
+        </div>
+
+        <div class="field" data-reveal>
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required>
+        </div>
+
+        <div class="field" data-reveal>
+          <label for="f-need">What do you need?</label>
+          <select id="f-need" name="need">
+            <option value="A complete course">A complete course, end to end</option>
+            <option value="Support on an existing project">Support on an existing project</option>
+            <option value="Software simulation">A software simulation</option>
+            <option value="Video or AI video">Video, animation or AI video</option>
+            <option value="AI apps, agents or automation">AI apps, agents or automation</option>
+            <option value="LMS or SCORM help">LMS, SCORM or xAPI help</option>
+            <option value="Strategy or consultancy">Strategy or consultancy</option>
+            <option value="A role">A contract or permanent role</option>
+            <option value="Not sure yet">Not sure yet</option>
+          </select>
+        </div>
+
+        <div class="field" data-reveal>
+          <label for="f-deadline">Deadline</label>
+          <input id="f-deadline" name="deadline" type="text"
+                 aria-describedby="f-deadline-hint" placeholder="e.g. end of March, or open">
+          <p class="field__hint" id="f-deadline-hint">A rough date is fine. It is the fastest way
+            for me to tell you whether I can help.</p>
+        </div>
+
+        <div class="field" data-reveal>
+          <label for="f-message">The audience and the problem</label>
+          <textarea id="f-message" name="message" rows="5"
+                    aria-describedby="f-message-hint" required></textarea>
+          <p class="field__hint" id="f-message-hint">Who has to learn this, and what is going
+            wrong at the moment?</p>
+        </div>
+
+        <button class="btn btn--send" type="submit" data-reveal>Send enquiry</button>
+
+        <p class="form__note" data-reveal>
+          Your details are used to answer your enquiry and nothing else. No mailing list,
+          no third parties.
+        </p>
+      </form>
+
     </div>
   </div>
-
-  <footer class="foot">
-    <div class="wrap">
-      <div class="foot__inner">
-        <p class="foot__name">KTO Technology Solutions · London, England</p>
-        <ul class="foot__links">
-          <li><a href="#work">Work</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#process">Process</a></li>
-          <li><a href="mailto:kayodefashola@hotmail.com">Email</a></li>
-        </ul>
-        <p>Built to WCAG 2.2 AA</p>
-      </div>
-    </div>
-  </footer>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__inner">
+      <p class="foot__name">Kayode Fashola · KTO Technology Solutions · London, England</p>
+      <ul class="foot__links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <!-- rel="me" is the machine-readable claim that this site and that
+             profile are the same person. It costs nothing and it is what
+             ties the two identities together. The same URL is in "sameAs"
+             in the JSON-LD block in <head>; change one, change both. -->
+        <li><a href="https://www.linkedin.com/in/kayodefashola/" rel="me">LinkedIn</a></li>
+        <!-- CV goes here once you send the PDF:
+          <li><a href="assets/kayode-fashola-cv.pdf">CV (PDF)</a></li>
+        -->
+        <li><a href="mailto:kayodefashola@hotmail.com">Email</a></li>
+      </ul>
+      <p>Built to WCAG 2.2 AA</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Vendored rather than loaded from jsDelivr: the organisations this site is
+     addressed to (NHS trusts, universities, large consultancies) are exactly
+     the networks that block third-party CDNs. GSAP 3.12.5 and Lenis 1.1.18 —
+     see the README before upgrading either. -->
+<script src="assets/vendor/gsap.min.js" defer></script>
+<script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+<script src="assets/vendor/lenis.min.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>

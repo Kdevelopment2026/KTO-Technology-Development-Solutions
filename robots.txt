@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Confirmation pages are also marked noindex in their own <head>.
+Disallow: /thanks.html
+
+Sitemap: https://kto-technology.netlify.app/sitemap.xml
