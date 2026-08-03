@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Form definition — not a page</title>
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+
+<!-- ═══ WHY THIS FILE EXISTS ══════════════════════════════════════════════════
+     Netlify finds forms by parsing the HTML it deploys, and it only does that
+     at deploy time. When it fails to find one, the POST falls through to the
+     static file server and comes back 404 or 405 — which is exactly what a
+     visitor sees as "the form doesn't work".
+
+     This is the documented remedy: a bare, unstyled copy of the form, in its
+     own small file, with nothing around it that a parser could trip over. The
+     real form in index.html sits inside 66 KB of markup, comments and inline
+     structured data; this one is twenty lines. If detection was failing for
+     any reason to do with parsing, this gives it something unambiguous.
+
+     THREE THINGS MUST MATCH index.html EXACTLY or submissions split across two
+     form names and half of them look lost:
+
+       1. name="enquiry" on the <form>
+       2. the hidden form-name input, same value
+       3. every field name — name, organisation, email, need, deadline,
+          message, and the company-website honeypot
+
+     Nothing links here and it is noindex, so no visitor will ever see it.
+
+     IF THE FORM IS STILL NOT LISTED in the Netlify dashboard after a fresh
+     deploy, this file is not the problem: form detection itself is switched
+     off. Site configuration → Forms → enable it, then redeploy. Netlify made
+     detection opt-in for sites created from late 2024, and enabling it does
+     not retro-scan a deploy that has already been published.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<form name="enquiry" method="POST" data-netlify="true" data-netlify-honeypot="company-website" hidden>
+  <input type="hidden" name="form-name" value="enquiry">
+  <input type="text" name="name">
+  <input type="text" name="organisation">
+  <input type="email" name="email">
+  <input type="text" name="need">
+  <input type="text" name="deadline">
+  <textarea name="message"></textarea>
+  <input type="text" name="company-website">
+</form>
+
+</body>
+</html>

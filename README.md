@@ -6,6 +6,7 @@ e-learning development, London. No build step, no dependencies to install.
 ```
 index.html
 thanks.html            form confirmation page
+__forms.html           bare form for Netlify to detect — noindex, linked from nowhere
 404.html
 robots.txt
 sitemap.xml
@@ -14,7 +15,7 @@ favicon.ico
 assets/css/styles.css
 assets/js/main.js
 assets/img/            14 images, 770 KB (2 plates + 11 screenshots + og card + video poster)
-assets/video/          healthconnect.mp4 — the 15-second explainer, 6.5 MB
+assets/video/          the 15-second explainer — 0.8 MB WebM, 1.1 MB MP4, captions
 assets/fonts/          6 woff2 cuts, 220 KB — Archivo variable + IBM Plex Mono
 assets/vendor/         GSAP 3.12.5, ScrollTrigger, Lenis 1.1.18 — 128 KB
 source-images/         full-resolution PNG masters — not deployed
@@ -24,6 +25,7 @@ tools-og-card.py       re-bakes the 1200x630 social sharing card
 tools-csp-hash.py      regenerates the CSP hash for the inline JSON-LD
 tools-host.py          sets the site's hostname in all 15 places at once
 tools-icons.py         re-bakes favicon.ico and the PNG icons from one geometry
+tools-video.py         re-encodes the explainer from the master in Vid/
 ```
 
 **Nothing loads from a third party.** Fonts and libraries are served from this repo. That is
@@ -263,19 +265,26 @@ The honeypot is a real field hidden from people with `clip-path`, not `display:n
 bots skip anything display-none. It is the whole spam defence: no reCAPTCHA, because that is a
 third party watching your visitors and the volume here does not need it.
 
-### If it fails on Netlify: form detection is opt-in now
+### If it fails on Netlify
 
-For sites created since roughly late 2024, **Netlify no longer detects forms automatically**.
-The markup can be perfect and submissions will still 404 or 405. Two things, in this order:
+The markup is correct — `name`, `data-netlify`, the hidden `form-name` and the honeypot all
+check out, and `__forms.html` gives Netlify a second, unambiguous copy to find. So if
+submissions still fail, it is configuration, and there are exactly two causes.
 
-1. Site configuration → Forms → **enable form detection**.
-2. **Trigger a new deploy.** Detection runs at deploy time by parsing the built HTML, so
-   enabling it does not retro-scan the deploy already published. Nothing changes until a new
-   one lands.
+**1. Form detection is opt-in now.** For sites created since roughly late 2024 Netlify no longer
+detects forms automatically. Site configuration → Forms → **enable form detection**.
 
-Then confirm the form appears under Forms in the dashboard, add an email notification, and send
-one test enquiry from the live URL. If the form is not listed after a fresh deploy, detection is
-still off — nothing in this repo can fix that.
+**2. Detection only runs at deploy time.** Enabling it does not retro-scan the deploy already
+published, so **trigger a new deploy** afterwards. Nothing changes until a fresh one lands.
+
+Then: the form should appear under Forms in the dashboard. Add an email notification, and send
+one test enquiry from the live URL. If it is *not* listed after a fresh deploy with detection
+on, nothing in this repo can fix that — it is an account or plan question for Netlify support.
+
+`__forms.html` is the documented remedy for detection failures: a bare twenty-line copy of the
+form, `noindex`, linked from nowhere. The real form sits inside 66 KB of markup and comments;
+this one gives the parser something it cannot miss. **Its field names must match index.html
+exactly** or submissions split across two form definitions and half of them look lost.
 
 ### Why it looked broken, and what changed
 
@@ -551,15 +560,26 @@ the page where they can be indexed.
 
 ### The encode
 
-6.5 MB for 15 seconds is roughly 3.6 Mbps, which is heavy for 720p flat-vector animation — the
-kind of content that compresses extremely well. `preload="none"` means it costs nothing until
-somebody presses play, so it is not urgent. If you want it smaller, re-encode at CRF 26–28 and
-expect 1–2 MB with no visible difference on this material, then add a WebM source above the MP4
-for the browsers that take it.
+The delivered master is 6.45 MB for fifteen seconds — about 3.6 Mbps, several times what
+flat-vector animation needs. Both shipped files are re-encodes of it, and a visitor downloads
+one of the two:
 
-There is no `ffmpeg` on this machine, which is why the poster frame was pulled through a
-headless browser canvas rather than in one command. `brew install ffmpeg` if you want to do the
-re-encode locally.
+| File | Size | SSIM against the master |
+|---|---|---|
+| `healthconnect.webm` — VP9 CRF 30 | 0.80 MB | Y 0.9995 · U 0.9996 · V 0.9823 |
+| `healthconnect.mp4` — H.264 CRF 24 | 1.09 MB | Y 0.9993 · U 0.9988 · V 0.9907 |
+
+An 83% reduction with no visible difference — the headline text was compared frame to frame at
+12 seconds and is indistinguishable. **CRF 24 rather than 28** for the MP4: at 28 the V channel,
+the chroma carrying that purple, fell to 0.975 to save 0.4 MB. Not a trade worth making on a
+video whose whole subject is one brand colour and a lot of small white text.
+
+`tools-video.py` reproduces both and prints the SSIM. `--check` compares what is deployed
+against the master. The MP4 carries `+faststart`, so the moov atom sits before the media data
+and playback can begin before the download finishes.
+
+Homebrew is not installed on this machine, so ffmpeg comes from the `imageio-ffmpeg` pip
+package — a self-contained static binary, nothing added system-wide.
 
 ### When the fuller reel arrives
 

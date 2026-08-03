@@ -913,19 +913,23 @@
              a 404 gives the viewer an empty captions menu, which reads as a
              broken feature rather than an absent one.
 
-             preload="none" is deliberate. The file is 6.5 MB, and at 15
-             seconds that is a heavy encode; preloading it would cost every
-             visitor the download whether or not they press play. Nothing is
-             fetched until they do. -->
+             preload="none" is deliberate even now the files are small: it
+             means nothing at all is fetched until a visitor presses play.
+             The poster carries the frame in the meantime. -->
         <figure class="reel" data-reveal>
           <div class="screen reel__frame">
             <video controls preload="none" playsinline width="1280" height="720"
                    poster="assets/img/healthconnect-poster.webp">
+              <!-- WebM first: browsers that understand it take the smaller file
+                   (823 KB against 1.1 MB), and everything else falls through to
+                   the MP4. Both are re-encodes of the 6.5 MB master — see
+                   tools-video.py for the settings and the measured quality. -->
+              <source src="assets/video/healthconnect.webm" type="video/webm">
               <source src="assets/video/healthconnect.mp4" type="video/mp4">
               <track kind="captions" src="assets/video/healthconnect.en.vtt"
                      srclang="en-GB" label="English" default>
               <p>Your browser cannot play this video.
-                <a href="assets/video/healthconnect.mp4">Download the MP4</a> (6.5 MB).</p>
+                <a href="assets/video/healthconnect.mp4">Download the MP4</a> (1.1 MB).</p>
             </video>
           </div>
           <figcaption>
