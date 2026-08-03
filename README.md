@@ -662,6 +662,11 @@ Built to WCAG 2.2 AA:
   `.band`, delete those three declarations or the colour will be applied twice.
 - Visible focus outlines, switched to the darker blue inside white course screens, and to green
   inside the navy contact band where the blue all but disappears.
+- **The copyright year is hard-coded**, in `index.html`, `404.html` and `thanks.html`. A
+  script-written year is blank for anyone with JavaScript off, and a copyright line that
+  disappears is worse than one that is a year out of date. Update it by hand each January.
+  Its colour is not `--line-2`, which is a border colour and measures 1.82:1 against the ink —
+  a 1.4.3 failure the moment it is used for text. Both footers measure just over 5:1.
 - Every form field has a real `<label>`, native validation, and `aria-describedby` on the two
   that carry a hint. Field borders clear 3:1 against the navy, per WCAG 1.4.11. The submit
   outcome lands in a `role="status"` region, so it is announced without focus moving.

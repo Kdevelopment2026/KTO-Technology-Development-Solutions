@@ -1207,6 +1207,16 @@ body{
 .foot__links a{ color:rgba(255,255,255,.88); text-decoration:none; }
 .foot__links a:hover{ color:var(--green); }
 .foot__name{ color:rgba(255,255,255,.88); }
+/* A second row rather than a fourth item in the flex line above: the name, the
+   links and the standard already fill that row, and a copyright notice is the
+   quietest thing in a footer, not something to compete for space in it. */
+.foot__legal{
+  padding-block:1.25rem;
+  border-top:1px solid rgba(255,255,255,.12);
+  font-family:var(--f-mono);
+  font-size:.625rem; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+}
 
 /* ==========================================================================
    MOTION SCAFFOLDING
@@ -1452,6 +1462,18 @@ body{
   font-size:.625rem; font-weight:500;
   letter-spacing:.18em; text-transform:uppercase;
   color:var(--text-2);
+}
+/* Its own line on the small pages too, so the copyright reads the same way on
+   all three rather than running into the address on two of them.
+
+   NOT --line-2. That is a border colour, and at #37444F on the ink ground it
+   measures 1.82:1 — a WCAG 1.4.3 failure the moment it is used for text. This
+   value measures 5.06:1, which is deliberately the same perceived weight as
+   .foot__legal on the navy (5.03:1), so the line reads identically on all
+   three pages. */
+.mini__legal{
+  display:block; margin-top:.6rem;
+  color:rgba(221,229,237,.55);
 }
 
 /* ---------- print ---------- */
