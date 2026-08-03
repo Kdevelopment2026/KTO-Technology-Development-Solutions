@@ -287,8 +287,8 @@
   })();
 
   /* ---- current section ---- */
-  var SECTIONS = ['work', 'testimonials', 'services', 'video', 'process', 'toolkit',
-                  'about', 'contact'];
+  var SECTIONS = ['work', 'testimonials', 'services', 'video', 'agents', 'process',
+                  'toolkit', 'about', 'contact'];
   function markCurrent(id) {
     qa('.rail__list a, .nav__list a').forEach(function (a) {
       var on = a.getAttribute('href') === '#' + id;
@@ -600,6 +600,24 @@
   /* ==================================================================
      02 · SERVICES
      ================================================================== */
+  /* The outcome figures count up when they arrive. Same treatment as the
+     tenure meter below, minus the ticks — and the same reason for tabular
+     numerals in the CSS: without them the digits change width mid-count and
+     the whole line jitters. The comma in "5,000" is stripped for the maths
+     and put back on every frame, or the number counts to 5 and stops. */
+  qa('.figure__n').forEach(function (num) {
+    var target = parseInt(num.textContent.replace(/,/g, ''), 10);
+    if (!target) return;
+    var box = { v: 0 };
+    gsap.to(box, {
+      v: target, duration: 1.1, ease: 'power2.out',
+      scrollTrigger: { trigger: num, start: 'top 88%', once: true },
+      onUpdate: function () {
+        num.textContent = Math.round(box.v).toLocaleString('en-GB');
+      }
+    });
+  });
+
   /* The tenure meter fills a year at a time while the figure counts with it. */
   (function tenure() {
     var block = q('.tenure');

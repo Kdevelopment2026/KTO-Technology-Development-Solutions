@@ -88,7 +88,7 @@ version-controlled.
   **green reports progress** (course progress bars, correct answers, outcome figures, the
   closing call to action). That semantic split is what stops two accents reading as noise.
 - **Numbered sections.** The current site's `02 PORTFOLIO` device, extended: sections run
-  `01`–`08` and the fixed left rail is a course menu that fills as you scroll. On an
+  `01`–`09` and the fixed left rail is a course menu that fills as you scroll. On an
   e-learning site, numbered modules with a progress indicator earn their place.
 - **The deep navy closing panel** with a green action button.
 
@@ -158,6 +158,25 @@ one. LinkedIn, the certificate verifiers and `schema.org` are never touched.
 HTTPS. A domain is worth buying for a business site, but nothing here waits on it — set the
 `.netlify.app` host now and re-run the same command later if you buy one.
 
+### The outcome figures
+
+The first checkable numbers on the site, at the end of the work section: **70+ SCORM-compliant
+modules** and **5,000+ learners** on Totara across multiple NHS departments, with two statements
+below them that deliberately carry no number — reduced post-go-live support queries, and
+delivery into policing, regulatory, finance and enterprise work.
+
+Those two are unquantified on purpose. "Reduced support queries" is real but not measured, and
+attaching an invented percentage to it would undo the point of having figures at all. An earlier
+draft carried exactly that kind of number — "94% completed before go-live" — and it was removed
+because it sat beside named clients.
+
+**Every figure here has to survive being queried**, because it now sits next to the NHS, The
+Open University and EY. Change them only against something you can evidence.
+
+Adding policing to the outcomes meant adding it to the two sector lines as well — the hero spec
+and the statement band — which previously listed six sectors and would otherwise have
+contradicted the new copy.
+
 ### The case studies
 
 | # | Client | Project | Screens | Copy |
@@ -167,11 +186,17 @@ HTTPS. A domain is worth buying for a business site, but nothing here waits on i
 | 03 | SecureMind | Security awareness | 2 | complete |
 | 04 | EY | Writing for different formats | 3 | complete |
 
-**Section 04, "Video and AI", is the one place the copy is mine.** Everything else on the page
+**Sections 04 and 05, "Video and AI" and "AI agents", are the two places the copy is mine.** Everything else on the page
 came from you or from your existing site. That section covers AI video content, UGC-style ads,
 AI animation and post-production, and the tool chips list Veo 3.1 and Google Gemini 3 because
-you named them as tools you use. Read it before launch and change anything that overstates
-what you offer. It is marked `COPY REVIEW` in `index.html`.
+you named them as tools you use. Section 05 is written from what the services list and the
+toolkit already claimed, plus the two Anthropic certifications. **Read both and cut anything
+that promises more than you want to be held to.** Each is marked `COPY REVIEW` in `index.html`.
+
+Section 05 also has the weakest evidence on the page: it describes capability where every other
+section shows it. Two or three screenshots of a real agent or app, treated exactly like the four
+case studies, would fix that — the markup of any `<article class="case">` block drops straight
+in.
 
 **EY is complete.** Three rows used to render as a muted "TO BE SUPPLIED", which made a finished
 case look abandoned to anyone who scrolled that far — and it was the last case before the
@@ -546,8 +571,13 @@ They earn their keep as copy.
 
 Adding a section renumbers everything after it, and four places have to agree or the left rail
 stops matching the page: the `.modlabel__n` digits, the `.rail__list` entries, the `SECTIONS`
-array in `main.js`, and the header nav. Cross-references in the copy count too — Services
-currently points at "section 04" for standalone video.
+array in `main.js`, and the header nav. Cross-references in the copy count too — Services points
+at "section 04" for standalone video and "section 05" for agents and automation.
+
+This has now been done twice, for Testimonials at 02 and AI agents at 05. Both times the trap
+was the same: the numbers are hard-coded in four unrelated places and nothing checks that they
+agree. If a third section is ever added, grep for `modlabel__n` and `rail__n` together and read
+both lists side by side before trusting either.
 
 **Preparing images:** resize to 1500px wide and save as WebP at ~q82. The eleven screenshots
 here went from 11.6 MB of PNG to 569 KB that way, with no visible loss. Keep the masters in
@@ -768,6 +798,12 @@ Built to WCAG 2.2 AA:
   `.band`, delete those three declarations or the colour will be applied twice.
 - Visible focus outlines, switched to the darker blue inside white course screens, and to green
   inside the navy contact band where the blue all but disappears.
+- **The left rail carries no `opacity`.** It used to rest at `.65`, which multiplied everything
+  underneath it: the labels measured 3.68:1 and the section numbers 1.43:1, both failing 1.4.3.
+  Neither showed up in a contrast sweep that read computed colours without walking ancestor
+  opacity — worth knowing if you ever audit this yourself. The quiet resting state is carried by
+  colour alone now, at 7.04:1 and 4.74:1. **If the rail ever gets an opacity again, measure it
+  afterwards.**
 - **Target sizes meet WCAG 2.2 SC 2.5.8 (AA).** Every control measures at least 24x24: gallery
   dots 28x24, arrows 36x36, footer links 24 high with 24px gaps, rail links 24 high, the
   transcript disclosure 24 high. An audit found the footer at 13px with 20px gaps and the rail

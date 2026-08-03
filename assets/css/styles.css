@@ -439,17 +439,24 @@ body{
   font-family:var(--f-mono);
   font-size:.5625rem; font-weight:500;
   letter-spacing:.2em; text-transform:uppercase;
-  color:var(--text-2); text-decoration:none;
-  opacity:.65;
-  transition:opacity .25s var(--ease), color .25s var(--ease);
+  /* The quiet resting state is carried by colour alone, NOT by opacity.
+     `opacity:.65` here multiplied everything underneath it: the label came out
+     at 3.68:1 and the number at 1.43:1, both failing WCAG 1.4.3, and neither
+     showed up in a sweep that read computed colours without walking ancestor
+     opacity. If this ever gets an opacity again, measure it afterwards. */
+  color:var(--text-2); text-decoration:none;   /* 7.04:1 */
+  transition:color .25s var(--ease);
 }
-.rail__n{ color:var(--line-2); }
+/* NOT --line-2. That is a divider colour at 1.82:1 — this is the third rule in
+   this stylesheet to reach for it as a text colour and fail. 4.74:1 here, still
+   clearly quieter than the label beside it. */
+.rail__n{ color:#748496; }
 .rail__tick{
   width:.6rem; height:1px; background:currentColor;
   transition:width .25s var(--ease);
 }
-.rail__list a:hover{ opacity:1; color:var(--text); }
-.rail__list a.is-current{ opacity:1; color:var(--green); }
+.rail__list a:hover{ color:var(--text); }
+.rail__list a.is-current{ color:var(--green); }
 .rail__list a.is-current .rail__n{ color:var(--green); }
 .rail__list a.is-current .rail__tick{ width:1.15rem; background:var(--green); }
 
@@ -754,6 +761,70 @@ body{
   font-size:.8125rem; line-height:1.6;
   color:var(--text-2);
   max-width:62ch;
+}
+
+/* ---------- outcome figures ---------------------------------------------
+   Green, because green reports progress and results everywhere else on this
+   page. Same construction as .tenure — display face, tabular numerals so the
+   count-up does not jitter, the plus set smaller and baseline-aligned.
+   ----------------------------------------------------------------------- */
+.figures{
+  margin-top:clamp(3rem, 6vw, 5rem);
+  padding-top:clamp(1.75rem, 3vw, 2.5rem);
+  border-top:1px solid var(--line);
+}
+.figures__label{
+  font-family:var(--f-mono); font-size:.5625rem; font-weight:500;
+  letter-spacing:.24em; text-transform:uppercase;
+  color:var(--blue);
+  margin-bottom:clamp(1.5rem, 2.5vw, 2rem);
+}
+.figures__grid{
+  display:grid; gap:clamp(1.75rem, 4vw, 3.5rem);
+  grid-template-columns:minmax(0,1fr);
+}
+@media (min-width:44rem){
+  .figures__grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+}
+.figure__v{ display:flex; align-items:baseline; gap:.06rem; }
+.figure__n{
+  font-family:var(--f-display); font-stretch:var(--wd-display); font-weight:700;
+  font-size:clamp(2.6rem, 5.4vw, 4rem);
+  line-height:.95; letter-spacing:-.02em;
+  color:var(--green);
+  font-variant-numeric:tabular-nums;
+}
+.figure__plus{
+  font-family:var(--f-display); font-stretch:var(--wd-display); font-weight:700;
+  font-size:clamp(1.4rem, 2.6vw, 2rem);
+  color:var(--green);
+}
+.figure dd{
+  margin:.85rem 0 0;
+  max-width:34ch;
+  font-size:.9375rem; line-height:1.5;
+  color:var(--text-2);
+  text-wrap:pretty;
+}
+/* The unquantified half. Set as notes rather than as figures so the eye reads
+   them as supporting statements and not as numbers with the number missing. */
+.figures__notes{
+  display:grid; gap:.9rem;
+  margin-top:clamp(2rem, 3.5vw, 2.75rem);
+  padding-top:clamp(1.5rem, 2.5vw, 2rem);
+  border-top:1px solid var(--line);
+}
+.figures__notes li{
+  position:relative;
+  padding-left:1.35rem;
+  max-width:62ch;
+  font-size:.9375rem; line-height:1.55;
+  color:var(--text-2);
+  text-wrap:pretty;
+}
+.figures__notes li::before{
+  content:""; position:absolute; left:0; top:.62em;
+  width:.6rem; height:2px; background:var(--green);
 }
 
 /* ---------- full-bleed statement band ---------- */
