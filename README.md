@@ -6,6 +6,7 @@ e-learning development, London. No build step, no dependencies to install.
 ```
 index.html
 privacy.html           what the enquiry form collects and who processes it
+google76d48db…html     Google Search Console ownership proof — do not edit or delete
 thanks.html            form confirmation page
 __forms.html           bare form for Netlify to detect — noindex, linked from nowhere
 404.html
@@ -374,6 +375,29 @@ first value tried measured 2.82:1 and failed.
 **The send button is `.btn--send`, not `.btn--go`.** `.btn--go` carries the C5 progress-bar
 reveal, driven by a ScrollTrigger that only ever finds the first `.btn--go` in the band. A
 second one would sit clipped to nothing and the send button would be invisible.
+
+---
+
+## Search Console
+
+The site is verified in Google Search Console by **HTML file**:
+`google76d48db53d602c2d.html` in the repo root.
+
+**Do not edit, rename or delete it.** Google re-checks the file periodically, and losing it
+un-verifies the property — which silently stops the coverage and query reporting rather than
+throwing an error. Its contents are one line of text and are not valid HTML; that is what Google
+generates and what it expects to read back, so nothing should be added to it, including a
+`noindex` tag.
+
+It is deliberately not in `sitemap.xml`, and `robots.txt` disallows nothing, so Google can
+always fetch it.
+
+The sitemap is submitted as `sitemap.xml` under Sitemaps. `robots.txt` also declares it, which
+is the discovery route that works without any account at all — Search Console is for the
+reporting rather than for the crawling.
+
+**A custom domain would need a new property.** Verification does not carry across hosts, and
+neither does the index history.
 
 ---
 
