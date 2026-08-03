@@ -160,22 +160,28 @@ HTTPS. A domain is worth buying for a business site, but nothing here waits on i
 
 ### The outcome figures
 
-The first checkable numbers on the site, at the end of the work section: **70+ SCORM-compliant
-modules** and **5,000+ learners** on Totara across multiple NHS departments, with two statements
-below them that deliberately carry no number — reduced post-go-live support queries, and
-delivery into policing, regulatory, finance and enterprise work.
+They sit **inside the NHS case**, in the same column as the screens, rather than at the end of
+the work section: **70+ SCORM-compliant modules** and **5,000+ learners** on Totara across
+multiple NHS departments, counting up as they arrive.
 
-Those two are unquantified on purpose. "Reduced support queries" is real but not measured, and
-attaching an invented percentage to it would undo the point of having figures at all. An earlier
-draft carried exactly that kind of number — "94% completed before go-live" — and it was removed
-because it sat beside named clients.
+That placement does two jobs. Both figures *are* the NHS work, so they belong to that case
+rather than to the page as a whole. And the case's spec column ran 824px against the gallery's
+672px, which left a 152px void under the carousel controls — the numbers fill it with the one
+thing a reader wants next.
 
-**Every figure here has to survive being queried**, because it now sits next to the NHS, The
-Open University and EY. Change them only against something you can evidence.
+The note under them carries no number on purpose. "Reduced post-go-live support queries" is real
+but unmeasured, and attaching an invented percentage would undo the point of having figures at
+all. An earlier draft carried exactly that kind of number — "94% completed before go-live" — and
+it was cut because it sat beside named clients.
 
-Adding policing to the outcomes meant adding it to the two sector lines as well — the hero spec
-and the statement band — which previously listed six sectors and would otherwise have
-contradicted the new copy.
+A fourth line, "delivered for policing, regulatory, finance and enterprise organisations", was
+dropped when the block moved: a note about policing has no business inside an NHS case study,
+and the sectors are already listed in the hero spec and the statement band, both of which gained
+**Policing** at the same time so they would not contradict it. Put it back anywhere outside this
+case if you want it stated again.
+
+**Every figure here has to survive being queried**, because it now sits directly beneath a named
+NHS system. Change them only against something you can evidence.
 
 ### The case studies
 

@@ -769,8 +769,8 @@ body{
    count-up does not jitter, the plus set smaller and baseline-aligned.
    ----------------------------------------------------------------------- */
 .figures{
-  margin-top:clamp(3rem, 6vw, 5rem);
-  padding-top:clamp(1.75rem, 3vw, 2.5rem);
+  margin-top:clamp(2rem, 3.5vw, 2.75rem);
+  padding-top:clamp(1.5rem, 2.5vw, 2rem);
   border-top:1px solid var(--line);
 }
 .figures__label{
@@ -783,7 +783,10 @@ body{
   display:grid; gap:clamp(1.75rem, 4vw, 3.5rem);
   grid-template-columns:minmax(0,1fr);
 }
-@media (min-width:44rem){
+/* 34rem, not 44rem: this sits inside the case's body column now rather than
+   across the full width, so it goes two-up at a narrower page width than the
+   raw measurement of the block would suggest. */
+@media (min-width:34rem){
   .figures__grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
 }
 .figure__v{ display:flex; align-items:baseline; gap:.06rem; }

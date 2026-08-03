@@ -403,6 +403,53 @@
               <p class="gallery__count" role="status"><span data-count-now>1</span> / 3</p>
             </div>
           </div>
+
+          <!-- ═══ OUTCOMES ══════════════════════════════════════════════
+               Inside the NHS case, in the same column as the screens, for two
+               reasons. Both figures ARE the NHS work, so they belong to it
+               rather than to the page as a whole. And the spec column beside
+               this one ran 824px against the gallery's 672px, leaving a 152px
+               void under the carousel controls — the numbers fill it with the
+               one thing a reader wants next.
+
+               The sectors line that used to sit with these has gone: a note
+               about policing and finance has no business inside an NHS case,
+               and the hero spec and the statement band already list them.
+
+               EVERY FIGURE HERE MUST BE DEFENSIBLE. An earlier draft carried
+               invented ones — "94% completed before go-live" — removed
+               precisely because they sat beside named clients. These came
+               from Kayode. If one is queried it has to survive the question.
+
+               The note below them deliberately carries no number: "reduced
+               support queries" is real but unquantified, and inventing a
+               percentage would undo the point of having figures at all.
+               ═════════════════════════════════════════════════════════ -->
+          <div class="figures" data-reveal-group>
+            <p class="figures__label" data-reveal>What it adds up to</p>
+
+            <dl class="figures__grid">
+              <div class="figure" data-reveal>
+                <dt class="figure__v">
+                  <span class="figure__n">70</span><span class="figure__plus">+</span>
+                </dt>
+                <dd>SCORM-compliant modules designed and developed, for clinical and
+                  non-clinical staff</dd>
+              </div>
+              <div class="figure" data-reveal>
+                <dt class="figure__v">
+                  <span class="figure__n">5,000</span><span class="figure__plus">+</span>
+                </dt>
+                <dd>learners supported by a Totara deployment across multiple NHS
+                  departments</dd>
+              </div>
+            </dl>
+
+            <ul class="figures__notes" data-reveal-group>
+              <li data-reveal>Post-go-live support queries reduced, through targeted
+                simulations and role-based learning rather than more training.</li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -675,48 +722,6 @@
         </div>
       </div>
     </article>
-
-    <!-- ═══ OUTCOMES ═════════════════════════════════════════════════════
-         The first checkable numbers on the page. They sit here, at the end
-         of the four cases, because that is where a reader has just finished
-         asking "and how much of this is there?"
-
-         EVERY ONE OF THESE MUST BE DEFENSIBLE. The previous draft carried
-         invented figures — "94% completed before go-live" — and they were
-         removed precisely because they sat beside named clients. These came
-         from Kayode. If a number here is ever queried, it has to survive the
-         question, so change them only against something you can evidence.
-
-         The two statements below the figures deliberately carry no number:
-         "reduced support queries" is real but unquantified, and inventing a
-         percentage for it would undo the point of the whole section.
-         ══════════════════════════════════════════════════════════════════ -->
-    <div class="figures" data-reveal-group>
-      <p class="figures__label" data-reveal>What it adds up to</p>
-
-      <dl class="figures__grid">
-        <div class="figure" data-reveal>
-          <dt class="figure__v">
-            <span class="figure__n">70</span><span class="figure__plus">+</span>
-          </dt>
-          <dd>SCORM-compliant modules designed and developed, for clinical and non-clinical
-            staff</dd>
-        </div>
-        <div class="figure" data-reveal>
-          <dt class="figure__v">
-            <span class="figure__n">5,000</span><span class="figure__plus">+</span>
-          </dt>
-          <dd>learners supported by a Totara deployment across multiple NHS departments</dd>
-        </div>
-      </dl>
-
-      <ul class="figures__notes" data-reveal-group>
-        <li data-reveal>Post-go-live support queries reduced, through targeted simulations and
-          role-based learning rather than more training.</li>
-        <li data-reveal>Delivered for policing, regulatory, finance and enterprise organisations
-          as well as across the NHS.</li>
-      </ul>
-    </div>
 
   </div>
 </section>
