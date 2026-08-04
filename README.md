@@ -435,6 +435,30 @@ neither does the index history.
 
 ---
 
+## Section spacing
+
+`--section-pad` is the padding **each** section puts above and below itself, so two adjacent
+sections contribute it twice and the visible gap is double the token. That is the thing to
+remember before changing it: at the original `clamp(3.25rem, 6vw, 5.75rem)` the gap came to
+**176px** on a 1470px screen, which read as a hole rather than as separation.
+
+It is now `clamp(2.75rem, 4.5vw, 4.5rem)`, giving:
+
+| Viewport | Gap between sections |
+|---|---|
+| 320-768px | 88px |
+| 1024px | 92px |
+| 1470px | 132px |
+| 1920px and up | 144px |
+
+The statement band and the contact grid set their own padding and were reduced in proportion.
+The toolkit section already had a tighter value and was left alone.
+
+**A note on measuring this.** Screenshots from a Retina display are 2x the CSS pixels, so a
+368px gap in a screenshot is 184 CSS px on the page. Halve before reaching for the stylesheet.
+
+---
+
 ## Punctuation
 
 **The body copy uses no em dashes.** They had accumulated to fourteen across the site, and read

@@ -124,7 +124,10 @@
   /* rhythm */
   --gutter:      clamp(1.25rem, 4vw, 3.25rem);
   --maxw:        1280px;
-  --section-pad: clamp(3.25rem, 6vw, 5.75rem);
+  /* Two adjacent sections each contribute this, so the visible gap between
+     them is double. At the old 6vw/5.75rem that came to 176px on a 1470px
+     screen, which read as a hole rather than as separation. */
+  --section-pad: clamp(2.75rem, 4.5vw, 4.5rem);
   --spec-w:      23ch;
   --spread-gap:  clamp(2rem, 4.5vw, 4.5rem);
   --head-h:      4.75rem;
@@ -837,7 +840,7 @@ body{
   position:relative;
   isolation:isolate;
   overflow:hidden;
-  padding-block:clamp(3.75rem, 7.5vw, 6.5rem);
+  padding-block:clamp(3.25rem, 5.5vw, 5rem);
   border-block:1px solid var(--line);
 }
 .statement__media{ position:absolute; inset:0; z-index:-1; }
@@ -1184,7 +1187,7 @@ body{
 .ctagrid{
   display:grid;
   gap:clamp(2.5rem, 5vw, 4rem);
-  padding-block:clamp(3.5rem, 6.5vw, 5.75rem);
+  padding-block:clamp(3rem, 5vw, 4.75rem);
 }
 @media (min-width:62rem){
   .ctagrid{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:start; }
