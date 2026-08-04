@@ -499,7 +499,6 @@
     if (plate) tl.fromTo(plate, { scale: 1.12 }, { scale: 1, duration: 1.9, ease: 'power2.out' }, 0);
 
     tl.to(qa('.spread__spec [data-reveal]', HERO), { opacity: 1, y: 0, duration: 0.7, stagger: 0.08 }, 0.25)
-      .to(q('.herobrand', HERO), { opacity: 1, y: 0, duration: 0.6 }, 0.1)
       // y:0 must be stated explicitly. GSAP reads the CSS translateY(105%)
       // out of the computed matrix as a pixel `y`, and yPercent is a separate
       // channel — without this the lines settle a whole line-height low and

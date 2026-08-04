@@ -336,14 +336,19 @@ body{
   text-decoration:none; color:inherit;
   margin-right:auto;
 }
+/* The wordmark carries the brand on its own now: the hero used to repeat it two
+   lines below, which meant neither had to be the one that read. Sized up so it
+   holds the top-left corner, and clamped so it gives way to the nav on narrow
+   screens rather than pushing it. */
 .mark__kto{
   font-family:var(--f-mono); font-weight:500;
-  font-size:1.0625rem; letter-spacing:.22em;
+  font-size:clamp(1.125rem, 1.5vw, 1.375rem); letter-spacing:.22em;
   color:var(--blue);
 }
 .mark__rest{
   font-family:var(--f-mono); font-weight:500;
-  font-size:.625rem; letter-spacing:.26em; text-transform:uppercase;
+  font-size:clamp(.6875rem, .8vw, .8125rem); letter-spacing:.26em;
+  text-transform:uppercase;
   color:var(--text-2);
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
@@ -386,7 +391,15 @@ body{
 .head[data-open="true"] .navtoggle__bars i:first-child{ transform:translateY(2.6px) rotate(45deg); }
 .head[data-open="true"] .navtoggle__bars i:last-child{ transform:translateY(-2.6px) rotate(-45deg); }
 
-@media (max-width:61.999rem){
+/* 73rem, not 62rem. Measured: the wordmark (260px), the seven nav items
+   (562px), the button (189px) and the gaps need 1167px before anything has to
+   give. The old 992rem breakpoint dated from a five-item nav and a smaller
+   wordmark; with nine sections and a larger mark it left "AI AGENTS" and
+   "DISCUSS A PROJECT" wrapping onto second lines at 1024px.
+
+   Below this the disclosure menu takes over, which is no hardship — its
+   targets are 335x52 and it is the better control on a touch screen anyway. */
+@media (max-width:72.999rem){
   .navtoggle{ display:inline-flex; }
   .nav{
     position:absolute; left:0; right:0; top:100%;
@@ -589,17 +602,6 @@ body{
 @media (min-width:62rem){
   .spread--hero .spread__spec{ padding-bottom:.5rem; }
 }
-
-.herobrand{
-  display:flex; flex-wrap:wrap; align-items:center; gap:.6rem .9rem;
-  margin-bottom:1.5rem;
-  font-family:var(--f-mono); font-weight:500;
-  font-size:.6875rem; letter-spacing:.26em; text-transform:uppercase;
-  /* Lighter than --text-2: this line sits where the photograph shows through. */
-  color:#B4C2D0;
-}
-.herobrand b{ color:var(--blue); font-weight:500; letter-spacing:.22em; }
-.herobrand span{ color:var(--line-2); }
 
 /* The mask must clear the descenders, or overflow:hidden crops every 'g'. */
 .h-display .line{ display:block; overflow:hidden; padding-bottom:.1em; margin-bottom:-.1em; }
@@ -1067,9 +1069,9 @@ body{
   max-width:62ch;
 }
 
-/* The name, in the one place a recruiter looks for it. Same construction as
-   .herobrand, one step quieter, because the H2 under it has to stay the
-   loudest thing in the section. */
+/* The name, in the one place a recruiter looks for it. Same tracked-mono
+   construction as the header wordmark, one step quieter, because the H2 under
+   it has to stay the loudest thing in the section. */
 .byline{
   display:flex; flex-wrap:wrap; align-items:center; gap:.4rem .75rem;
   margin-bottom:1.1rem;

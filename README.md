@@ -83,7 +83,16 @@ version-controlled.
   — but generated rather than stock (see Design notes).
 - **Wide-tracked uppercase.** The `KTO` wordmark, section labels, nav, buttons and the rail
   all run at `.16–.28em` tracking. This is the single most recognisable thing about the
-  current site and it carries straight over.
+  current site and it carries straight over. The wordmark carries the brand alone: the hero
+  used to repeat "KTO Technology Solutions / London, England" two lines below it, which meant
+  neither had to be the one that read.
+
+**The header collapses to the disclosure menu below 73rem (1168px)**, not 62rem as it did
+originally. Measured: the wordmark (260px), the seven nav items (562px), the button (189px) and
+the gaps need 1167px before something has to give. The old breakpoint dated from a five-item
+nav and a smaller mark; with nine sections and a larger wordmark it left "AI AGENTS" and
+"DISCUSS A PROJECT" wrapping onto second lines at 1024px. **Adding another nav item means
+re-measuring this.**
 - **Blue and green.** `#3D8BFF` and `#24D267`, sampled from the current KTO wordmark and the
   skill bars. Given strict roles here: **blue navigates** (brand, links, primary buttons),
   **green reports progress** (course progress bars, correct answers, outcome figures, the
